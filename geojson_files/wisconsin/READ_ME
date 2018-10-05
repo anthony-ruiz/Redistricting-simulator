@@ -1,0 +1,2 @@
+this file contain all of the data for the state in a single file. i coneverted it from a shapefile to a geojson from the harvard website. if we want everything seperate we can fing data for the conties here :
+https://github.com/sheadscott/county-voting-precincts/tree/master/wi
