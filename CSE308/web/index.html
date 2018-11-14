@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			var req;
+			var s;
+			var w;
+			var a;
+                        var f;
+			function startAlgorithm() {
+				s = document.getElementById("states").value;
+				w = document.getElementById("weight").value;
+				a = document.getElementById("algorithm").value;
+				var algorithmObj = {"state":s, "weight":w, "algorithm":a};
+				var myJSON = JSON.stringify(algorithmObj);
+				req = new XMLHttpRequest();
+                                var url = "http://localhost:8080/CSE308/jsonhandler";
+				req.open("POST", url, true);
+				req.setRequestHeader('Content-type','application/json; charset=utf-8');
+				req.onreadystatechange = validateAlgorithmSuccess;
+                                req.send(myJSON);
+//                                req.send(null);
+			}
+			
+			function validateAlgorithmSuccess() {
+                            if(req.readyState == 4 && req.status == 200) {      
+                                alert(req.responseText)
+                            }
+				
+			}
+                </script>
+		
+	</head>
+	<body>
+
+		<h1>Start Algorithm</h1>
+
+		<form name="algform" action="" method="post" onsubmit="startAlgorithm()">
+		
+		  State:<br>
+		  <select name="states" id="states">
+			<option value="default" selected >Select a State</option>
+			<option value="AZ">Arizona</option>
+			<option value="MN">Minnesota</option>
+			<option value="WI">Wisconsin</option>
+		  </select>
+		  <br><br>
+		  Weight:<br>
+		  <input type="text" name="weight" id="weight">
+		  <br><br>
+		  Algorithm:<br>
+		  <input type="radio" name="algorithm" value="REGION_GROWING" id="algorithm"> Region Growing<br>
+		  <input type="radio" name="algorithm" value="SIMULATED_ANNEALING" id="algorithm"> Simulated Annealing<br>
+		  <br><br>
+		  <span class="error" id="drpnoticeMessage"></span>
+		  <input type="submit" value="Submit">
+		</form> 
+
+
+	</body>
+</html>
