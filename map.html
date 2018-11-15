@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>CSE308 Titans</title>
+
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+        crossorigin=""></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+</head>
+
+<body>
+    <div id='map'>
+        <script type="text/javascript" src="./states/combined_states.js"></script>
+        
+        <script type="text/javascript" src="./precincts/az.js"></script>
+        <script type="text/javascript" src="./precincts/mn.js"></script>
+        <script type="text/javascript" src="./precincts/wi.js"></script>
+
+        <script type="text/javascript" src="./javascript/map.js"></script>
+        <script type="text/javascript" src="./javascript/state.js"></script>
+        <script type="text/javascript" src="./javascript/precinct.js"></script>
+
+        <div class="sidenav">
+            <a onclick="showAllStates()">Show All States</a>
+            <!-- <a href="#services">Services</a>
+            <a href="#clients">Clients</a>
+            <a href="#contact">Contact</a> -->
+        </div>
+
+    </div>
+</body>
+
+</html>

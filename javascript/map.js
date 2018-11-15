@@ -1,0 +1,57 @@
+// a list of all the state objects
+var states = [{ state: Arizona, name: "Arizona" }, { state: Wisconsin, name: "Wisconsin" }, { state: Minnesota, name: "Minnesota" }];
+
+// the bounds that the user is allowed to traverse in
+var maxBounds = [
+    [5.499550, -185], //Southwest
+    [83.162102, -52.233040]  //Northeast
+];
+
+// creation of the map
+var map = L.map('map', { attributionControl: false, maxBounds: maxBounds }).setView([40, -100], 5);
+
+
+// assigning the tilelayer
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+    maxZoom: 16,
+    minZoom: 5
+}).addTo(map);
+
+var geojson;
+
+// style that is assigned when hovering over a provence on the map
+function style(feature) {
+    return {
+        weight: 2,
+        opacity: 1,
+        color: 'green',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+// search for the state clicked on in the array of states loaded
+function search(nameKey, myArray) {
+    for (var i = 0; i < myArray.length; i++) {
+        if (myArray[i].name === nameKey) {
+            return myArray[i].state;
+        }
+    }
+}
+
+// function to reset the map to the state view
+function showAllStates() {
+
+    map.setView([40, -100], 5)
+
+    geojson.clearLayers()
+
+    geojson = L.geoJSON(statesData, {
+        style: style,
+        onEachFeature: onEachStateFeature
+    }).addTo(map);
+
+    map.removeControl(precinctInfo)
+    info.addTo(map)
+}
