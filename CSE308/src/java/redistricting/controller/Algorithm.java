@@ -21,12 +21,12 @@ public class Algorithm {
     private Set<Precinct> currentNeighbors;
     private State currentState;
 
-    public void setWeight(String weight) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setWeights(String politicalFairness, String compactness, String populationEquality) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void setState(String state) {
-        currentState = new State(state);
+//        currentState = new State(state);
     }
 
     public void setAlgorithm(String algorithm) {

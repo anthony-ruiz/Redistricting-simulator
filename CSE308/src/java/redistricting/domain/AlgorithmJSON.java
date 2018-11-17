@@ -16,15 +16,19 @@ import redistricting.enums.AlgorithmType;
 public class AlgorithmJSON {
     @JsonProperty("state")
     public String state;
-    @JsonProperty("weight")
-    public String weight;
+    @JsonProperty("politicalFairness")
+    public String politicalFairness;
+    @JsonProperty("compactness")
+    public String compactness;
+    @JsonProperty("populationEquality")
+    public String populationEquality;
     @JsonProperty("algorithm")
     public String algorithm;
     
     public Algorithm create() {
         Algorithm newAlgorithm = new Algorithm();
         newAlgorithm.setState(state);
-        newAlgorithm.setWeight(weight);
+        newAlgorithm.setWeights(politicalFairness, compactness, populationEquality);
         newAlgorithm.setAlgorithm(algorithm);
         return newAlgorithm;                
     }

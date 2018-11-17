@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>jsonhandler</servlet-name>
-        <servlet-class>redistricting.servlet.jsonhandler</servlet-class>
+        <servlet-name>JsonHandler</servlet-name>
+        <servlet-class>redistricting.servlet.JsonHandler</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>jsonhandler</servlet-name>
-        <url-pattern>/jsonhandler</url-pattern>
+        <servlet-name>JsonHandler</servlet-name>
+        <url-pattern>/JsonHandler</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
