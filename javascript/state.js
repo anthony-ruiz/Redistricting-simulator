@@ -37,7 +37,7 @@ function stateResetHighlight(e) {
 }
 
 function stateClicked(e) {
-    map.fitBounds(e.target.getBounds());
+    map.fitBounds(e.target.getBounds())
 
     geojson.clearLayers()
 
@@ -45,8 +45,27 @@ function stateClicked(e) {
         style: style,
         onEachFeature: onEachPrecinctFeature
     }).addTo(map);
+
     map.removeControl(info)
     precinctInfo.addTo(map)
+    toggleSideBar()
+}
+
+function comboBoxClicked() {
+    var stateObj = search(document.getElementById('states').value, states)
+   
+    geojson.clearLayers()
+
+    geojson = L.geoJSON(stateObj, {
+        style: style,
+        onEachFeature: onEachPrecinctFeature
+    }).addTo(map);
+
+    map.fitBounds(geojson.getBounds())
+
+    map.removeControl(info)
+    precinctInfo.addTo(map)
+    toggleSideBar()
 }
 
 function onEachStateFeature(feature, layer) {

@@ -19,7 +19,7 @@
 <body>
     <div id='map'>
         <script type="text/javascript" src="./states/combined_states.js"></script>
-        
+
         <script type="text/javascript" src="./precincts/az.js"></script>
         <script type="text/javascript" src="./precincts/mn.js"></script>
         <script type="text/javascript" src="./precincts/wi.js"></script>
@@ -27,14 +27,24 @@
         <script type="text/javascript" src="./javascript/map.js"></script>
         <script type="text/javascript" src="./javascript/state.js"></script>
         <script type="text/javascript" src="./javascript/precinct.js"></script>
+    </div>
 
-        <div class="sidenav">
-            <a onclick="showAllStates()">Show All States</a>
-            <!-- <a href="#services">Services</a>
-            <a href="#clients">Clients</a>
-            <a href="#contact">Contact</a> -->
+    <div class="sidenav" align="center">
+        <div class="cbox" id="sidebar1">
+            <p aligh style="color: #2d7499;  font-size: 25px;">Select a State</p>
+            <select name="states" id="states" onchange="comboBoxClicked()">
+                <option value="default" default disabled selected>Select a State</option>
+                <option value="Arizona">Arizona</option>
+                <option value="Minnesota">Minnesota</option>
+                <option value="Wisconsin">Wisconsin</option>
+            </select>
         </div>
 
+        <div id="sidebar2">
+            <a onclick="showAllStates()">Show All States</a>
+        </div>
+
+        <br>
     </div>
 </body>
 

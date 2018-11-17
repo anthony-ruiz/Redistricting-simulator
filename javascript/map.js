@@ -40,6 +40,18 @@ function search(nameKey, myArray) {
     }
 }
 
+function toggleSideBar() {
+    var x = document.getElementById("sidebar1");
+    var y = document.getElementById("sidebar2");
+    if (x.style.display === "none") {
+        x.style.display = "initial";
+        y.style.display = "none";
+    } else {
+        x.style.display = "none";
+        y.style.display = "initial";
+    }
+}
+
 // function to reset the map to the state view
 function showAllStates() {
 
@@ -54,4 +66,5 @@ function showAllStates() {
 
     map.removeControl(precinctInfo)
     info.addTo(map)
+    toggleSideBar()
 }

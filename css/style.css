@@ -35,6 +35,11 @@ html, body {
      opacity: 0.7; 
 }
 
+.cbox {
+    width: 200px;
+    position: relative;
+}
+
 .sidenav {
     height: 100%;
     width: 250px;
@@ -49,13 +54,21 @@ html, body {
 }
 
 .sidenav a {
-    padding: 6px 8px 6px 16px;
+    /* padding: 6px 8px 6px 16px; */
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #2d7499;
     display: block;
 }
 
 .sidenav a:hover {
     color: #f1f1f1;
+}
+
+#sidebar1 {
+    display: initial;
+}
+
+#sidebar2 {
+    display: none;
 }
