@@ -19,4 +19,27 @@ public class District{
     private double volume;
     private Representative representative;
     private Set<Precinct> precincts;
+    private Set<Precinct> borders;
+    private Set<Precinct> currentNeighbors;
+
+    public void addPrecinct(Precinct precinctToAdd) {
+        precincts.add(precinctToAdd);
+        precinctToAdd.setDistrict(this);
+    }
+    
+    public Set<Precinct> getBorders() {
+        for(Precinct precinct : precincts) {
+            if(precinct.isOnDistrictBorder()) {
+                borders.add(precinct);
+            }
+        }        
+        return borders;
+    }
+
+    public Set<Precinct> getCurrentNeighbors() {
+        return currentNeighbors;
+    }
+    
+    
+
 }

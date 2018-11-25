@@ -5,8 +5,11 @@
  */
 package redistricting.domain;
 
+import java.util.Collections;
 import redistricting.domain.Precinct;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,10 +18,34 @@ import java.util.Set;
  */
 public class State {
     private String name;
-    private HashMap<String, District> districts;
+    private Set<District> districts;
     private int districtAmount;
-    private HashMap<String, Precinct> precincts;
-    private HashMap<String, Precinct> borderPrecincts;
+    private Set<Precinct> precincts;
+    private Set<Precinct> borderPrecincts;
     private Set<Representative> representatives;
     private Set<Precinct> seedPrecincts;
+    
+    public State() {
+        
+    }
+    
+    public Set<Precinct> getSeedPrecincts() {
+        int districtAmount = districts.size();
+        Collections.shuffle((List<?>) precincts);
+        Iterator<Precinct> iter = precincts.iterator();
+        for(int i = 0; i < districtAmount; i ++) {
+            seedPrecincts.add(iter.next());
+        }
+        return seedPrecincts;
+    }
+
+    public Set<District> getDistricts() {
+        return districts;
+    }
+
+    public int getDistrictAmount() {
+        return districtAmount;
+    }
+    
+    
 }
