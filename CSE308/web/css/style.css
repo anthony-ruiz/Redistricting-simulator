@@ -36,7 +36,7 @@ html, body {
 }
 
 .cbox {
-    width: 200px;
+    width: 300px;
     position: relative;
 }
 
@@ -67,10 +67,8 @@ html, body {
 
 #sidebar1 {
     display: initial;
-    color: white;
 }
 
 #sidebar2 {
     display: none;
-    color: white;
 }

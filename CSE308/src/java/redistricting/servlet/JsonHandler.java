@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package redistricting.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,12 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import redistricting.controller.Algorithm;
 import redistricting.domain.AlgorithmJSON;
 
-/**
- *
- * @author Tom Biscardi
- */
 public class JsonHandler extends HttpServlet {
 
     /**
@@ -34,16 +26,8 @@ public class JsonHandler extends HttpServlet {
         String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         ObjectMapper mapper = new ObjectMapper();
         AlgorithmJSON ajson = mapper.readValue(body, AlgorithmJSON.class);
-        
-//        System.out.println(test);
-//        System.out.println("Hello world");
-        response.setContentType("text/plain;charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        try (PrintWriter out = response.getWriter()) {
-            out.print(body);
-        }
-
-        
+        Algorithm algorithm = ajson.create();
+        algorithm.beginAlgorithm();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
