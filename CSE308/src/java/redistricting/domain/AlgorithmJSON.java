@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package redistricting.domain;
 
 import redistricting.controller.Algorithm;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import redistricting.enums.AlgorithmType;
+import redistricting.controller.RegionGrowingAlgorithm;
+import redistricting.controller.SimulatedAnnealingAlgorithm;
 
-/**
- *
- * @author Tom Biscardi
- */
 public class AlgorithmJSON {
     @JsonProperty("state")
     public String state;
@@ -26,10 +18,13 @@ public class AlgorithmJSON {
     public String algorithm;
     
     public Algorithm create() {
-        Algorithm newAlgorithm = new Algorithm();
-        newAlgorithm.setState(state);
+        Algorithm newAlgorithm;
+        if(algorithm.equals("REGION_GROWING")) {
+            newAlgorithm = new RegionGrowingAlgorithm(state);
+        } else {
+            newAlgorithm = new SimulatedAnnealingAlgorithm(state);
+        }
         newAlgorithm.setWeights(politicalFairness, compactness, populationEquality);
-        newAlgorithm.setAlgorithm(algorithm);
         return newAlgorithm;                
     }
 }

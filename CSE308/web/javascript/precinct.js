@@ -31,7 +31,6 @@ function precinctHighlightFeature(e) {
     precinctInfo.update(layer.feature.properties);
 }
 
-// colors each precinct based on the party they are in
 function getPrecinctColor(d) {
     return d.PRS08_REP > d.PRS08_DEM ? '#E91D0E' : '#232066';
 }

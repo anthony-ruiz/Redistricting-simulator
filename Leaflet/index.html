@@ -35,7 +35,7 @@
 
     <div class="sidenav" align="center">
         <div class="cbox" id="sidebar1">
-            <p aligh style="color: #2d7499;  font-size: 25px;">Select a State</p>
+            <p align style="color: #2d7499;  font-size: 25px;">Select a State</p>
             <select name="states" id="states" onchange="comboBoxClicked()">
                 <option value="default" default disabled selected>Select a State</option>
                 <option value="Arizona">Arizona</option>
@@ -47,32 +47,32 @@
         <div id="sidebar2">
             <a onclick="showAllStates()">Show All States</a>
             <br>
-            <p aligh style="color: #2d7499;  font-size: 20px;">Political Fairness:</p>
+            <p align style="color: #2d7499;  font-size: 20px;">Color Display:</p>
+            <input checked onclick="selectColor(0)" type="radio" name="color" value="DISTRICT_COLOR" id="color"> <label style="color:#2d7499">District
+                Colors</label><br>
+            <input onclick="selectColor(1)" type="radio" name="color" value="PARTY_COLOR" id="color"> <label
+                style="color:#2d7499">Party Colors</label><br>
+            <br>
+            <p align style="color: #2d7499;  font-size: 20px;">Political Fairness:</p>
             <div class="slidecontainer">
                 <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight1">
             </div>
             <br>
-            <p aligh style="color: #2d7499;  font-size: 20px;">Compactness:</p>
+            <p align style="color: #2d7499;  font-size: 20px;">Compactness:</p>
             <div class="slidecontainer">
                 <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight2">
             </div>
             <br>
-            <p aligh style="color: #2d7499;  font-size: 20px;">Population Equality:</p>
+            <p align style="color: #2d7499;  font-size: 20px;">Population Equality:</p>
             <div class="slidecontainer">
                 <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight3">
             </div>
             <br>
-            <p aligh style="color: #2d7499;  font-size: 20px;">Algorithm:</p>
+            <p align style="color: #2d7499;  font-size: 20px;">Algorithm:</p>
             <input checked type="radio" name="algorithm" value="REGION_GROWING" id="algorithm"> <label style="color:#2d7499">Region
                 Growing</label><br>
             <input type="radio" name="algorithm" value="SIMULATED_ANNEALING" id="algorithm"> <label style="color:#2d7499">Simulated
                 Annealing</label><br>
-            <br>
-            <p aligh style="color: #2d7499;  font-size: 20px;">Color Display:</p>
-            <input checked onclick="selectColor(1)" type="radio" name="color" value="PARTY_COLOR" id="color"> <label
-                style="color:#2d7499">Party Colors</label><br>
-            <input onclick="selectColor(0)" type="radio" name="color" value="DISTRICT_COLOR" id="color"> <label style="color:#2d7499">District
-                Colors</label><br>
             <br>
             <span class="error" id="drpnoticeMessage"></span>
             <button onclick="startAlgorithm()">Submit</button>

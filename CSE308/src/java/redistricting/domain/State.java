@@ -1,22 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package redistricting.domain;
 
+import java.io.Serializable;
 import java.util.Collections;
-import redistricting.domain.Precinct;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import redistricting.persistence.PersistenceUnit;
 
-/**
- *
- * @author Tom Biscardi
- */
-public class State {
+@Entity
+@Table(name="states")
+public class State implements Serializable{
+    @Id
+    @Column(name = "state_id")
+    private int id;
+    @Column(name = "state_name")
     private String name;
     private Set<District> districts;
     private int districtAmount;
@@ -24,10 +26,6 @@ public class State {
     private Set<Precinct> borderPrecincts;
     private Set<Representative> representatives;
     private Set<Precinct> seedPrecincts;
-    
-    public State() {
-        
-    }
     
     public Set<Precinct> getSeedPrecincts() {
         int districtAmount = districts.size();
@@ -42,9 +40,25 @@ public class State {
     public Set<District> getDistricts() {
         return districts;
     }
+    
+    public void setDistricts(Set<District> districts) {
+        this.districts = districts;
+    }
 
     public int getDistrictAmount() {
         return districtAmount;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setPrecincts(Set<Precinct> precincts) {
+        this.precincts = precincts;
     }
     
     

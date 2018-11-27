@@ -10,7 +10,7 @@ var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
     '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
     '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
 
-var currentMode = 1;
+var currentMode = 0;
 
 // list of states loaded
 states = [];
@@ -25,7 +25,6 @@ var maxBounds = [
     [83.162102, -52.233040]  //Northeast
 ];
 
-// creation of the map
 var map = L.map('map', { attributionControl: false, maxBounds: maxBounds }).setView([40, -100], 5);
 
 var prevZoom = map.getZoom();
@@ -59,7 +58,6 @@ map.on('zoomend', function () {
     }
 });
 
-// assigning the tilelayer
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
     maxZoom: 16,
@@ -68,7 +66,7 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_L
 
 var geojson;
 
-// style that is assigned when hovering over a provence on the map
+// style that is assigned when hovering over a state
 function style(feature) {
     return {
         weight: 2,
@@ -119,7 +117,6 @@ function include(file) {
     })
 }
 
-// function to reset the map to the state view
 function showAllStates() {
     stateSelected = false;
     map.setView([40, -100], 5);

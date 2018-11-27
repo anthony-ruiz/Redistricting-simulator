@@ -8,8 +8,8 @@ info.onAdd = function (map) {
 };
 
 info.update = function (props) {
-    this._div.innerHTML = '<h4>State Population Density</h4>' + (props ?
-        '<b> State name: ' + props.name : 'Hover over a state');
+    this._div.innerHTML = '<h4>State Information</h4>' + (props ?
+        '<b> State : ' + props.name : 'Hover over a state');
 };
 info.addTo(map);
 // end of state control
@@ -61,48 +61,22 @@ function stateResetHighlight(e) {
 }
 
 function stateClicked(e) {
-    stateSelected = true;
     currentState = e.target.feature.properties.name;
-    if (search(e.target.feature.properties.name, states)) {
-        map.fitBounds(e.target.getBounds());
-
-        geojson.clearLayers();
-
-        geojson = L.geoJSON(window[e.target.feature.properties.name + "_districts"], {
-            style: districtStyle,
-            onEachFeature: onEachDistrictFeature
-        }).addTo(map);
-
-        map.removeControl(info);
-        districtInfo.addTo(map);
-        toggleSideBar();
-    }
-    else {
-        include(e.target.feature.properties.name).then(function () {
-            map.fitBounds(e.target.getBounds());
-
-            geojson.clearLayers();
-
-            geojson = L.geoJSON(window[e.target.feature.properties.name + "_districts"], {
-                style: districtStyle,
-                onEachFeature: onEachDistrictFeature
-            }).addTo(map);
-
-            map.removeControl(info);
-            districtInfo.addTo(map);
-            toggleSideBar();
-        });
-    }
+    showStateDistricts();
 }
 
 function comboBoxClicked() {
-    stateSelected = true;
     currentState = document.getElementById('states').value;
-    if (search(document.getElementById('states').value, states)) {
+    showStateDistricts();
+}
+
+function showStateDistricts() {
+    stateSelected = true;
+    if (search(currentState, states)) {
 
         geojson.clearLayers();
 
-        geojson = L.geoJSON(window[document.getElementById('states').value + "_districts"], {
+        geojson = L.geoJSON(window[currentState + "_districts"], {
             style: districtStyle,
             onEachFeature: onEachDistrictFeature
         }).addTo(map);
@@ -114,11 +88,11 @@ function comboBoxClicked() {
         toggleSideBar();
     }
     else {
-        include(document.getElementById('states').value).then(function () {
+        include(currentState).then(function () {
 
             geojson.clearLayers();
 
-            geojson = L.geoJSON(window[document.getElementById('states').value + "_districts"], {
+            geojson = L.geoJSON(window[currentState + "_districts"], {
                 style: districtStyle,
                 onEachFeature: onEachDistrictFeature
             }).addTo(map);
