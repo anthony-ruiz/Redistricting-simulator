@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package redistricting.controller;
-
-import redistricting.domain.State;
-import redistricting.domain.District;
+package com.example.Gerrymandering.domain;
 
 /**
  *
  * @author Tom Biscardi
  */
-public class SeedGenerator {
-    private State state;
-    private District district;
+public enum Strategy {
+    REPRESENTATIVE,
+    RANDOM,
+    BORDER
 }

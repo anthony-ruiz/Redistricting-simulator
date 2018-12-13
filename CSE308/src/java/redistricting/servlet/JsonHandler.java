@@ -26,8 +26,8 @@ public class JsonHandler extends HttpServlet {
         String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         ObjectMapper mapper = new ObjectMapper();
         AlgorithmJSON ajson = mapper.readValue(body, AlgorithmJSON.class);
-        Algorithm algorithm = ajson.create();
-        algorithm.beginAlgorithm();
+//        Algorithm algorithm = ajson.create();
+//        algorithm.beginAlgorithm();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

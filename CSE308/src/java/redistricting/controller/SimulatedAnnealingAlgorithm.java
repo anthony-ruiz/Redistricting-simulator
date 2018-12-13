@@ -1,4 +1,4 @@
-package redistricting.controller;
+package com.example.Gerrymandering.controller;
 
 import java.util.Set;
 import redistricting.domain.State;

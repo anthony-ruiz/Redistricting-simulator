@@ -138,6 +138,7 @@ function showAllStates() {
 }
 
 var req;
+var req2;
 var s;
 var w;
 var a;
@@ -154,13 +155,33 @@ function startAlgorithm() {
     req = new XMLHttpRequest();
     var url = "http://localhost:8080/CSE308/JsonHandler";
     req.open("POST", url, true);
+    getUpdates();
     req.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     req.onreadystatechange = validateAlgorithmSuccess;
     req.send(myJSON);
+    
 }
 
 function validateAlgorithmSuccess() {
     if (req.readyState == 4 && req.status == 200) {
         alert(req.responseText)
+    }
+}
+
+var finished = false;
+
+function getUpdates() {
+//    while(!finished) {
+        req2 = new XMLHTTPRequest();
+        var url = "http://localhost:8080/CSE308/PrecinctUpdater";
+        req2.open("GET", url, true);
+        req2.onreadystatechange = receiveUpdates;
+        req2.send(null);
+//    }
+}
+
+function receiveUpdates() {
+    if (req2.readyState == 4 && req2.status == 200) {
+        alert(req2.responseText);
     }
 }

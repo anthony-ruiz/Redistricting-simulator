@@ -4,6 +4,10 @@
         <servlet-name>JsonHandler</servlet-name>
         <servlet-class>redistricting.servlet.JsonHandler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrecinctUpdater</servlet-name>
+        <servlet-class>redistricting.servlet.PrecinctUpdater</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>JsonHandler</servlet-name>
         <url-pattern>/JsonHandler</url-pattern>
@@ -11,6 +15,10 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>PrecinctUpdater</servlet-name>
+        <url-pattern>/PrecinctUpdater</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

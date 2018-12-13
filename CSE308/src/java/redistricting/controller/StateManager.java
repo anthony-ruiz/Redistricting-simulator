@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package redistricting.controller;
+package com.example.Gerrymandering.controller;
 
 import redistricting.domain.State;
 import java.util.HashMap;
