@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>CSE308 Titans</title>
+
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin="" />
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+            crossorigin=""></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+</head>
+
+<body>
+<div id='map'>
+    <script type="text/javascript" src="states/combined_states.js"></script>
+
+
+    <!-- state districts -->
+    <script type="text/javascript" src="./districts/Arizona_districts.js"></script>
+    <script type="text/javascript" src="./districts/Minnesota_districts.js"></script>
+    <script type="text/javascript" src="./districts/Wisconsin_districts.js"></script>
+
+    <!-- state borders -->
+    <script type="text/javascript" src="./javascript/map.js"></script>
+    <script type="text/javascript" src="./javascript/state.js"></script>
+    <script type="text/javascript" src="./javascript/precinct.js"></script>
+    <script type="text/javascript" src="./javascript/district.js"></script>
+</div>
+
+<div class="sidenav" align="center">
+    <div class="cbox" id="sidebar1">
+        <p align style="color: #2d7499;  font-size: 25px;">Select a State</p>
+        <select name="states" id="states" onchange="comboBoxClicked()">
+            <option value="default" default disabled selected>Select a State</option>
+            <option value="Arizona">Arizona</option>
+            <option value="Minnesota">Minnesota</option>
+            <option value="Wisconsin">Wisconsin</option>
+        </select>
+    </div>
+
+    <div id="sidebar2">
+        <a onclick="showAllStates()">Show All States</a>
+        <br>
+        <p align style="color: #2d7499;  font-size: 20px;">Political Fairness:</p>
+        <div class="slidecontainer">
+            <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight1">
+        </div>
+        <br>
+        <p align style="color: #2d7499;  font-size: 20px;">Compactness:</p>
+        <div class="slidecontainer">
+            <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight2">
+        </div>
+        <br>
+        <p align style="color: #2d7499;  font-size: 20px;">Population Equality:</p>
+        <div class="slidecontainer">
+            <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight3">
+        </div>
+        <br>
+        <p align style="color: #2d7499;  font-size: 20px;">Algorithm:</p>
+        <input checked type="radio" name="algorithm" value="REGION_GROWING" id="algorithm"> <label style="color:#2d7499">Region
+        Growing</label><br>
+        <input type="radio" name="algorithm" value="SIMULATED_ANNEALING" id="algorithm"> <label style="color:#2d7499">Simulated
+        Annealing</label><br>
+        <br>
+        <p align style="color: #2d7499;  font-size: 20px;">Color Display:</p>
+        <input checked onclick="selectColor(1)" type="radio" name="color" value="PARTY_COLOR" id="color"> <label
+            style="color:#2d7499">Party Colors</label><br>
+        <input onclick="selectColor(0)" type="radio" name="color" value="DISTRICT_COLOR" id="color"> <label style="color:#2d7499">District
+        Colors</label><br>
+        <br>
+        <span class="error" id="drpnoticeMessage"></span>
+        <button onclick="startAlgorithm()">Submit</button>
+    </div>
+    <br>
+</div>
+
+
+<br>
+</div>
+</body>
+
+</html>
