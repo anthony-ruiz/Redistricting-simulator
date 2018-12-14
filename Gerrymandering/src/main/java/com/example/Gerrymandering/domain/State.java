@@ -15,10 +15,8 @@ import java.util.Set;
 //@Entity
 //@Table(name="states")
 public class State implements Serializable{
-//    @Id
-//    @Column(name = "state_id")
+
     private int id;
-//    @Column(name = "state_name")
     private String name;
     private Set<District> districts;
     private int districtAmount;
@@ -39,6 +37,10 @@ public class State implements Serializable{
 
     public Set<District> getDistricts() {
         return districts;
+    }
+
+    public Set<Precinct> getPrecints() {
+        return precincts;
     }
     
     public void setDistricts(Set<District> districts) {

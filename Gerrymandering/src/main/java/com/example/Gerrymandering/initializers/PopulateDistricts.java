@@ -1,21 +1,27 @@
 package com.example.Gerrymandering.initializers;
 
 import com.example.Gerrymandering.domain.District;
+import com.example.Gerrymandering.domain.Precinct;
 import com.example.Gerrymandering.domain.State;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PopulateDistricts {
+
+    List<District> districtList = new ArrayList<>();
+
     public List populate(List states) throws IOException {
         String csvFileToRead = "Districts.csv";
         BufferedReader br = null;
         String line = "";
         String splitBy = ",";
-        List districtList = new ArrayList();
+
 
         br = new BufferedReader(new FileReader(csvFileToRead));
         while ((line = br.readLine()) != null) {
@@ -30,6 +36,21 @@ public class PopulateDistricts {
         }
         return districtList;
     }
+
+    public void addPrecinctSet(Set<Precinct> precinctSet){
+        for(District d : districtList){
+            Set<Precinct> curentset = new HashSet<>();
+            int districtID = d.getId();
+            for(Precinct p : precinctSet){
+                if(p.getDistrict().getId() == districtID){
+                    curentset.add(p);
+                }
+            }
+            d.setPrecincts(curentset);
+        }
+
+    }
+
 
     public void printList(List<District> list) {
         for (int i = 0; i < list.size(); i++) {

@@ -14,7 +14,7 @@ import java.util.Set;
 public class PopulatePrecincts {
 
     List precinctList = new ArrayList();
-        public List populate(List districts) throws IOException {
+        public List populate(List districts, String algorithmType) throws IOException {
             String csvFileToRead = "Precinct.csv";
             BufferedReader br = null;
             String line = "";
@@ -23,8 +23,10 @@ public class PopulatePrecincts {
             while ((line = br.readLine()) != null) {
                 String[] precinctLine = line.split(splitBy);
                 Precinct precinct = new Precinct();
-                District currentDistrict = (District) districts.get(Integer.parseInt(precinctLine[0])-1); //gets the state object
-                precinct.setDistrict(currentDistrict);
+                if(algorithmType.equals("SIMULATED_ANNEALING")) {
+                    District currentDistrict = (District) districts.get(Integer.parseInt(precinctLine[0])-1); //gets the state object
+                    precinct.setDistrict(currentDistrict);
+                }
                 precinct.setID(precinctLine[1]);
                 precinct.setVolume(Double.parseDouble(precinctLine[2]));
                 precinctList.add(precinct);

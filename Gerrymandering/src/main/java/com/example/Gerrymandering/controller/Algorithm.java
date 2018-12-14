@@ -14,7 +14,12 @@ public interface Algorithm {
 
     public void setWeights(String politicalFairness, String compactness, String populationEquality);
 
-    public void setState(String state);
+    public void setState(State state);
 
-    abstract public void beginAlgorithm();
+    public void beginAlgorithm();
+
+    public String getStateName();
+
+    public State getState();
+
 }
