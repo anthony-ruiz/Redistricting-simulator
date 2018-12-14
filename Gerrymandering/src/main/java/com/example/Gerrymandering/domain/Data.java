@@ -30,11 +30,7 @@ public class Data {
             precincts = new HashSet<Precinct>(precinctList);
             finishInitializing();
 
-            for(District d : districtList){
-                for(Precinct p : d.getPrecincts()){
-                    System.out.println("district: " + d.getId() + " conatins precinct: " + p.getID());
-                }
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

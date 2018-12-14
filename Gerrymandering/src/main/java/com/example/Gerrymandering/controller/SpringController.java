@@ -27,6 +27,12 @@ public class SpringController {
             ajson.setAlgorithm("SIMULATED_ANNEALING"); // just for testing purposes
             data.populateAll(ajson.getAlgorithm());
 
+            Set<District> distrcs = data.getDistrictSet();  //printing the list of presincts that the district contains
+            for(District d : distrcs){
+                for(Precinct p : d.getPrecincts()){
+                    System.out.println("district: " + d.getId() + " conatins precinct: " + p.getID());
+                }
+            }
 
 //            algorithm.beginAlgorithm();
         } catch (IOException e) {
