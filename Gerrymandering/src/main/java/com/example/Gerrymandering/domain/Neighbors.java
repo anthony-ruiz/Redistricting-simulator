@@ -1,4 +1,4 @@
-package com.example.Gerrymandering.initializers;
+package com.example.Gerrymandering.domain;
 
 import java.io.File;
 import java.io.FileNotFoundException;

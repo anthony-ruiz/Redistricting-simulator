@@ -1,13 +1,7 @@
 package com.example.Gerrymandering.controller;
 
-import com.example.Gerrymandering.domain.AlgorithmJSON;
-import com.example.Gerrymandering.domain.District;
-import com.example.Gerrymandering.domain.Precinct;
-import com.example.Gerrymandering.domain.State;
-import com.example.Gerrymandering.initializers.InitializeData;
-import com.example.Gerrymandering.initializers.PopulateDistricts;
-import com.example.Gerrymandering.initializers.PopulatePrecincts;
-import com.example.Gerrymandering.initializers.PopulateStates;
+import com.example.Gerrymandering.domain.*;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,8 +22,12 @@ public class SpringController {
         try {
             ajson = mapper.readValue(myJSON, AlgorithmJSON.class);
             Algorithm algorithm = ajson.create();
-            InitializeData init = new InitializeData(ajson.getAlgorithm());
-            algorithm.setState(init.initialize(algorithm.getStateName()));
+            Data data = new Data();
+
+            ajson.setAlgorithm("SIMULATED_ANNEALING"); // just for testing purposes
+            data.populateAll(ajson.getAlgorithm());
+
+
 //            algorithm.beginAlgorithm();
         } catch (IOException e) {
             e.printStackTrace();

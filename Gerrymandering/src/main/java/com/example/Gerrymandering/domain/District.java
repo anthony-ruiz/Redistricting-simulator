@@ -41,6 +41,10 @@ public class District implements Serializable{
         return Id;
     }
 
+    public Set<Precinct> getPrecincts() {
+        return precincts;
+    }
+
     public void setPrecincts(Set<Precinct> precincts) {
         this.precincts = precincts;
     }
