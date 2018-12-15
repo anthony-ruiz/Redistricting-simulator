@@ -31,8 +31,6 @@ public class SpringController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        MovesBuffer movesBuffer = new MovesBuffer();
-        movesBuffer.constructJson("finished", 0);
         return "Algorithm Complete!";
     }
 }

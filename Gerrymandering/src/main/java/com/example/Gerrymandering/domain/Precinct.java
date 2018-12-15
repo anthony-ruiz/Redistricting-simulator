@@ -28,6 +28,7 @@ public class Precinct implements Serializable {
 //        System.out.println("Added Precinct " + this.ID + " to District " + district.getId());
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson(ID, district.getId());
+        System.out.println("District ID: " + district.getId() + ", Precinct ID " + ID);
         // create json string for update controller
     }
 

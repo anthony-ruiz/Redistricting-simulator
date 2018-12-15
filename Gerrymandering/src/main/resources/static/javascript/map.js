@@ -137,8 +137,6 @@ function showAllStates() {
     toggleSideBar();
 }
 
-var req;
-var req2;
 var s;
 var w1;
 var w2;
@@ -195,7 +193,7 @@ function getUpdates() {
 
                         if (e.feature.properties.GEOID10 === toMove['precinctID']) {
                             e.setStyle({
-                                weight: 2,
+                                weight: .5,
                                 color: 'white',
                                 dashArray: '',
                                 fillOpacity: 1,
@@ -228,6 +226,8 @@ function getUpdates() {
     });
 
 }
+
+
 
 // function getUpdates2() {
 //     for(var i = 0; i < 10000; i++) {

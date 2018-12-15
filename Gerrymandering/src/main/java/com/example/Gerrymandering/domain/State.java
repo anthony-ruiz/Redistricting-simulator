@@ -12,6 +12,7 @@ public class State implements Serializable{
     private Set<Precinct> borderPrecincts;
     private Set<Representative> representatives;
     private Set<Precinct> seedPrecincts;
+    private int usedCount;
     
     public Set<Precinct> getSeedPrecincts() {
         seedPrecincts = new HashSet<>();
@@ -21,27 +22,25 @@ public class State implements Serializable{
             }
         }
 
-//        int districtAmount = districts.size();
-
 //        List<Precinct> mainList = new ArrayList<>();
 //        mainList.addAll(precincts);
 //        Collections.shuffle(mainList);
 //        seedPrecincts = new HashSet<>();
-
-//        int count = 0;
-//        for(Precinct p : precincts) {
-//            seedPrecincts.add(p);
-//            count++;
-//            if(count == districtAmount) {
-//                break;
-//            }
-//        }
+//
 //        Iterator<Precinct> iter = mainList.iterator();
 //        for(int i = 0; i < districtAmount; i ++) {
 //            seedPrecincts.add(iter.next());
 //            Collections.shuffle(mainList);
 //        }
         return seedPrecincts;
+    }
+
+    public void incrementUsedCount() {
+        usedCount++;
+    }
+
+    public int getUsedCount() {
+        return this.usedCount;
     }
 
     public Set<District> getDistricts() {

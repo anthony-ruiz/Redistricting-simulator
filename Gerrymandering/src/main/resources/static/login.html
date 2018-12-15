@@ -36,6 +36,25 @@
     $('a').click(function (event) {
         event.preventDefault();
     });
+
+    function login() {
+        // var loginJSON = $("#login").serialize();
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var loginObj = {"username": username, "password": password};
+        var loginJSON = JSON.stringify(loginObj);
+        console.log(loginJSON);
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/login_req/",
+            data: loginJSON,
+            dataType: 'json',
+            success: function () {
+            }
+        });
+    }
 </script>
 
 <body>
@@ -45,23 +64,25 @@
         <a href="./index.html">Home</a>
     </div>
 
-    <form method="post" action="index.html">
+    <form method="post" action="index.html" id="login" onsubmit="login()">
         <div class="box">
             <h1>Titan-mandering Login</h1>
 
-            <input type="text" name="username" value="username" onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'email');"
+            <input type="text" name="username" value="username" id="username" onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'email');"
                 class="email" />
 
-            <input type="password" name="password" value="password" onFocus="field_focus(this, 'password');" onblur="field_blur(this, 'email');"
+            <input type="password" name="password" value="password" id="password" onFocus="field_focus(this, 'password');" onblur="field_blur(this, 'email');"
                 class="email" />
 
             <a href="./signed_in.html">
-                <div class="btn">Sign In</div>
+                <div class=""btn onclick="login()">Sign In
+                    <!--<button onclick="login()">Sign In</button>-->
+                </div>
             </a> <!-- End Btn -->
         </div> <!-- End Box -->
 
 
-    </form>
+    <!--</form>-->
 </body>
 
 </html>

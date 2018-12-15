@@ -15,5 +15,4 @@ public class Account {
     private int ID;
     private User user;
     private boolean verified;
-//    private AccountType userType;
 }

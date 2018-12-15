@@ -13,9 +13,11 @@ public class District implements Serializable{
     private Set<Precinct> precincts;
     private Set<Precinct> borders;
     private Set<Precinct> currentNeighbors;
+    private boolean finished = false;
 
     public void addPrecinct(Precinct precinctToAdd) {
         precincts.add(precinctToAdd);
+        state.incrementUsedCount();
         precinctToAdd.setDistrict(this);
     }
 
@@ -64,5 +66,13 @@ public class District implements Serializable{
 
     public Set<Precinct> getPrecincts() {
         return precincts;
+    }
+
+    public void setFinished(boolean b) {
+        this.finished = b;
+    }
+
+    public boolean isFinished() {
+        return this.finished;
     }
 }

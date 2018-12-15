@@ -59,9 +59,11 @@ public class RegionGrowingAlgorithm implements Algorithm {
         for (District dists : districts) {
             dists.addPrecinct(iter.next());
         }
-        for(int i = 0; i < 400; i ++) {
-//        while (true) { // change "true" to loop through all districts in round robin fashion until all precincts are assigned to a district
+        while(currentState.getUsedCount() < currentState.getPrecincts().size()) {
             for (District dists : districts) {
+                if(dists.isFinished()) {
+                    continue;
+                }
                 Set<Precinct> borders = dists.getBorders();
                 Set<Precinct> currNeighbors = dists.getCurrentNeighbors();
                 currNeighbors.clear();
@@ -82,12 +84,15 @@ public class RegionGrowingAlgorithm implements Algorithm {
                     Iterator<Precinct> iter2 = mainList.iterator();
                     Precinct precinctToAdd = iter2.next();
                     dists.addPrecinct(precinctToAdd);
+                } else {
+                    dists.setFinished(true);
                 }
 
             }
         }
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson("finished", 0);
+        System.out.println("Finished!");
     }
     
     private Precinct getBestPrecinct(ObjectiveFunction objectiveFunction, Set<Precinct> currentNeighbors) {
