@@ -20,7 +20,7 @@ public class SimulatedAnnealingAlgorithm implements Algorithm{
     }
 
     @Override
-    public void setState(String state) {
+    public void setState(State state) {
 //        currentState = new PersistenceUnit().getSAState(state);
     }
 
@@ -28,5 +28,15 @@ public class SimulatedAnnealingAlgorithm implements Algorithm{
     public void beginAlgorithm() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public String getStateName() {
+        return null;
+    }
+
+    @Override
+    public State getState() {
+        return null;
+    }
+
 }

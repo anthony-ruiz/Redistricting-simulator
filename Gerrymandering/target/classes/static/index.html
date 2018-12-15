@@ -70,13 +70,14 @@
         Annealing</label><br>
         <br>
         <p align style="color: #2d7499;  font-size: 20px;">Color Display:</p>
-        <input checked onclick="selectColor(1)" type="radio" name="color" value="PARTY_COLOR" id="color"> <label
-            style="color:#2d7499">Party Colors</label><br>
-        <input onclick="selectColor(0)" type="radio" name="color" value="DISTRICT_COLOR" id="color"> <label style="color:#2d7499">District
+        <input checked onclick="selectColor(0)" type="radio" name="color" value="DISTRICT_COLOR" id="color"> <label style="color:#2d7499">District
         Colors</label><br>
+        <input onclick="selectColor(1)" type="radio" name="color" value="PARTY_COLOR" id="color"> <label
+            style="color:#2d7499">Party Colors</label><br>
         <br>
         <span class="error" id="drpnoticeMessage"></span>
         <button onclick="startAlgorithm()">Submit</button>
+        <button onclick="getUpdates()">Get Update</button>
     </div>
     <br>
 </div>

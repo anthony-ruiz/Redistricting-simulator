@@ -10,7 +10,7 @@ var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
     '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
     '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
 
-var currentMode = 1;
+var currentMode = 0;
 
 // list of states loaded
 states = [];
@@ -140,7 +140,9 @@ function showAllStates() {
 var req;
 var req2;
 var s;
-var w;
+var w1;
+var w2;
+var w3;
 var a;
 var f;
 
@@ -153,15 +155,6 @@ function startAlgorithm() {
     var algorithmObj = { "state": s, "politicalFairness": w1, "compactness": w2, "populationEquality": w3, "algorithm": a };
     var myJSON = JSON.stringify(algorithmObj);
 
-    // req = new XMLHttpRequest();
-    // var url = "/begin";
-    // req.open("POST", url, true);
-    // getUpdates();
-    // req.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    // req.onreadystatechange = validateAlgorithmSuccess;
-    // s = "Hello!";
-    // req.send(s);
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -169,34 +162,47 @@ function startAlgorithm() {
         data: myJSON,
         dataType: 'json',
         cache: false,
-        timeout: 600000,
         success: function (data) {
             alert(data);
         }
     });
-    
+    getUpdates();
 }
 
-function validateAlgorithmSuccess() {
-    if (req.readyState == 4 && req.status == 200) {
-        alert(req.responseText)
-    }
-}
 
-var finished = false;
+var toMove;
 
 function getUpdates() {
-//    while(!finished) {
-        req2 = new XMLHttpRequest();
-        var url = "http://localhost:8080/CSE308/PrecinctUpdater";
-        req2.open("GET", url, true);
-        req2.onreadystatechange = receiveUpdates;
-        req2.send(null);
-//    }
+    $.ajax({
+        type: "GET",
+        url: "/update/",
+        dataType: 'text',
+        cache: false,
+        success: function (data) {
+            if(data === "[]") {
+                setTimeout(getUpdates,500);
+            } else {
+                toMove = JSON.parse(data);
+                var finished = false;
+                toMove.forEach(function (arrayItem) {
+                   var x = arrayItem['precinctID'];
+                   if(x === "finished") {
+                       finished = true;
+                   }
+                });
+                if(!finished) {
+                    console.log(toMove);
+                    getUpdates();
+                }
+                // if (toMove['precinctID'] === "finished") {
+                //
+                // } else {
+                //     getUpdates();
+                //     console.log(toMove);
+                // }
+            }
+        }
+    });
+
 }
 
-function receiveUpdates() {
-    if (req2.readyState == 4 && req2.status == 200) {
-        alert(req2.responseText);
-    }
-}

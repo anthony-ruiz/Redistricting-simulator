@@ -1,20 +1,13 @@
 package com.example.Gerrymandering.domain;
 
 
+import com.example.Gerrymandering.controller.MovesBuffer;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
-//import javax.persistence.Table;
-
-//@Entity
-//@Table(name="precincts")
 public class Precinct implements Serializable {
     private District district;
-//    @Id
-//    @Column(name="precinct_id")
     private String ID;
     private boolean used = false;
     private Set<Precinct> neighbors;
@@ -32,6 +25,10 @@ public class Precinct implements Serializable {
     public void setDistrict(District district) {
         used = true;
         this.district = district;
+        System.out.println("Added Precinct " + this.ID + " to District " + district.getId());
+        MovesBuffer movesBuffer = new MovesBuffer();
+        movesBuffer.constructJson(ID, district.getId());
+        // create json string for update controller
     }
 
     public String getID() {
@@ -94,9 +91,4 @@ public class Precinct implements Serializable {
         }
         return eligibleNeighbors;
     }
-
-    
-    
-    
-    
 }
