@@ -95,14 +95,16 @@ public class Data {
         Neighbors neighbors = new Neighbors();
         neighbors.populateNeigbors();
         for (Precinct aPrecinctList : precinctList) {
-            Set<Precinct> setforCurrent = new HashSet<>();
-            Precinct currentPrecinct = (Precinct) aPrecinctList;
-            List neighborsOfCurrentList = neighbors.getNeighbors(currentPrecinct.getID());
-            for (int j = 0; j < neighborsOfCurrentList.size(); j++) {
-                Precinct p = (Precinct) precinctList.get(j);
-                setforCurrent.add(p);
+            Set<Precinct> setForCurrent = new HashSet<>();
+            List<String> neighborsOfCurrentList = neighbors.getNeighbors(aPrecinctList.getID());
+            for(String s : neighborsOfCurrentList) {
+                for(Precinct p : precinctList) {
+                    if(p.getID().equals(s)) {
+                        setForCurrent.add(p);
+                    }
+                }
             }
-            currentPrecinct.setNeighbors(setforCurrent);
+            aPrecinctList.setNeighbors(setForCurrent);
         }
     }
 

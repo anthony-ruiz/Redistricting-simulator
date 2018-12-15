@@ -59,7 +59,7 @@ public class RegionGrowingAlgorithm implements Algorithm {
         for (District dists : districts) {
             dists.addPrecinct(iter.next());
         }
-        for(int i = 0; i < 5; i ++) {
+        for(int i = 0; i < 400; i ++) {
 //        while (true) { // change "true" to loop through all districts in round robin fashion until all precincts are assigned to a district
             for (District dists : districts) {
                 Set<Precinct> borders = dists.getBorders();
@@ -70,15 +70,20 @@ public class RegionGrowingAlgorithm implements Algorithm {
                 }
                 //Precinct precinctToAdd = getBestPrecinct(objectiveFunction, currNeighbors);
                 //currently random precinct choice approach
-//                Collections.shuffle((List<?>) currNeighbors);
-                for(Precinct p : currNeighbors) {
-                    Precinct precinctToAdd = p;
+                if(currNeighbors.size() != 0) {
+                    List<Precinct> mainList = new ArrayList<>();
+                    mainList.addAll(currNeighbors);
+                    Collections.shuffle((List<?>) mainList);
+//                for(Precinct p : currNeighbors) {
+//                    Precinct precinctToAdd = p;
+//                    dists.addPrecinct(precinctToAdd);
+//                    break;
+//                }
+                    Iterator<Precinct> iter2 = mainList.iterator();
+                    Precinct precinctToAdd = iter2.next();
                     dists.addPrecinct(precinctToAdd);
-                    break;
                 }
-//                Iterator<Precinct> iter2 = currNeighbors.iterator();
-//                Precinct precinctToAdd = iter2.next();
-//                dists.addPrecinct(precinctToAdd);
+
             }
         }
         MovesBuffer movesBuffer = new MovesBuffer();

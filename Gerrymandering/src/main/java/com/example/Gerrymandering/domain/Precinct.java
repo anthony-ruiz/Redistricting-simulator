@@ -9,7 +9,7 @@ import java.util.Set;
 public class Precinct implements Serializable {
     private District district;
     private String ID;
-    private boolean used = false;
+    private boolean used;
     private Set<Precinct> neighbors;
     private double volume;
     private boolean onDistrictBorder;
@@ -25,7 +25,7 @@ public class Precinct implements Serializable {
     public void setDistrict(District district) {
         used = true;
         this.district = district;
-        System.out.println("Added Precinct " + this.ID + " to District " + district.getId());
+//        System.out.println("Added Precinct " + this.ID + " to District " + district.getId());
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson(ID, district.getId());
         // create json string for update controller

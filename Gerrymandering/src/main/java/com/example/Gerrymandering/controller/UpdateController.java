@@ -19,12 +19,14 @@ public class UpdateController {
 //        ja.put(jo);
 //        ja.put(jo2);
 //        System.out.println(ja.toString());
-        if(!MovesBuffer.moves.isEmpty()) {
-            System.out.println(MovesBuffer.moves);
+        if(MovesBuffer.moves.peek() != null) {
+            System.out.println(MovesBuffer.moves.peek());
+            JSONObject jo = MovesBuffer.moves.poll();
+            return jo.toString();
+        } else {
+            return "[]";
         }
-        JSONArray jo = MovesBuffer.moves;
-        MovesBuffer.moves = new JSONArray();
-        return jo.toString();
+
 
 //        return ja.toString();
     }

@@ -14,20 +14,32 @@ public class State implements Serializable{
     private Set<Precinct> seedPrecincts;
     
     public Set<Precinct> getSeedPrecincts() {
-//        int districtAmount = districts.size();
-//        Collections.shuffle((List<?>) precincts);
         seedPrecincts = new HashSet<>();
-        int count = 0;
         for(Precinct p : precincts) {
-            seedPrecincts.add(p);
-            count++;
-            if(count == districtAmount) {
-                break;
+            if(p.getID().equals("0402719") || p.getID().equals("040193") || p.getID().equals("0400901") || p.getID().equals("0400149") || p.getID().equals("0400156") || p.getID().equals("0400547") || p.getID().equals("0401562") || p.getID().equals("0401254") || p.getID().equals("04013824")) {
+                seedPrecincts.add(p);
             }
         }
-//        Iterator<Precinct> iter = precincts.iterator();
+
+//        int districtAmount = districts.size();
+
+//        List<Precinct> mainList = new ArrayList<>();
+//        mainList.addAll(precincts);
+//        Collections.shuffle(mainList);
+//        seedPrecincts = new HashSet<>();
+
+//        int count = 0;
+//        for(Precinct p : precincts) {
+//            seedPrecincts.add(p);
+//            count++;
+//            if(count == districtAmount) {
+//                break;
+//            }
+//        }
+//        Iterator<Precinct> iter = mainList.iterator();
 //        for(int i = 0; i < districtAmount; i ++) {
 //            seedPrecincts.add(iter.next());
+//            Collections.shuffle(mainList);
 //        }
         return seedPrecincts;
     }

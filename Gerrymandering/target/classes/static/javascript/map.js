@@ -31,7 +31,7 @@ var map = L.map('map', { attributionControl: false, maxBounds: maxBounds }).setV
 var prevZoom = map.getZoom();
 
 map.on('zoomend', function () {
-    if (map.getZoom() < 8 && (prevZoom >= 8) && stateSelected) {
+    if (map.getZoom() < 8 && (prevZoom >= 8) && stateSelected && !loggedIn) {
         prevZoom = map.getZoom();
 
         geojson.clearLayers();
@@ -44,7 +44,7 @@ map.on('zoomend', function () {
         districtInfo.addTo(map);
         console.log("show district");
     }
-    else if (map.getZoom() >= 8 && (prevZoom < 8) && stateSelected) {
+    else if (map.getZoom() >= 8 && (prevZoom < 8) && stateSelected && !loggedIn) {
         prevZoom = map.getZoom();
 
         geojson.clearLayers();
@@ -147,6 +147,8 @@ var a;
 var f;
 
 function startAlgorithm() {
+    loadRegionGrowingDefault();
+    
     s = currentState;
     w1 = document.getElementById("weight1").value;
     w2 = document.getElementById("weight2").value;
@@ -166,11 +168,14 @@ function startAlgorithm() {
             alert(data);
         }
     });
+    // setInterval(getUpdates, 1);
     getUpdates();
 }
 
 
 var toMove;
+
+
 
 function getUpdates() {
     $.ajax({
@@ -179,18 +184,36 @@ function getUpdates() {
         dataType: 'text',
         cache: false,
         success: function (data) {
-            if(data === "[]") {
-                setTimeout(getUpdates,500);
+            if (data === "[]") {
+                getUpdates();
             } else {
                 toMove = JSON.parse(data);
                 var finished = false;
-                toMove.forEach(function (arrayItem) {
-                   var x = arrayItem['precinctID'];
-                   if(x === "finished") {
-                       finished = true;
-                   }
-                });
-                if(!finished) {
+
+                geojson.getLayers().forEach(function (e) {
+                    // toMove.forEach(function (arrayItem) {
+
+                        if (e.feature.properties.GEOID10 === toMove['precinctID']) {
+                            e.setStyle({
+                                weight: 2,
+                                color: 'white',
+                                dashArray: '',
+                                fillOpacity: 1,
+                                fillColor: colorArray[toMove['districtID']]
+                            });
+
+
+                            e.bringToFront();
+                        }
+
+                        var x = toMove['precinctID'];
+                        if (x === "finished") {
+                            finished = true;
+                        }
+                    });
+
+                // });
+                if (!finished) {
                     console.log(toMove);
                     getUpdates();
                 }
@@ -206,3 +229,46 @@ function getUpdates() {
 
 }
 
+// function getUpdates2() {
+//     for(var i = 0; i < 10000; i++) {
+//         $.ajax({
+//             type: "GET",
+//             url: "/update/",
+//             dataType: 'text',
+//             cache: false,
+//             success: function (data) {
+//                 if (data !== "[]") {
+//                     toMove = JSON.parse(data);
+//                     var finished = false;
+//                     toMove.forEach(function (arrayItem) {
+//                         geojson.getLayers().forEach(function (e) {
+//                             toMove.forEach(function (j) {
+//                                 if (e.feature.properties.GEOID10 === j['precinctID']) {
+//                                     e.setStyle({
+//                                         weight: 2,
+//                                         color: 'white',
+//                                         dashArray: '',
+//                                         fillOpacity: 1,
+//                                         fillColor: colorArray[j['districtID']]
+//                                     });
+//                                     e.bringToFront();
+//                                 }
+//                             });
+//                         });
+//
+//                         var x = arrayItem['precinctID'];
+//                         if (x === "finished") {
+//                             finished = true;
+//                         }
+//                     });
+//                     if (!finished) {
+//                         console.log(toMove);
+//
+//                     } else {
+//                         break;
+//                     }
+//                 }
+//             }
+//         });
+//     }
+// }
