@@ -1,20 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package redistricting.domain;
 
-import redistricting.domain.Precinct;
+import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-/**
- *
- * @author Tom Biscardi
- */
-public class District{
+@Entity
+@Table(name="districts")
+public class District implements Serializable{
+
     private State state;
-    private String ID;
+    @Id
+    private int Id;
     private int population;
     private double volume;
     private Representative representative;
@@ -26,20 +24,25 @@ public class District{
         precincts.add(precinctToAdd);
         precinctToAdd.setDistrict(this);
     }
-    
+
     public Set<Precinct> getBorders() {
-        for(Precinct precinct : precincts) {
-            if(precinct.isOnDistrictBorder()) {
+        for (Precinct precinct : precincts) {
+            if (precinct.isOnDistrictBorder()) {
                 borders.add(precinct);
             }
-        }        
+        }
         return borders;
     }
 
     public Set<Precinct> getCurrentNeighbors() {
         return currentNeighbors;
     }
-    
-    
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setPrecincts(Set<Precinct> precincts) {
+        this.precincts = precincts;
+    }
 }

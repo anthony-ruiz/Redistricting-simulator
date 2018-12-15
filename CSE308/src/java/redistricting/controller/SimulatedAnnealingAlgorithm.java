@@ -1,14 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package redistricting.controller;
+package com.example.Gerrymandering.controller;
 
-/**
- *
- * @author Tom Biscardi
- */
-public class SimulatedAnnealingAlgorithm extends Algorithm{
+import java.util.Set;
+import redistricting.domain.State;
+import redistricting.persistence.PersistenceUnit;
+
+public class SimulatedAnnealingAlgorithm implements Algorithm{
+    private Set<String> objectiveValues;
+    private State currentState;
+
+    public SimulatedAnnealingAlgorithm(String state) {
+        currentState = new PersistenceUnit().getSAState(state);
+    }
+
+    @Override
+    public void setWeights(String politicalFairness, String compactness, String populationEquality) {
+        objectiveValues.add(politicalFairness);
+        objectiveValues.add(compactness);
+        objectiveValues.add(populationEquality);
+    }
+
+    @Override
+    public void setState(String state) {
+        currentState = new PersistenceUnit().getSAState(state);
+    }
+
+    @Override
+    public void beginAlgorithm() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

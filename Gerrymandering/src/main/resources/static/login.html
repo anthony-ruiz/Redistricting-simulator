@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CSE308 Titans</title>
+
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="./css/login.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+</head>
+
+<script>
+    function field_focus(field, email) {
+        if (field.value == email) {
+            field.value = '';
+        }
+    }
+
+    function field_blur(field, email) {
+        if (field.value == '') {
+            field.value = email;
+        }
+    }
+
+    //Fade in dashboard box
+    $(document).ready(function () {
+        $('.box').hide().fadeIn(1000);
+    });
+
+    //Stop click event
+    $('a').click(function (event) {
+        event.preventDefault();
+    });
+</script>
+
+<body>
+    <div class="topnav">
+        <a href="./signup.html">Sign up</a>
+        <a class="active" href="#">Login</a>
+        <a href="./index.html">Home</a>
+    </div>
+
+    <form method="post" action="index.html">
+        <div class="box">
+            <h1>Titan-mandering Login</h1>
+
+            <input type="text" name="username" value="username" onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'email');"
+                class="email" />
+
+            <input type="password" name="password" value="password" onFocus="field_focus(this, 'password');" onblur="field_blur(this, 'email');"
+                class="email" />
+
+            <a href="./signed_in.html">
+                <div class="btn">Sign In</div>
+            </a> <!-- End Btn -->
+        </div> <!-- End Box -->
+
+
+    </form>
+</body>
+
+</html>
