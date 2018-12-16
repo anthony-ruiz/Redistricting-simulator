@@ -11,19 +11,20 @@ public class RegionGrowingAlgorithm implements Algorithm {
     private String stateName;
     private ArrayList<String> moves;
     public MovesBuffer movesBuffer;
+    private Set<Precinct> seeds;
+    private List<String> tempSeeds;
+    private String strategy;
 
     public RegionGrowingAlgorithm(String state) {
 //        currentState = new PersistenceUnit().getRGState(state);
         stateName = state;
         movesBuffer = new MovesBuffer();
         objectiveValues = new HashMap<>();
-        objectiveValues.put("politicalFairness", 0.0);
-        objectiveValues.put("compactness", 0.0);
-        objectiveValues.put("populationEquality", 0.0);
     }
 
     @Override
     public void setWeights(String politicalFairness, String compactness, String populationEquality) {
+        objectiveValues = new HashMap<>();
         objectiveValues.put("politicalFairness", Double.parseDouble(politicalFairness));
         objectiveValues.put("compactness", Double.parseDouble(compactness));
         objectiveValues.put("populationEquality", Double.parseDouble(populationEquality));
@@ -45,8 +46,30 @@ public class RegionGrowingAlgorithm implements Algorithm {
     }
 
     @Override
+    public void setStrategy(String strategy) {
+        this.strategy = strategy;
+    }
+
+    @Override
+    public void setTempSeeds(List<String> seeds) {
+        tempSeeds = seeds;
+    }
+
+    @Override
     public void beginAlgorithm() {
-        Set<Precinct> seeds = currentState.getSeedPrecincts();
+        if(strategy.equals("SELECT_SEED")) {
+            this.seeds = new HashSet<>();
+            for(String s : tempSeeds) {
+                for(Precinct p : currentState.getPrecincts()) {
+                    if(p.getID().equals(s)) {
+                        this.seeds.add(p);
+                        break;
+                    }
+                }
+            }
+        } else {
+            seeds = currentState.getSeedPrecincts(strategy);
+        }
         Set<District> districts = currentState.getDistricts();
 //        int districtAmt = currentState.getDistrictAmount();
 //        for (int i = 0; i < districtAmt; i++) {
@@ -94,7 +117,14 @@ public class RegionGrowingAlgorithm implements Algorithm {
             }
         }
         MovesBuffer movesBuffer = new MovesBuffer();
-        movesBuffer.constructJson("finished", 0);
+        movesBuffer.constructJson("population", 0);
+        for(District d: currentState.getDistricts()) {
+            movesBuffer.constructJson(Integer.toString(d.getPopulation()), d.getId());
+        }
+        movesBuffer.constructJson("political", 0);
+        for(District d: currentState.getDistricts()) {
+            movesBuffer.constructJson(d.getPoliticalAlignment(), d.getId());
+        }
 
         System.out.println("Finished!");
     }

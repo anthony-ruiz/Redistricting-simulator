@@ -1,9 +1,7 @@
 package com.example.Gerrymandering.controller;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import com.example.Gerrymandering.domain.District;
 //import com.example.Gerrymandering.enums.AlgorithmType;
 import com.example.Gerrymandering.domain.Precinct;
@@ -21,4 +19,8 @@ public interface Algorithm {
     public String getStateName();
 
     public State getState();
+
+    public void setStrategy(String strategy);
+
+    public void setTempSeeds(List<String> seeds);
 }

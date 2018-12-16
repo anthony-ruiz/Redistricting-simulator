@@ -13,12 +13,28 @@ public class District implements Serializable{
     private Set<Precinct> precincts;
     private Set<Precinct> borders;
     private Set<Precinct> currentNeighbors;
+    private int republican;
+    private int democratic;
     private boolean finished = false;
 
     public void addPrecinct(Precinct precinctToAdd) {
         precincts.add(precinctToAdd);
         state.incrementUsedCount();
+        this.population += precinctToAdd.getPopulation();
+        if(precinctToAdd.getDemVotes() > precinctToAdd.getRepVotes()) {
+            democratic++;
+        } else {
+            republican++;
+        }
         precinctToAdd.setDistrict(this);
+    }
+
+    public String getPoliticalAlignment() {
+        if(democratic > republican) {
+            return "Democratic";
+        } else {
+            return "Republican";
+        }
     }
 
     public Set<Precinct> getBorders() {

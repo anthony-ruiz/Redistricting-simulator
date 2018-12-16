@@ -24,13 +24,4 @@ public class WeightSaveController {
             e.printStackTrace();
         }
     }
-
-
-    @ResponseBody
-    @RequestMapping(value = "/load_weights", method = RequestMethod.GET, produces ="application/json")
-    public String loadWeights() {
-
-
-        return "";
-    }
 }

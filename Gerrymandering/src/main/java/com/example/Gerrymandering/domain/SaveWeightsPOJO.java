@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.*;
 
 public class SaveWeightsPOJO {
-
+    
     @JsonProperty("username")
     private String username;
     @JsonProperty("Political Fairness")

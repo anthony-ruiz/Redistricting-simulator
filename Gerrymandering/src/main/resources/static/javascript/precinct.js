@@ -92,7 +92,7 @@ function precinctResetHighlight(v) {
     precinctInfo.update();
 }
 
-var customSeeds;
+var customSeeds = [];
 
 function variantSelection(variant) {
     var x = document.getElementById("submit");
