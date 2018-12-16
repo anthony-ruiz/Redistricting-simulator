@@ -20,7 +20,7 @@ public class Data {
 
 
     public void populateAll(String algorithmType){
-       this.algorithmType = algorithmType;
+        this.algorithmType = algorithmType;
         try {
             initializeState();         //initializes the basic values of State,Distric,Precinct
             initializeDistrict();
@@ -86,6 +86,8 @@ public class Data {
             }
             precinct.setID(precinctLine[1]);                                                                    //sets precinct ID
             precinct.setVolume(Double.parseDouble(precinctLine[2]));                                            //sets volume of precinct
+            precinct.setPopulation(Integer.parseInt(precinctLine[3]));
+            precinct.setCoordinates(precinctLine[4]);
             precinctList.add(precinct);
         }
         setNeighbors();

@@ -17,7 +17,7 @@ public class State implements Serializable{
     public Set<Precinct> getSeedPrecincts() {
         seedPrecincts = new HashSet<>();
         for(Precinct p : precincts) {
-            if(p.getID().equals("0402719") || p.getID().equals("040193") || p.getID().equals("0400901") || p.getID().equals("0400149") || p.getID().equals("0400156") || p.getID().equals("0400547") || p.getID().equals("0401562") || p.getID().equals("0401254") || p.getID().equals("04013824")) {
+            if(p.getID().equals("0401711") || p.getID().equals("04025014") || p.getID().equals("04019136") || p.getID().equals("040135") || p.getID().equals("0401398") || p.getID().equals("04013876") || p.getID().equals("04013366") || p.getID().equals("04013377") || p.getID().equals("0400327")) {
                 seedPrecincts.add(p);
             }
         }

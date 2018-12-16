@@ -1,6 +1,7 @@
 package com.example.Gerrymandering.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.json.JSONObject;
 
 import java.io.*;
 
@@ -26,23 +27,26 @@ public class SaveWeightsPOJO {
             String line;
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("users.temp")));
             while ((line = br.readLine()) != null) {
-
-
-//                if (request.getParameter("hname").equals(line)) {
-//                    line = line.replace(request.getParameter("hname"),
-//                            request.getParameter("book"));
-//
-//                    writer.println(line);
-//
-//                    writer.close();
-//                }
+                JSONObject jo = new JSONObject(line);
+                ObjectiveFunction of = new ObjectiveFunction(politicalFairness, compactness, populationEquality);
+                if(jo.getString("Username").equals(this.username)) {
+                    User user = new User(jo.toString());
+                    user.addToListOfWeights(of.getObjective());
+                    line = line.replace(line, user.toString());
+                }
+                writer.println(line);
             }
-
+            File realName = new File("user.txt");
+            realName.delete();
+            new File("users.temp").renameTo(realName);
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }finally{
             try {
                 reader.close();
+                br.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -2,10 +2,7 @@ package com.example.Gerrymandering.controller;
 
 import java.util.*;
 
-import com.example.Gerrymandering.domain.District;
-import com.example.Gerrymandering.domain.ObjectiveFunction;
-import com.example.Gerrymandering.domain.Precinct;
-import com.example.Gerrymandering.domain.State;
+import com.example.Gerrymandering.domain.*;
 
 public class RegionGrowingAlgorithm implements Algorithm {
 
@@ -31,7 +28,7 @@ public class RegionGrowingAlgorithm implements Algorithm {
         objectiveValues.put("compactness", Double.parseDouble(compactness));
         objectiveValues.put("populationEquality", Double.parseDouble(populationEquality));
     }
-    
+
     @Override
     public void setState(State state) {
         currentState = state;
@@ -73,9 +70,15 @@ public class RegionGrowingAlgorithm implements Algorithm {
                 //Precinct precinctToAdd = getBestPrecinct(objectiveFunction, currNeighbors);
                 //currently random precinct choice approach
                 if(currNeighbors.size() != 0) {
-                    List<Precinct> mainList = new ArrayList<>();
-                    mainList.addAll(currNeighbors);
-                    Collections.shuffle((List<?>) mainList);
+                    Compactness c = new Compactness();
+                    Precinct mySeed = new Precinct();
+                    for(Precinct p : seeds){
+                        if(p.getDistrict().getId() == dists.getId()){
+                            mySeed = p;
+                            break;
+                        }
+                    }
+                    List<Precinct> mainList = c.compactness(currentState,currNeighbors,dists,mySeed);
 //                for(Precinct p : currNeighbors) {
 //                    Precinct precinctToAdd = p;
 //                    dists.addPrecinct(precinctToAdd);
@@ -92,9 +95,10 @@ public class RegionGrowingAlgorithm implements Algorithm {
         }
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson("finished", 0);
+
         System.out.println("Finished!");
     }
-    
+
     private Precinct getBestPrecinct(ObjectiveFunction objectiveFunction, Set<Precinct> currentNeighbors) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

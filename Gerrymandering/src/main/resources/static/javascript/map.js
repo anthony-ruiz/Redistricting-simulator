@@ -10,7 +10,11 @@ var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
     '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
     '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
 
+var weights = .5;
+var districtAmount;
+
 var currentMode = 0;
+var currentAlg;
 
 // list of states loaded
 states = [];
@@ -26,9 +30,42 @@ var maxBounds = [
 ];
 
 // creation of the map
-var map = L.map('map', { attributionControl: false, maxBounds: maxBounds }).setView([40, -100], 5);
+var map = L.map('map', {
+    attributionControl: false, maxBounds: maxBounds
+}).setView([40, -100], 5);
+
+L.control.scale().addTo(map);
 
 var prevZoom = map.getZoom();
+
+// assigning the tilelayer
+// L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+//     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+//     maxZoom: 16,
+//     minZoom: 5
+// }).addTo(map);
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox.light',
+    maxZoom: 16,
+    minZoom: 5
+}).addTo(map);
+
+var searchControl = L.esri.Geocoding.geosearch({
+    position: 'topleft'
+}).addTo(map);
+
+var results = L.layerGroup().addTo(map);
+
+// searchControl.on('results', function (data) {
+//     results.clearLayers();
+//     for (var i = data.results.length - 1; i >= 0; i--) {
+//         results.addLayer(L.marker(data.results[i].latlng));
+//     }
+// });
 
 map.on('zoomend', function () {
     if (map.getZoom() < 8 && (prevZoom >= 8) && stateSelected && !loggedIn) {
@@ -59,13 +96,6 @@ map.on('zoomend', function () {
     }
 });
 
-// assigning the tilelayer
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-    maxZoom: 16,
-    minZoom: 5
-}).addTo(map);
-
 var geojson;
 
 // style that is assigned when hovering over a provence on the map
@@ -90,8 +120,8 @@ function search(nameKey, myArray) {
 }
 
 function toggleSideBar() {
-    var x = document.getElementById("sidebar1");
-    var y = document.getElementById("sidebar2");
+    var x = document.getElementById("leftbar1");
+    var y = document.getElementById("leftbar2");
     if (x.style.display === "none") {
         x.style.display = "initial";
         y.style.display = "none";
@@ -121,7 +151,12 @@ function include(file) {
 
 // function to reset the map to the state view
 function showAllStates() {
+    currentAlg = null;
     stateSelected = false;
+    document.getElementById("algorithm").checked = false;
+    document.getElementById("rightbar1").style.display = "none";
+
+
     map.setView([40, -100], 5);
 
     geojson.clearLayers();
@@ -137,6 +172,8 @@ function showAllStates() {
     toggleSideBar();
 }
 
+var req;
+var req2;
 var s;
 var w1;
 var w2;
@@ -145,7 +182,10 @@ var a;
 var f;
 
 function startAlgorithm() {
+    if (document.getElementById("algorithm").checked && document.getElementById("algorithm").value === 'REGION_GROWING') {
         loadRegionGrowingDefault();
+        document.getElementById("display2").checked = true;
+        currentAlg = 2;
 
         s = currentState;
         w1 = document.getElementById("weight1").value;
@@ -160,20 +200,22 @@ function startAlgorithm() {
             contentType: "application/json",
             url: "/begin/",
             data: myJSON,
-            dataType: 'text',
+            dataType: 'json',
             cache: false,
             success: function (data) {
-                // alert(data);
+                alert(data);
             }
         });
-    // setInterval(getUpdates, 1);
-    getUpdates();
+        getUpdates();
+    } else {
+
+    }
+
 }
 
 
 var toMove;
-
-
+var movesMade = [];
 
 function getUpdates() {
     $.ajax({
@@ -183,36 +225,38 @@ function getUpdates() {
         cache: false,
         success: function (data) {
             if (data === "[]") {
+                // setTimeout(getUpdates, 500);
                 getUpdates();
             } else {
                 toMove = JSON.parse(data);
+                movesMade.push(toMove);
                 var finished = false;
 
                 geojson.getLayers().forEach(function (e) {
                     // toMove.forEach(function (arrayItem) {
 
-                        if (e.feature.properties.GEOID10 === toMove['precinctID']) {
-                            e.setStyle({
-                                weight: .5,
-                                color: 'white',
-                                dashArray: '',
-                                fillOpacity: 1,
-                                fillColor: colorArray[toMove['districtID']]
-                            });
+                    if (e.feature.properties.GEOID10 === toMove['precinctID']) {
+                        e.setStyle({
+                            weight: weights,
+                            color: 'white',
+                            dashArray: '',
+                            fillOpacity: 1,
+                            fillColor: colorArray[toMove['districtID']]
+                        });
 
 
-                            e.bringToFront();
-                        }
+                        e.bringToFront();
+                    }
 
-                        var x = toMove['precinctID'];
-                        if (x === "finished") {
-                            finished = true;
-                        }
-                    });
+                    var x = toMove['precinctID'];
+                    if (x === "finished") {
+                        finished = true;
+                    }
+                });
 
-                // });
+
                 if (!finished) {
-                    console.log(toMove);
+                    //console.log(toMove);
                     getUpdates();
                 }
                 // if (toMove['precinctID'] === "finished") {
@@ -227,48 +271,32 @@ function getUpdates() {
 
 }
 
+function saveWeights() {
+    var pf = document.getElementById("weight1").value;
+    var cmp = document.getElementById("weight2").value;
+    var pe = document.getElementById("weight3").value;
+    var weightsObj = {"Political Fairness": w1, "Compactness": w2, "Population Equality": w3};
+    var weightsJSON = JSON.stringify(weightsObj);
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/save_weights/",
+        data: weightsJSON,
+        cache: false,
+        success: function () {
+            alert("success");
+        }
+    });
+}
 
-
-// function getUpdates2() {
-//     for(var i = 0; i < 10000; i++) {
-//         $.ajax({
-//             type: "GET",
-//             url: "/update/",
-//             dataType: 'text',
-//             cache: false,
-//             success: function (data) {
-//                 if (data !== "[]") {
-//                     toMove = JSON.parse(data);
-//                     var finished = false;
-//                     toMove.forEach(function (arrayItem) {
-//                         geojson.getLayers().forEach(function (e) {
-//                             toMove.forEach(function (j) {
-//                                 if (e.feature.properties.GEOID10 === j['precinctID']) {
-//                                     e.setStyle({
-//                                         weight: 2,
-//                                         color: 'white',
-//                                         dashArray: '',
-//                                         fillOpacity: 1,
-//                                         fillColor: colorArray[j['districtID']]
-//                                     });
-//                                     e.bringToFront();
-//                                 }
-//                             });
-//                         });
-//
-//                         var x = arrayItem['precinctID'];
-//                         if (x === "finished") {
-//                             finished = true;
-//                         }
-//                     });
-//                     if (!finished) {
-//                         console.log(toMove);
-//
-//                     } else {
-//                         break;
-//                     }
-//                 }
-//             }
-//         });
-//     }
-// }
+function loadWeights() {
+    $.ajax({
+        type: "GET",
+        url: "/load_weights/",
+        dataType: 'text',
+        cache: false,
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
