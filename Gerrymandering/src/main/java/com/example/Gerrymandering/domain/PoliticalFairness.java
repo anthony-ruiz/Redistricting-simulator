@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class PoliticalFairness {
 
-    public List<Precinct> compactness(State state, Set<Precinct> possibleNeighnors, District currentDistrict, Precinct seedPrecinct){
+    public List<Precinct> fairness(State state, Set<Precinct> possibleNeighnors, District currentDistrict, Precinct seedPrecinct){
 
         double  totalVotesInState = 0;
         double totalDemocratVotes = 0;

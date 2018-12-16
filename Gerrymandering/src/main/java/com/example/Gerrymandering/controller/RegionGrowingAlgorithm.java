@@ -17,13 +17,11 @@ public class RegionGrowingAlgorithm implements Algorithm {
         stateName = state;
         movesBuffer = new MovesBuffer();
         objectiveValues = new HashMap<>();
-        objectiveValues.put("politicalFairness", 0.0);
-        objectiveValues.put("compactness", 0.0);
-        objectiveValues.put("populationEquality", 0.0);
     }
 
     @Override
     public void setWeights(String politicalFairness, String compactness, String populationEquality) {
+        objectiveValues = new HashMap<>();
         objectiveValues.put("politicalFairness", Double.parseDouble(politicalFairness));
         objectiveValues.put("compactness", Double.parseDouble(compactness));
         objectiveValues.put("populationEquality", Double.parseDouble(populationEquality));
