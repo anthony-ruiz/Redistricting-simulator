@@ -43,17 +43,23 @@
         var password = document.getElementById("password").value;
         var loginObj = {"username": username, "password": password};
         var loginJSON = JSON.stringify(loginObj);
-        console.log(loginJSON);
 
         $.ajax({
             type: "POST",
+            url: "/login/",
             contentType: "application/json",
-            url: "/login_req/",
             data: loginJSON,
-            dataType: 'json',
-            success: function () {
+            dataType: 'text',
+            cache: false,
+            success: function (data) {
+                console.log(data);
+                alert(data);
+                window.location = "./signed_in.html";
             }
         });
+
+        return false;
+
     }
 </script>
 
@@ -64,7 +70,7 @@
         <a href="./index.html">Home</a>
     </div>
 
-    <form method="post" action="index.html" id="login" onsubmit="login()">
+    <form method="post" action="index.html" id="login">
         <div class="box">
             <h1>Titan-mandering Login</h1>
 
@@ -74,15 +80,15 @@
             <input type="password" name="password" value="password" id="password" onFocus="field_focus(this, 'password');" onblur="field_blur(this, 'email');"
                 class="email" />
 
-            <a href="./signed_in.html">
-                <div class=""btn onclick="login()">Sign In
+            <!--<a href="./signed_in.html">-->
+                <div class="btn" onclick="return login()">Sign In
                     <!--<button onclick="login()">Sign In</button>-->
                 </div>
-            </a> <!-- End Btn -->
+            <!--</a> &lt;!&ndash; End Btn &ndash;&gt;-->
         </div> <!-- End Box -->
 
 
-    <!--</form>-->
+    </form>
 </body>
 
 </html>

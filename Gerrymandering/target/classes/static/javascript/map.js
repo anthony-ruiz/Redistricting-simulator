@@ -145,27 +145,27 @@ var a;
 var f;
 
 function startAlgorithm() {
-    loadRegionGrowingDefault();
-    
-    s = currentState;
-    w1 = document.getElementById("weight1").value;
-    w2 = document.getElementById("weight2").value;
-    w3 = document.getElementById("weight3").value;
-    a = document.getElementById("algorithm").value;
-    var algorithmObj = { "state": s, "politicalFairness": w1, "compactness": w2, "populationEquality": w3, "algorithm": a };
-    var myJSON = JSON.stringify(algorithmObj);
+        loadRegionGrowingDefault();
 
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "/begin/",
-        data: myJSON,
-        dataType: 'json',
-        cache: false,
-        success: function (data) {
-            alert(data);
-        }
-    });
+        s = currentState;
+        w1 = document.getElementById("weight1").value;
+        w2 = document.getElementById("weight2").value;
+        w3 = document.getElementById("weight3").value;
+        a = document.getElementById("algorithm").value;
+        var algorithmObj = { "state": s, "politicalFairness": w1, "compactness": w2, "populationEquality": w3, "algorithm": a };
+        var myJSON = JSON.stringify(algorithmObj);
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/begin/",
+            data: myJSON,
+            dataType: 'text',
+            cache: false,
+            success: function (data) {
+                // alert(data);
+            }
+        });
     // setInterval(getUpdates, 1);
     getUpdates();
 }
