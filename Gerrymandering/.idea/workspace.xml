@@ -1,57 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/UpdateController.java" line="13" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3f4917e-0778-4f6d-b04e-64ce2589902b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Gerrymandering.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Neighbors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Neighbors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/Arizona_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/Arizona_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/Minnesota_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/Minnesota_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/Wisconsin_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/Wisconsin_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Arizona_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Arizona_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Arizona_districts.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Arizona_districts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Minnesota_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Minnesota_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Minnesota_districts.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Minnesota_districts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Wisconsin_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Wisconsin_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Wisconsin_districts.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Wisconsin_districts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Wisoncin_districts.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/districts/unused/Wisoncin_districts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/javascript/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/javascript/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/javascript/precinct.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/javascript/precinct.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/javascript/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/javascript/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/precincts/Arizona.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/precincts/Arizona.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/precincts/Minnesota.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/precincts/Minnesota.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/precincts/Wisconsin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/precincts/Wisconsin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/controller/RegionGrowingAlgorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/controller/RegionGrowingAlgorithm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/controller/SpringController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/controller/SpringController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/AlgorithmJSON.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/AlgorithmJSON.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/District.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/District.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/Neighbors.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/Neighbors.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/Precinct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/Precinct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/Gerrymandering/domain/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/Arizona_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/Arizona_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/Minnesota_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/Minnesota_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/Wisconsin_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/Wisconsin_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/unused/Arizona_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/unused/Arizona_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/unused/Arizona_districts.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/unused/Arizona_districts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/unused/Minnesota_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/unused/Minnesota_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/unused/Minnesota_districts.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/unused/Minnesota_districts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/unused/Wisconsin_districts.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/unused/Wisconsin_districts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/unused/Wisconsin_districts.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/unused/Wisconsin_districts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/districts/unused/Wisoncin_districts.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/districts/unused/Wisoncin_districts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/javascript/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/javascript/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/javascript/precinct.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/javascript/precinct.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/javascript/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/javascript/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/precincts/Arizona.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/precincts/Arizona.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/precincts/Minnesota.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/precincts/Minnesota.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/precincts/Wisconsin.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/precincts/Wisconsin.js" afterDir="false" />
-    </list>
+    <list default="true" id="c3f4917e-0778-4f6d-b04e-64ce2589902b" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,88 +16,46 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Data.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="108" column="5" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/javascript/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="197" column="50" lean-forward="true" selection-start-line="197" selection-start-column="50" selection-end-line="197" selection-end-column="50" />
+            <state relative-caret-position="510">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Neighbors.java">
+        <entry file="file://$PROJECT_DIR$/Precinct.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+            <state relative-caret-position="272">
+              <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/UpdateController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/MovesBuffer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/RegionGrowingAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-400">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="1496">
+              <caret line="96" column="49" selection-start-line="96" selection-start-column="49" selection-end-line="96" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1189#1190#0" expanded="true" />
+                <element signature="e#1225#1226#0" expanded="true" />
+                <element signature="e#1275#1276#0" expanded="true" />
+                <element signature="e#1312#1313#0" expanded="true" />
+                <element signature="e#1357#1358#0" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/State.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Compactness.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/District.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
-              <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -152,15 +63,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Precinct.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1062#1063#0" expanded="true" />
-                <element signature="e#1089#1090#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/users.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -169,6 +80,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
         <option value="Class" />
       </list>
     </option>
@@ -177,6 +89,15 @@
     <findStrings>
       <find>web.xml</find>
       <find>dispatcher</find>
+      <find>weight</find>
+      <find>true</find>
+      <find>setpo</find>
+      <find>-</find>
+      <find>setd</find>
+      <find>Distri</find>
+      <find>sys</find>
+      <find>System.out.</find>
+      <find>System.</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -188,7 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Account.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/persistence/PersistenceUnit.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Move.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Representative.java" />
@@ -204,16 +124,28 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/initializers/PopulateStates.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/initializers/PopulatePrecincts.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SimulatedAnnealingAlgorithm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/State.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/District.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SpringController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Precinct.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/MovesBuffer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/District.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/UpdateController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Account.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/javascript/map.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Neighbors.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/login.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SpringController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/AccountController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/javascript/pause.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/PoliticalFairness.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/PopulationEquality.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Data.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/State.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/LoginCredentials.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SignUpController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/ObjectiveFunction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/SignUpInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Compactness.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/RegionGrowingAlgorithm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Precinct.java" />
       </list>
     </option>
   </component>
@@ -231,10 +163,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="229" />
-    <option name="y" value="-18" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -244,73 +176,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
               <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gerrymandering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gerrymandering" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -327,20 +200,21 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544844951060" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544930452905" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\antho\aplicationTom\cse308-titans\Gerrymandering" />
+      <recent name="C:\Users\antho\aplicationTom\cse308-titans\Gerrymandering\src\main\java\com\example\Gerrymandering\domain" />
+      <recent name="C:\Users\Tom Biscardi\Desktop\CSE308\cse308-titans\Gerrymandering\src\main\resources\static" />
       <recent name="C:\Users\Tom Biscardi\Desktop\CSE308\cse308-titans\Gerrymandering\src\main\java\com\example\Gerrymandering" />
       <recent name="C:\Users\Tom Biscardi\Desktop\CSE308\cse308-titans\Gerrymandering" />
-      <recent name="C:\Users\Tom Biscardi\IdeaProjects\Gerrymandering\src\main\resources\templates" />
-      <recent name="C:\Users\Tom Biscardi\IdeaProjects\Gerrymandering\src\main\webapp\resources" />
-      <recent name="C:\Users\Tom Biscardi\IdeaProjects\Gerrymandering\src\main\java\com\example\Gerrymandering\persistence" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Tom Biscardi\IdeaProjects\Gerrymandering\src\main\resources\static" />
@@ -398,14 +272,15 @@
       <workItem from="1544735560590" duration="3646000" />
       <workItem from="1544739536670" duration="22582000" />
       <workItem from="1544819209731" duration="4333000" />
-      <workItem from="1544824038598" duration="7759000" />
-      <workItem from="1544834255576" duration="142000" />
-      <workItem from="1544834432518" duration="10230000" />
+      <workItem from="1544824038598" duration="9829000" />
+      <workItem from="1544837393804" duration="22714000" />
+      <workItem from="1544931016727" duration="1223000" />
+      <workItem from="1544937541186" duration="273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60279000" />
+    <option name="totallyTimeSpent" value="93495000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -417,10 +292,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15565032" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20469083" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -429,9 +304,9 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3336945" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3802817" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32907802" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3336945" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.33475178" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -441,7 +316,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32936078" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -456,7 +331,7 @@
       <window_info anchor="right" id="Maven Projects" order="10" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14765458" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15503356" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -466,8 +341,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2665222" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.29035753" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.293617" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.33475178" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -498,209 +373,366 @@
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
         <watch expression="seeds" />
+        <watch expression="seeds" />
+        <watch expression="seeds" language="JAVA" />
+        <watch expression="seeds" language="JAVA" />
+        <watch expression="districts.toArray()[7]" />
+        <watch expression="((HashSet)((Precinct)seeds.toArray()[1]).neighbors).toArray()[4]" custom="com.example.Gerrymandering.domain.Precinct,java.util.HashSet" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SeedGenerator.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/persistence/PersistenceUnit.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/districts/Wisconsin_districts.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/javascript/district.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/precincts/notused/mn.js" />
-    <entry file="file://$PROJECT_DIR$/Gerrymandering.iml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Representative.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.6.RELEASE/spring-web-5.0.6.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+        <state relative-caret-position="306">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/StateManager.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.6.RELEASE/spring-web-5.0.6.RELEASE.jar!/org/springframework/web/filter/RequestContextFilter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+        <state relative-caret-position="148">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hello.html">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.6.RELEASE/spring-web-5.0.6.RELEASE.jar!/org/springframework/web/filter/OncePerRequestFilter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="27" lean-forward="true" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+        <state relative-caret-position="408">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static.index.html" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/StandardHostValve.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="165">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/SpringBootApp.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/authenticator/AuthenticatorBase.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="181">
+          <caret line="320" selection-start-line="320" selection-end-line="320" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Move.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/StandardContextValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/StandardWrapperValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="150" selection-start-line="150" selection-end-line="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.6.RELEASE/spring-webmvc-5.0.6.RELEASE.jar!/org/springframework/web/servlet/FrameworkServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="484" selection-start-line="484" selection-end-line="484" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.6.RELEASE/spring-webmvc-5.0.6.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="420" selection-start-line="420" selection-end-line="420" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.6.RELEASE/spring-webmvc-5.0.6.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="569" selection-start-line="569" selection-end-line="569" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11/lib/src.zip!/java.base/jdk/internal/misc/Unsafe.java" />
+    <entry file="file://$USER_HOME$/Downloads/Neighbors.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Neighbors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="927">
+          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/MovesBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/District.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-500">
-          <caret column="38" lean-forward="true" selection-start-column="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/States.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/initializers/Neighbors.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/AccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/initializers/PopulateDistricts.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SimulatedAnnealingAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/initializers/PopulatePrecincts.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/initializers/PopulateStates.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/initializers/InitializeData.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/Data.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SpringController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
+        <state relative-caret-position="545">
+          <caret line="74" column="33" lean-forward="true" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/AlgorithmJSON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/UpdateController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1655#1656#0" expanded="true" />
+            <element signature="e#1688#1689#0" expanded="true" />
+            <element signature="e#1753#1754#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="992">
-          <caret line="71" column="7" lean-forward="true" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
+        <state relative-caret-position="901">
+          <caret line="71" column="7" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/javascript/map.js">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/javascript/pause.js" />
+    <entry file="file://$PROJECT_DIR$/../../project data/12_!5 changes/Precinct.java" />
+    <entry file="file://$PROJECT_DIR$/../../project data/12_!5 changes/Data.java" />
+    <entry file="file://$PROJECT_DIR$/../../project data/12_!5 changes/ObjectiveFunction.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SimulatedAnnealingAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="197" column="50" lean-forward="true" selection-start-line="197" selection-start-column="50" selection-end-line="197" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        <state relative-caret-position="612">
+          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1077#1078#0" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1149#1150#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Neighbors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Precinct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1062#1063#0" expanded="true" />
-            <element signature="e#1089#1090#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/District.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../../project data/12_!5 changes/PopulationEquality.java" />
+    <entry file="file://$PROJECT_DIR$/../../project data/12_!5 changes/Compactness.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Data.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="108" column="5" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
+        <state relative-caret-position="544">
+          <caret line="89" column="53" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/MovesBuffer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/PoliticalFairness.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/PopulationEquality.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/State.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1543#1544#0" expanded="true" />
+            <element signature="e#1575#1576#0" expanded="true" />
+            <element signature="e#1618#1619#0" expanded="true" />
+            <element signature="e#1650#1651#0" expanded="true" />
+            <element signature="e#1707#1708#0" expanded="true" />
+            <element signature="e#1749#1750#0" expanded="true" />
+            <element signature="e#2024#2025#0" expanded="true" />
+            <element signature="e#2061#2062#0" expanded="true" />
+            <element signature="e#2087#2088#0" expanded="true" />
+            <element signature="e#2112#2113#0" expanded="true" />
+            <element signature="e#2143#2144#0" expanded="true" />
+            <element signature="e#2170#2171#0" expanded="true" />
+            <element signature="e#2227#2228#0" expanded="true" />
+            <element signature="e#2269#2270#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/AccountController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/LoginController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SignUpController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/SpringController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/StateManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/UpdateController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="53" lean-forward="true" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/AlgorithmJSON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1102#1103#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1172#1173#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1250#1251#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="e#1356#1357#0" expanded="true" />
+            <element signature="e#1414#1415#0" expanded="true" />
+            <element signature="e#1452#1453#0" expanded="true" />
+            <element signature="e#1486#1487#0" expanded="true" />
+            <element signature="e#1540#1541#0" expanded="true" />
+            <element signature="e#1586#1587#0" expanded="true" />
+            <element signature="e#1631#1632#0" expanded="true" />
+            <element signature="e#1672#1673#0" expanded="true" />
+            <element signature="e#1740#1741#0" expanded="true" />
+            <element signature="e#1800#1801#0" expanded="true" />
+            <element signature="e#1836#1837#0" expanded="true" />
+            <element signature="e#1868#1869#0" expanded="true" />
+            <element signature="e#1918#1919#0" expanded="true" />
+            <element signature="e#1960#1961#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/LoginCredentials.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/ObjectiveFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1123#1124#0" expanded="true" />
+            <element signature="e#1181#1182#0" expanded="true" />
+            <element signature="e#1219#1220#0" expanded="true" />
+            <element signature="e#1253#1254#0" expanded="true" />
+            <element signature="e#1307#1308#0" expanded="true" />
+            <element signature="e#1353#1354#0" expanded="true" />
+            <element signature="e#1398#1399#0" expanded="true" />
+            <element signature="e#1439#1440#0" expanded="true" />
+            <element signature="e#1507#1508#0" expanded="true" />
+            <element signature="e#1567#1568#0" expanded="true" />
+            <element signature="e#1620#1621#0" expanded="true" />
+            <element signature="e#1652#1653#0" expanded="true" />
+            <element signature="e#1719#1720#0" expanded="true" />
+            <element signature="e#1761#1762#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Representative.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/SignUpInfo.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Account.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#701#702#0" expanded="true" />
+            <element signature="e#726#727#0" expanded="true" />
+            <element signature="e#759#760#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+            <element signature="e#822#823#0" expanded="true" />
+            <element signature="e#853#854#0" expanded="true" />
+            <element signature="e#901#902#0" expanded="true" />
+            <element signature="e#941#942#0" expanded="true" />
+            <element signature="e#973#974#0" expanded="true" />
+            <element signature="e#1001#1002#0" expanded="true" />
+            <element signature="e#1043#1044#0" expanded="true" />
+            <element signature="e#1077#1078#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+            <element signature="e#1143#1144#0" expanded="true" />
+            <element signature="e#1191#1192#0" expanded="true" />
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1292#1293#0" expanded="true" />
+            <element signature="e#1327#1328#0" expanded="true" />
+            <element signature="e#1385#1386#0" expanded="true" />
+            <element signature="e#1433#1434#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/login.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/signed_in.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/signup.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/javascript/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Precinct.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/controller/RegionGrowingAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-400">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="1496">
+          <caret line="96" column="49" selection-start-line="96" selection-start-column="49" selection-end-line="96" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1189#1190#0" expanded="true" />
+            <element signature="e#1225#1226#0" expanded="true" />
+            <element signature="e#1275#1276#0" expanded="true" />
+            <element signature="e#1312#1313#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Compactness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Gerrymandering/domain/Precinct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

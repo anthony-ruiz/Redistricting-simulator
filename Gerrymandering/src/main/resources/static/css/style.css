@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    margin: 0;
+    margin: 0;    
 }
 #map {
     width: 100%;
@@ -15,8 +15,9 @@ html, body {
     background: rgba(255,255,255,0.8); 
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.144); 
     border-radius: 5px; 
-    position: absolute;
+    /* position: absolute; */
     top: 50px;
+    right: 250px;
 }
 
 .info h4 { 
@@ -72,7 +73,7 @@ html, body {
     height: 100%;
     width: 250px;
     position: fixed;
-    top: 0;
+    top: 46px;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
@@ -92,14 +93,60 @@ html, body {
     color: #ad3e3e;
 }
 
-#sidebar1 {
+.sidenav2 {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 45px;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    z-index: 9000;
+}
+
+.sidenav2 a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+}
+
+.sidenav2 a:hover {
+    color: #ad3e3e;
+}
+
+#leftbar1 {
     display: initial;
 }
 
-#sidebar2 {
+#leftbar2 {
+    display: none;
+}
+
+#rightbar1 {
+    display: none;
+}
+
+#rightbar2 {
+    display: none;
+}
+
+#submit {
     display: none;
 }
 
 .noHover{
     pointer-events: none;
 }
+
+.geocoder-control-input {
+    left: 250px;
+}
+
+.leaflet-touch .leaflet-bar {
+    top: 50px;
+    left: 250px;
+}
+

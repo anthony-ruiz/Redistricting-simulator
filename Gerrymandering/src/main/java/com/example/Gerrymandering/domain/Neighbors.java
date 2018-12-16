@@ -68,6 +68,7 @@ public class Neighbors {
                 inner.add(array[i][1]);
             }
         }
+
     }
     public List getNeighbors(String precinct){
         return outputLines.get(precinct);
