@@ -21,7 +21,7 @@ public class SimulatedAnnealingAlgorithm implements Algorithm{
 
     @Override
     public void setState(State state) {
-
+//        currentState = new PersistenceUnit().getSAState(state);
     }
 
     @Override

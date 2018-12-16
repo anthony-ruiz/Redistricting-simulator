@@ -2,10 +2,7 @@ package com.example.Gerrymandering.controller;
 
 import java.util.*;
 
-import com.example.Gerrymandering.domain.District;
-import com.example.Gerrymandering.domain.ObjectiveFunction;
-import com.example.Gerrymandering.domain.Precinct;
-import com.example.Gerrymandering.domain.State;
+import com.example.Gerrymandering.domain.*;
 
 public class RegionGrowingAlgorithm implements Algorithm {
 
@@ -49,34 +46,69 @@ public class RegionGrowingAlgorithm implements Algorithm {
 
     @Override
     public void beginAlgorithm() {
-        {
-            Set<Precinct> seeds = currentState.getSeedPrecincts();
-            Set<District> districts = currentState.getDistricts();
-            int districtAmt = currentState.getDistrictAmount();
-            for (int i = 0; i < districtAmt; i++) {
-                districts.add(new District());
-            }
-            Iterator<Precinct> iter = seeds.iterator();
+        Set<Precinct> seeds = currentState.getSeedPrecincts();
+        Set<District> districts = currentState.getDistricts();
+//        int districtAmt = currentState.getDistrictAmount();
+//        for (int i = 0; i < districtAmt; i++) {
+//            districts.add(new District());
+//        }
+        Iterator<Precinct> iter = seeds.iterator();
+        for (District dists : districts) {
+            dists.addPrecinct(iter.next());
+        }
+        while(currentState.getUsedCount() < currentState.getPrecincts().size()) {
             for (District dists : districts) {
-                dists.addPrecinct(iter.next());
-            }
-            while (true) { // change "true" to loop through all districts in round robin fashion until all precincts are assigned to a district
-                for (District dists : districts) {
-                    Set<Precinct> borders = dists.getBorders();
-                    Set<Precinct> currNeighbors = dists.getCurrentNeighbors();
-                    currNeighbors.clear();
-                    for (Precinct borderPrecinct : borders) {
-                        currNeighbors.addAll(borderPrecinct.getEligibleNeighbors());
+                if(dists.isFinished()) {
+                    continue;
+                }
+                Set<Precinct> borders = dists.getBorders();
+                Set<Precinct> currNeighbors = dists.getCurrentNeighbors();
+                currNeighbors.clear();
+                for (Precinct borderPrecinct : borders) {
+                    currNeighbors.addAll(borderPrecinct.getEligibleNeighbors());
+                }
+                //Precinct precinctToAdd = getBestPrecinct(objectiveFunction, currNeighbors);
+                //currently random precinct choice approach
+                if(currNeighbors.size() != 0) {
+                    Compactness c = new Compactness();
+                    Precinct mySeed = new Precinct();
+                    for(Precinct p : seeds){
+                        if(p.getDistrict().getId() == dists.getId()){
+                            mySeed = p;
+                            break;
+                        }
                     }
-                    //Precinct precinctToAdd = getBestPrecinct(objectiveFunction, currNeighbors);
-                    //currently random precinct choice approach
-                    Collections.shuffle((List<?>) currNeighbors);
-                    Iterator<Precinct> iter2 = currNeighbors.iterator();
+                    List<Precinct> mainList = c.compactness(currentState,currNeighbors,dists,mySeed);
+//                for(Precinct p : currNeighbors) {
+//                    Precinct precinctToAdd = p;
+//                    dists.addPrecinct(precinctToAdd);
+//                    break;
+//                }
+                    Iterator<Precinct> iter2 = mainList.iterator();
                     Precinct precinctToAdd = iter2.next();
                     dists.addPrecinct(precinctToAdd);
+                } else {
+                    dists.setFinished(true);
                 }
+
             }
         }
+        MovesBuffer movesBuffer = new MovesBuffer();
+        movesBuffer.constructJson("finished", 0);
+
+//        for(District d : currentState.getDistricts()){    //this is my addition
+//            System.out.println(" district: " + d.getId()+ " population: "  + d.getPopulation());
+//        }
+
+        for(District d : currentState.getDistricts()){
+            int population = 0;
+            for(Precinct p : d.getPrecincts()){
+                population = population + p.getPopulation();
+            }
+            System.out.println(population);
+        }
+
+        System.out.println("Finished!");
     }
 
     private Precinct getBestPrecinct(ObjectiveFunction objectiveFunction, Set<Precinct> currentNeighbors) {

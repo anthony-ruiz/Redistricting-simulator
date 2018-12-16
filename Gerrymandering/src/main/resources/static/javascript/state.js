@@ -8,8 +8,8 @@ info.onAdd = function (map) {
 };
 
 info.update = function (props) {
-    this._div.innerHTML = '<h4>State Population Density</h4>' + (props ?
-        '<b> State name: ' + props.name : 'Hover over a state');
+    this._div.innerHTML = '<h4>State Information</h4>' + (props ?
+        '<b> State : ' + props.name : 'Hover over a state');
 };
 info.addTo(map);
 // end of state control
@@ -39,7 +39,7 @@ function precinctDistrictColor(d) {
 function selectColor(code) {
     currentMode = code;
 
-    if ((map.getZoom() >= 8)) {
+    if ((map.getZoom() >= 8) || loggedIn) {
         geojson.clearLayers();
         geojson = L.geoJSON(window[currentState], {
             style: precinctStyle,
@@ -61,75 +61,75 @@ function stateResetHighlight(e) {
 }
 
 function stateClicked(e) {
-    stateSelected = true;
     currentState = e.target.feature.properties.name;
-    if (search(e.target.feature.properties.name, states)) {
-        map.fitBounds(e.target.getBounds());
+    showStateDistricts();
+}
 
-        geojson.clearLayers();
+function comboBoxClicked() {
+    currentState = document.getElementById('states').value;
+    showStateDistricts();
+}
 
-        geojson = L.geoJSON(window[e.target.feature.properties.name + "_districts"], {
-            style: districtStyle,
-            onEachFeature: onEachDistrictFeature
-        }).addTo(map);
-
-        map.removeControl(info);
-        districtInfo.addTo(map);
-        toggleSideBar();
+function showStateDistricts() {
+    stateSelected = true;
+    if (search(currentState, states)) {
+        if (!loggedIn)
+            loadDistrictView();
+        else
+            loadPrecinctView();
     }
     else {
-        include(e.target.feature.properties.name).then(function () {
-            map.fitBounds(e.target.getBounds());
-
-            geojson.clearLayers();
-
-            geojson = L.geoJSON(window[e.target.feature.properties.name + "_districts"], {
-                style: districtStyle,
-                onEachFeature: onEachDistrictFeature
-            }).addTo(map);
-
-            map.removeControl(info);
-            districtInfo.addTo(map);
-            toggleSideBar();
+        include(currentState).then(function () {
+            if (!loggedIn)
+                loadDistrictView();
+            else
+                loadPrecinctView();
         });
     }
 }
 
-function comboBoxClicked() {
-    stateSelected = true;
-    currentState = document.getElementById('states').value;
-    if (search(document.getElementById('states').value, states)) {
+function loadDistrictView() {
+    geojson.clearLayers();
 
-        geojson.clearLayers();
+    geojson = L.geoJSON(window[currentState + "_districts"], {
+        style: districtStyle,
+        onEachFeature: onEachDistrictFeature
+    }).addTo(map);
 
-        geojson = L.geoJSON(window[document.getElementById('states').value + "_districts"], {
-            style: districtStyle,
-            onEachFeature: onEachDistrictFeature
-        }).addTo(map);
+    map.fitBounds(geojson.getBounds());
 
-        map.fitBounds(geojson.getBounds());
+    map.removeControl(info);
+    districtInfo.addTo(map);
+    toggleSideBar();
+}
 
-        map.removeControl(info);
-        districtInfo.addTo(map);
-        toggleSideBar();
-    }
-    else {
-        include(document.getElementById('states').value).then(function () {
+function loadPrecinctView() {
+    geojson.clearLayers();
 
-            geojson.clearLayers();
+    geojson = L.geoJSON(window[currentState], {
+        style: precinctStyle,
+        onEachFeature: onEachPrecinctFeature
+    }).addTo(map);
 
-            geojson = L.geoJSON(window[document.getElementById('states').value + "_districts"], {
-                style: districtStyle,
-                onEachFeature: onEachDistrictFeature
-            }).addTo(map);
+    map.fitBounds(geojson.getBounds());
 
-            map.fitBounds(geojson.getBounds());
+    map.removeControl(info);
+    precinctInfo.addTo(map);
+    toggleSideBar();
+}
 
-            map.removeControl(info);
-            districtInfo.addTo(map);
-            toggleSideBar();
-        });
-    }
+function loadRegionGrowingDefault() {
+    geojson.clearLayers();
+
+    geojson = L.geoJSON(window[currentState], {
+        style: regionGrowingStyle,
+        onEachFeature: onEachPrecinctFeature
+    }).addTo(map);
+
+    map.fitBounds(geojson.getBounds());
+
+    map.removeControl(info);
+    precinctInfo.addTo(map);
 }
 
 function onEachStateFeature(feature, layer) {

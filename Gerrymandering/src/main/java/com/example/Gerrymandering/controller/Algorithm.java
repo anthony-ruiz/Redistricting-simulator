@@ -21,5 +21,4 @@ public interface Algorithm {
     public String getStateName();
 
     public State getState();
-
 }

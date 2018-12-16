@@ -1,17 +1,11 @@
 package com.example.Gerrymandering.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
-//import javax.persistence.Table;
-
-//@Entity
-//@Table(name="districts")
 public class District implements Serializable{
 
     private State state;
-//    @Id
     private int Id;
     private int population;
     private double volume;
@@ -19,13 +13,16 @@ public class District implements Serializable{
     private Set<Precinct> precincts;
     private Set<Precinct> borders;
     private Set<Precinct> currentNeighbors;
+    private boolean finished = false;
 
     public void addPrecinct(Precinct precinctToAdd) {
         precincts.add(precinctToAdd);
+        state.incrementUsedCount();
         precinctToAdd.setDistrict(this);
     }
 
     public Set<Precinct> getBorders() {
+        borders = new HashSet<>();
         for (Precinct precinct : precincts) {
             if (precinct.isOnDistrictBorder()) {
                 borders.add(precinct);
@@ -33,16 +30,14 @@ public class District implements Serializable{
         }
         return borders;
     }
+
     public Set<Precinct> getCurrentNeighbors() {
+        currentNeighbors = new HashSet<>();
         return currentNeighbors;
     }
 
     public int getId() {
         return Id;
-    }
-
-    public Set<Precinct> getPrecincts() {
-        return precincts;
     }
 
     public void setPrecincts(Set<Precinct> precincts) {
@@ -67,5 +62,17 @@ public class District implements Serializable{
 
     public int getPopulation(){
         return population;
+    }
+
+    public Set<Precinct> getPrecincts() {
+        return precincts;
+    }
+
+    public void setFinished(boolean b) {
+        this.finished = b;
+    }
+
+    public boolean isFinished() {
+        return this.finished;
     }
 }

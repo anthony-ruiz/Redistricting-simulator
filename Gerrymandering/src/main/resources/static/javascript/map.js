@@ -10,7 +10,7 @@ var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
     '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
     '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
 
-var currentMode = 1;
+var currentMode = 0;
 
 // list of states loaded
 states = [];
@@ -31,7 +31,7 @@ var map = L.map('map', { attributionControl: false, maxBounds: maxBounds }).setV
 var prevZoom = map.getZoom();
 
 map.on('zoomend', function () {
-    if (map.getZoom() < 8 && (prevZoom >= 8) && stateSelected) {
+    if (map.getZoom() < 8 && (prevZoom >= 8) && stateSelected && !loggedIn) {
         prevZoom = map.getZoom();
 
         geojson.clearLayers();
@@ -44,7 +44,7 @@ map.on('zoomend', function () {
         districtInfo.addTo(map);
         console.log("show district");
     }
-    else if (map.getZoom() >= 8 && (prevZoom < 8) && stateSelected) {
+    else if (map.getZoom() >= 8 && (prevZoom < 8) && stateSelected && !loggedIn) {
         prevZoom = map.getZoom();
 
         geojson.clearLayers();
@@ -137,14 +137,16 @@ function showAllStates() {
     toggleSideBar();
 }
 
-var req;
-var req2;
 var s;
-var w;
+var w1;
+var w2;
+var w3;
 var a;
 var f;
 
 function startAlgorithm() {
+    loadRegionGrowingDefault();
+
     s = currentState;
     w1 = document.getElementById("weight1").value;
     w2 = document.getElementById("weight2").value;
@@ -153,50 +155,120 @@ function startAlgorithm() {
     var algorithmObj = { "state": s, "politicalFairness": w1, "compactness": w2, "populationEquality": w3, "algorithm": a };
     var myJSON = JSON.stringify(algorithmObj);
 
-    // req = new XMLHttpRequest();
-    // var url = "/begin";
-    // req.open("POST", url, true);
-    // getUpdates();
-    // req.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    // req.onreadystatechange = validateAlgorithmSuccess;
-    // s = "Hello!";
-    // req.send(s);
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "/begin/",
         data: myJSON,
-        dataType: 'json',
+        dataType: 'text',
         cache: false,
-        timeout: 600000,
         success: function (data) {
-            alert(data);
+            // alert(data);
         }
     });
-    
+    // setInterval(getUpdates, 1);
+    getUpdates();
 }
 
-function validateAlgorithmSuccess() {
-    if (req.readyState == 4 && req.status == 200) {
-        alert(req.responseText)
-    }
-}
 
-var finished = false;
+var toMove;
+
+
 
 function getUpdates() {
-//    while(!finished) {
-        req2 = new XMLHttpRequest();
-        var url = "http://localhost:8080/CSE308/PrecinctUpdater";
-        req2.open("GET", url, true);
-        req2.onreadystatechange = receiveUpdates;
-        req2.send(null);
-//    }
+    $.ajax({
+        type: "GET",
+        url: "/update/",
+        dataType: 'text',
+        cache: false,
+        success: function (data) {
+            if (data === "[]") {
+                getUpdates();
+            } else {
+                toMove = JSON.parse(data);
+                var finished = false;
+
+                geojson.getLayers().forEach(function (e) {
+                    // toMove.forEach(function (arrayItem) {
+
+                    if (e.feature.properties.GEOID10 === toMove['precinctID']) {
+                        e.setStyle({
+                            weight: .5,
+                            color: 'white',
+                            dashArray: '',
+                            fillOpacity: 1,
+                            fillColor: colorArray[toMove['districtID']]
+                        });
+
+
+                        e.bringToFront();
+                    }
+
+                    var x = toMove['precinctID'];
+                    if (x === "finished") {
+                        finished = true;
+                    }
+                });
+
+                // });
+                if (!finished) {
+                    console.log(toMove);
+                    getUpdates();
+                }
+                // if (toMove['precinctID'] === "finished") {
+                //
+                // } else {
+                //     getUpdates();
+                //     console.log(toMove);
+                // }
+            }
+        }
+    });
+
 }
 
-function receiveUpdates() {
-    if (req2.readyState == 4 && req2.status == 200) {
-        alert(req2.responseText);
-    }
-}
+
+
+// function getUpdates2() {
+//     for(var i = 0; i < 10000; i++) {
+//         $.ajax({
+//             type: "GET",
+//             url: "/update/",
+//             dataType: 'text',
+//             cache: false,
+//             success: function (data) {
+//                 if (data !== "[]") {
+//                     toMove = JSON.parse(data);
+//                     var finished = false;
+//                     toMove.forEach(function (arrayItem) {
+//                         geojson.getLayers().forEach(function (e) {
+//                             toMove.forEach(function (j) {
+//                                 if (e.feature.properties.GEOID10 === j['precinctID']) {
+//                                     e.setStyle({
+//                                         weight: 2,
+//                                         color: 'white',
+//                                         dashArray: '',
+//                                         fillOpacity: 1,
+//                                         fillColor: colorArray[j['districtID']]
+//                                     });
+//                                     e.bringToFront();
+//                                 }
+//                             });
+//                         });
+//
+//                         var x = arrayItem['precinctID'];
+//                         if (x === "finished") {
+//                             finished = true;
+//                         }
+//                     });
+//                     if (!finished) {
+//                         console.log(toMove);
+//
+//                     } else {
+//                         break;
+//                     }
+//                 }
+//             }
+//         });
+//     }
+// }

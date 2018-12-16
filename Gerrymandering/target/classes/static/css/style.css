@@ -7,13 +7,16 @@ html, body {
     height: 100%;
     /* left: 250px; */
 }
+
 .info { 
     padding: 6px 8px; 
     font: 14px/16px Arial, Helvetica, sans-serif; 
     background: white; 
     background: rgba(255,255,255,0.8); 
-    box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.144); 
     border-radius: 5px; 
+    position: absolute;
+    top: 50px;
 }
 
 .info h4 { 
@@ -35,16 +38,40 @@ html, body {
      opacity: 0.7; 
 }
 
-.cbox {
-    width: 300px;
-    position: relative;
+.topnav {
+    width: 100%;
+    background-color: rgb(44, 44, 44);
+    overflow: hidden;
+    position: fixed;
+    z-index: 9998;
+}
+  
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+  
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
 }
 
 .sidenav {
     height: 100%;
     width: 250px;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
     background-color: #111;
@@ -54,15 +81,15 @@ html, body {
 }
 
 .sidenav a {
-    /* padding: 6px 8px 6px 16px; */
+    padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
-    color: #2d7499;
+    color: #ffffff;
     display: block;
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: #ad3e3e;
 }
 
 #sidebar1 {
@@ -71,4 +98,8 @@ html, body {
 
 #sidebar2 {
     display: none;
+}
+
+.noHover{
+    pointer-events: none;
 }

@@ -20,7 +20,7 @@ public class Data {
 
 
     public void populateAll(String algorithmType){
-       this.algorithmType = algorithmType;
+        this.algorithmType = algorithmType;
         try {
             initializeState();         //initializes the basic values of State,Distric,Precinct
             initializeDistrict();
@@ -86,6 +86,8 @@ public class Data {
             }
             precinct.setID(precinctLine[1]);                                                                    //sets precinct ID
             precinct.setVolume(Double.parseDouble(precinctLine[2]));                                            //sets volume of precinct
+            precinct.setPopulation(Integer.parseInt(precinctLine[3]));
+            precinct.setCoordinates(precinctLine[4]);
             precinctList.add(precinct);
         }
         setNeighbors();
@@ -95,14 +97,16 @@ public class Data {
         Neighbors neighbors = new Neighbors();
         neighbors.populateNeigbors();
         for (Precinct aPrecinctList : precinctList) {
-            Set<Precinct> setforCurrent = new HashSet<>();
-            Precinct currentPrecinct = (Precinct) aPrecinctList;
-            List neighborsOfCurrentList = neighbors.getNeighbors(currentPrecinct.getID());
-            for (int j = 0; j < neighborsOfCurrentList.size(); j++) {
-                Precinct p = (Precinct) precinctList.get(j);
-                setforCurrent.add(p);
+            Set<Precinct> setForCurrent = new HashSet<>();
+            List<String> neighborsOfCurrentList = neighbors.getNeighbors(aPrecinctList.getID());
+            for(String s : neighborsOfCurrentList) {
+                for(Precinct p : precinctList) {
+                    if(p.getID().equals(s)) {
+                        setForCurrent.add(p);
+                    }
+                }
             }
-            currentPrecinct.setNeighbors(setforCurrent);
+            aPrecinctList.setNeighbors(setForCurrent);
         }
     }
 
@@ -119,6 +123,11 @@ public class Data {
                         currentSet.add(p);
                     }
                 }
+                d.setPrecincts(currentSet);
+            }
+        } else {
+            for(District d : districtList){
+                Set<Precinct> currentSet = new HashSet<>();
                 d.setPrecincts(currentSet);
             }
         }

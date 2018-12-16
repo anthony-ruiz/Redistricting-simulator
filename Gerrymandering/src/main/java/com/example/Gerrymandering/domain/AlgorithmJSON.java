@@ -16,7 +16,7 @@ public class AlgorithmJSON {
     private String populationEquality;
     @JsonProperty("algorithm")
     private String algorithm;
-
+    
     public Algorithm create() {
         Algorithm newAlgorithm;
         if(algorithm.equals("REGION_GROWING")) {
@@ -25,7 +25,7 @@ public class AlgorithmJSON {
             newAlgorithm = new SimulatedAnnealingAlgorithm(state);
         }
         newAlgorithm.setWeights(politicalFairness, compactness, populationEquality);
-        return newAlgorithm;
+        return newAlgorithm;                
     }
 
     public String getState() {
