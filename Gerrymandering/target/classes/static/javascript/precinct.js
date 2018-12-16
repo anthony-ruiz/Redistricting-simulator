@@ -11,7 +11,7 @@ precinctInfo.update = function (props) {
     this._div.innerHTML = '<h4>Precinct Information</h4>' + (props ?
         '<b> Name: ' + props.NAME10
         + '<br> ID: ' + props.GEOID10
-        + '<br> District: ' + props.District
+        + '<br> District: ' + districtDisplay(props)
         + '<br> Party: ' + (props.PRS08_REP > props.PRS08_DEM ? "Republican" : "Democrat")
         + '<br> Republican Votes: ' + parseInt(props.PRS08_REP)
         + '<br> Democratic Votes: ' + parseInt(props.PRS08_DEM)
@@ -23,25 +23,10 @@ var currentStyle;
 
 function precinctHighlightFeature(e) {
     var layer = e.target;
-
-    // geojson.getLayers().forEach(function(e) {
-    //     az_n.neighbors[layer.feature.properties.GEOID10].forEach(function(j){
-    //         if(e.feature.properties.GEOID10 === j) {
-    //             e.setStyle({
-    //                 weight: 5,
-    //                 color: 'red',
-    //                 dashArray: '',
-    //                 fillOpacity: .1
-    //             });
-    //             e.bringToFront();
-    //         }
-    //     });
-    // });
     currentStyle = layer.options;
 
-
     layer.setStyle({
-        weight: 5,
+        weight: 4,
         color: 'green',
         dashArray: '',
         fillOpacity: .9
@@ -54,6 +39,20 @@ function precinctHighlightFeature(e) {
     precinctInfo.update(layer.feature.properties);
 }
 
+function districtDisplay(props) {
+    if (currentAlg === 0) {
+        return "Unassigned";
+    } else if (currentAlg === 2) {
+        for (var i = 0; i < Object.keys(movesMade).length; i++) {
+            if (props.GEOID10 === movesMade[i]['precinctID']) {
+                return currentState + ' ' + movesMade[i]['districtID'];
+            }
+        }
+    } else {
+        return props.District;
+    }
+}
+
 // colors each precinct based on the party they are in
 function getPrecinctColor(d) {
     return d.PRS08_REP > d.PRS08_DEM ? '#E91D0E' : '#232066';
@@ -61,7 +60,7 @@ function getPrecinctColor(d) {
 
 function precinctStyle(feature) {
     return {
-        weight: 2,
+        weight: weights,
         opacity: 1,
         color: 'white',
         dashArray: '3',
@@ -72,7 +71,7 @@ function precinctStyle(feature) {
 
 function regionGrowingStyle(feature) {
     return {
-        weight: 2,
+        weight: weights,
         opacity: 1,
         color: 'white',
         dashArray: '3',
@@ -82,32 +81,87 @@ function regionGrowingStyle(feature) {
 }
 
 function precinctResetHighlight(v) {
-    // geojson.getLayers().forEach(function(e) {
-    //     az_n.neighbors[v.target.feature.properties.GEOID10].forEach(function(j){
-    //         if(e.feature.properties.GEOID10 === j) {
-    //             geojson.resetStyle(e);
-    //         }
-    //     });
-    // });
-
-
     geojson.resetStyle(v.target);
 
-    // currentStyle.setStyle({
-    //     weight: 2,
-    //     color: 'white',
-    //     fillOpacity: 1
-    // })
-
     currentStyle.color = 'white';
-    currentStyle.weight = 2;
+    currentStyle.weight = weights;
+    currentStyle.fillOpacity = 1;
+
     v.target.setStyle(currentStyle);
-    
+
     precinctInfo.update();
 }
 
+var customSeeds;
+
+function variantSelection(variant) {
+    var x = document.getElementById("submit");
+
+    loadRegionGrowingDefault();
+
+    if (variant === "SELECT_SEED") {
+        customSeeds = [];
+
+        x.style.display = "none";
+        document.getElementById('selection').innerHTML = '<a><font color="red">Select ' + districtAmount + ' More</font></a>';
+    }
+    else if (variant == "REP_SEED") {
+        document.getElementById('selection').innerHTML = "";
+        x.style.display = "initial";
+    }
+    else {
+        document.getElementById('selection').innerHTML = "";
+        x.style.display = "initial";
+    }
+}
+
 function precinctClicked(e) {
-    map.fitBounds(e.target.getBounds());
+    var x = $("input[name=variant]:checked").val();
+    var y = document.getElementById("submit");
+
+    if (x === "SELECT_SEED") {
+        document.getElementById("variant").checked = false;
+        var cid = e.target.feature.properties.GEOID10;
+        var print = "";
+        var skip = false;
+
+        customSeeds.forEach(function (v, index) {
+            if (v.target.feature.properties.GEOID10 === cid) {
+                geojson.resetStyle(v.target);
+                currentStyle = v.target.options;
+                customSeeds.splice(index, 1);
+                skip = true;
+            }
+        });
+
+        if (!skip && ((customSeeds.length) < districtAmount)) {
+            customSeeds.push(e);
+        } else {
+            y.style.display = "none";
+        }
+        print += '<a><font color="red">Select ' + (districtAmount - customSeeds.length) + ' More</font></a>';
+
+
+        customSeeds.forEach(function (v, i) {
+            print += '<p><font color=' + colorArray[i] + '>' + (i + 1) + '. ' + v.target.feature.properties.NAME10 + '</font></p>';
+            v.target.setStyle({
+                weight: weights,
+                color: 'white',
+                dashArray: '',
+                fillOpacity: 1,
+                fillColor: colorArray[i]
+            });
+        });
+
+
+        if (customSeeds.length >= districtAmount)
+            y.style.display = "initial";
+
+
+        document.getElementById('selection').innerHTML = print;
+    } else {
+        map.fitBounds(e.target.getBounds());
+    }
 }
 
 function onEachPrecinctFeature(feature, layer) {

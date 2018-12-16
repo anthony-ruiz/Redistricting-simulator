@@ -17,11 +17,13 @@ public class RegionGrowingAlgorithm implements Algorithm {
         stateName = state;
         movesBuffer = new MovesBuffer();
         objectiveValues = new HashMap<>();
+        objectiveValues.put("politicalFairness", 0.0);
+        objectiveValues.put("compactness", 0.0);
+        objectiveValues.put("populationEquality", 0.0);
     }
 
     @Override
     public void setWeights(String politicalFairness, String compactness, String populationEquality) {
-        objectiveValues = new HashMap<>();
         objectiveValues.put("politicalFairness", Double.parseDouble(politicalFairness));
         objectiveValues.put("compactness", Double.parseDouble(compactness));
         objectiveValues.put("populationEquality", Double.parseDouble(populationEquality));
@@ -68,7 +70,7 @@ public class RegionGrowingAlgorithm implements Algorithm {
                 //Precinct precinctToAdd = getBestPrecinct(objectiveFunction, currNeighbors);
                 //currently random precinct choice approach
                 if(currNeighbors.size() != 0) {
-                    PopulationEquality c = new PopulationEquality();
+                    Compactness c = new Compactness();
                     Precinct mySeed = new Precinct();
                     for(Precinct p : seeds){
                         if(p.getDistrict().getId() == dists.getId()){
@@ -77,15 +79,16 @@ public class RegionGrowingAlgorithm implements Algorithm {
                         }
                     }
 
-                    List<Precinct> mainList = c.populationEquality(currentState,currNeighbors,dists,mySeed);
-
+                    List<Precinct> mainList = c.compactness(currentState,currNeighbors,dists,mySeed);
 //                for(Precinct p : currNeighbors) {
 //                    Precinct precinctToAdd = p;
 //                    dists.addPrecinct(precinctToAdd);
 //                    break;
 //                }
                     Iterator<Precinct> iter2 = mainList.iterator();
-                    Precinct precinctToAdd = iter2.next();
+                    MetricsManager metricsManager = new MetricsManager();
+                    Precinct precinctToAdd = metricsManager.getBestPrecinct(currentState,currNeighbors,dists,mySeed,objectiveValues);
+//                    Precinct precinctToAdd = iter2.next();
                     dists.addPrecinct(precinctToAdd);
                 } else {
                     dists.setFinished(true);
@@ -95,23 +98,6 @@ public class RegionGrowingAlgorithm implements Algorithm {
         }
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson("finished", 0);
-
-        for(District d : currentState.getDistricts()){
-            int dvotes = 0;
-            int rvotes = 0;
-            System.out.print("Distrct: "+ d.getId());
-            for(Precinct p : d.getPrecincts()){
-                dvotes = dvotes +p.getDemVotes();
-                rvotes = rvotes + p.getRepVotes();
-
-            }
-            if(dvotes > rvotes){
-                System.out.println(" is a Democrat!");
-            }
-            else{
-                System.out.println(" is a Republican!");
-            }
-        }
 
         System.out.println("Finished!");
     }

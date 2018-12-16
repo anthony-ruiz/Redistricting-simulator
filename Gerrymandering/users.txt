@@ -1,1 +1,0 @@
-{"Email":"aaaa","Username":"aaaa","Saved Weights":[],"Password":"aaaa"}

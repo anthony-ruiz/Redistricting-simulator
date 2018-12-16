@@ -5,22 +5,51 @@
  */
 package com.example.Gerrymandering.domain;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
     private int ID;
-    private String username;
     private String email;
+    private String username;
     private String password;
-    private ArrayList<ObjectiveFunction> savedWeights;
+    private ArrayList<HashMap<String, Double>> savedWeights;
+
+    public User() {}
 
     public User(String email, String username, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
         savedWeights = new ArrayList<>();
+    }
+
+    public User(String savedUser) {
+        JSONObject jo = new JSONObject(savedUser);
+        this.email = jo.getString("Email");
+        this.username = jo.getString("Username");
+        this.password = jo.getString("Password");
+        savedWeights = new ArrayList<>();
+        JSONArray jaSavedW = jo.getJSONArray("Saved Weights");
+        if (jaSavedW != null && !jaSavedW.isEmpty()) {
+            for (int i = 0; i < jaSavedW.length(); i ++){
+                HashMap<String, Double> weight = new HashMap<>();
+                try {
+                    weight = new ObjectMapper().readValue(jaSavedW.getString(i), HashMap.class);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(!weight.isEmpty()) {
+                    savedWeights.add(weight);
+                }
+            }
+        }
+//        this.savedWeights = jo.getJSONArray("Saved Weights");
     }
 
     public int getID() {
@@ -55,7 +84,11 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<ObjectiveFunction> getSavedWeights() {
+    public void addToListOfWeights(HashMap<String, Double> listToAdd) {
+        savedWeights.add(listToAdd);
+    }
+
+    public ArrayList<HashMap<String, Double>> getSavedWeights() {
         return savedWeights;
     }
 

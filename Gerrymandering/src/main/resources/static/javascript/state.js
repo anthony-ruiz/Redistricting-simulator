@@ -18,7 +18,7 @@ function stateHighlightFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
-        weight: 5,
+        weight: weights,
         color: '#666',
         dashArray: '',
         fillOpacity: 0.7
@@ -40,11 +40,19 @@ function selectColor(code) {
     currentMode = code;
 
     if ((map.getZoom() >= 8) || loggedIn) {
-        geojson.clearLayers();
-        geojson = L.geoJSON(window[currentState], {
-            style: precinctStyle,
-            onEachFeature: onEachPrecinctFeature
-        }).addTo(map);
+        if (currentAlg === 2 && code === 0) {
+            displayLastGenerated();
+        }
+        else if (currentAlg === 0) {
+
+        }
+        else {
+            geojson.clearLayers();
+            geojson = L.geoJSON(window[currentState], {
+                style: precinctStyle,
+                onEachFeature: onEachPrecinctFeature
+            }).addTo(map);
+        }
     }
     else {
         geojson.clearLayers();
@@ -55,6 +63,30 @@ function selectColor(code) {
     }
 }
 
+function displayLastGenerated() {
+    if (currentAlg === 0) {
+    }
+    else {
+        currentAlg = 2;
+        if (Object.keys(movesMade).length > 0) {
+            geojson.getLayers().forEach(function (e) {
+                movesMade.forEach(function (j) {
+                    if (e.feature.properties.GEOID10 === j['precinctID']) {
+                        e.setStyle({
+                            weight: weights,
+                            color: 'white',
+                            dashArray: '',
+                            fillOpacity: 1,
+                            fillColor: colorArray[j['districtID']]
+                        });
+                        e.bringToFront();
+                    }
+                });
+            });
+        }
+    }
+}
+
 function stateResetHighlight(e) {
     geojson.resetStyle(e.target);
     info.update();
@@ -62,6 +94,7 @@ function stateResetHighlight(e) {
 
 function stateClicked(e) {
     currentState = e.target.feature.properties.name;
+    districtAmount = e.target.feature.properties.DISAMT;
     showStateDistricts();
 }
 
@@ -77,6 +110,8 @@ function showStateDistricts() {
             loadDistrictView();
         else
             loadPrecinctView();
+
+        toggleSideBar();
     }
     else {
         include(currentState).then(function () {
@@ -84,6 +119,8 @@ function showStateDistricts() {
                 loadDistrictView();
             else
                 loadPrecinctView();
+
+            toggleSideBar();
         });
     }
 }
@@ -100,14 +137,35 @@ function loadDistrictView() {
 
     map.removeControl(info);
     districtInfo.addTo(map);
-    toggleSideBar();
 }
 
 function loadPrecinctView() {
+    if (currentAlg === 0) {
+
+    }
+    else {
+        geojson.clearLayers();
+
+        geojson = L.geoJSON(window[currentState], {
+            style: precinctStyle,
+            onEachFeature: onEachPrecinctFeature
+        }).addTo(map);
+
+        map.fitBounds(geojson.getBounds());
+
+        map.removeControl(info);
+        precinctInfo.addTo(map);
+    }
+}
+
+function loadRegionGrowingDefault() {
+    currentAlg = 0;
+    toggleRGvariant();
+
     geojson.clearLayers();
 
     geojson = L.geoJSON(window[currentState], {
-        style: precinctStyle,
+        style: regionGrowingStyle,
         onEachFeature: onEachPrecinctFeature
     }).addTo(map);
 
@@ -115,14 +173,20 @@ function loadPrecinctView() {
 
     map.removeControl(info);
     precinctInfo.addTo(map);
-    toggleSideBar();
 }
 
-function loadRegionGrowingDefault() {
+function toggleRGvariant() {
+    var x = document.getElementById("rightbar1").style.display = "initial";
+    // var y = document.getElementById("rightbar2");
+}
+
+function loadSimulatedAnnealingDefault() {
+    currentAlg = 1;
+
     geojson.clearLayers();
 
     geojson = L.geoJSON(window[currentState], {
-        style: regionGrowingStyle,
+        style: precinctStyle,
         onEachFeature: onEachPrecinctFeature
     }).addTo(map);
 

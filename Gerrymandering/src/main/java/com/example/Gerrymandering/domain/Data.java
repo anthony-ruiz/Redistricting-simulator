@@ -88,8 +88,6 @@ public class Data {
             precinct.setVolume(Double.parseDouble(precinctLine[2]));                                            //sets volume of precinct
             precinct.setPopulation(Integer.parseInt(precinctLine[3]));
             precinct.setCoordinates(precinctLine[4]);
-            precinct.setRepVotes(Integer.parseInt(precinctLine[5]));
-            precinct.setDemVotes(Integer.parseInt(precinctLine[6]));
             precinctList.add(precinct);
         }
         setNeighbors();

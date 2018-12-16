@@ -18,7 +18,6 @@ public class PopulationEquality {
             for(Precinct p : district.getPrecincts()){
                 population = population + p.getPopulation();
             }
-            district.setPopulation(population);
             districtPopulation.add(population);
         }
 
