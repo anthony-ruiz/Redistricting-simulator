@@ -96,18 +96,6 @@ public class RegionGrowingAlgorithm implements Algorithm {
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson("finished", 0);
 
-//        for(District d : currentState.getDistricts()){    //this is my addition
-//            System.out.println(" district: " + d.getId()+ " population: "  + d.getPopulation());
-//        }
-
-        for(District d : currentState.getDistricts()){
-            int population = 0;
-            for(Precinct p : d.getPrecincts()){
-                population = population + p.getPopulation();
-            }
-            System.out.println(population);
-        }
-
         System.out.println("Finished!");
     }
 

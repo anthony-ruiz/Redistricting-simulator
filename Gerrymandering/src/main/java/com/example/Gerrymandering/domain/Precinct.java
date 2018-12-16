@@ -63,7 +63,6 @@ public class Precinct implements Serializable, Comparable<Precinct> {
     public void setDistrict(District district) {
         used = true;
         this.district = district;
-//        System.out.println("Added Precinct " + this.ID + " to District " + district.getId());
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson(ID, district.getId());
         // create json string for update controller
