@@ -70,7 +70,7 @@ public class RegionGrowingAlgorithm implements Algorithm {
                 //Precinct precinctToAdd = getBestPrecinct(objectiveFunction, currNeighbors);
                 //currently random precinct choice approach
                 if(currNeighbors.size() != 0) {
-                    Compactness c = new Compactness();
+                    PopulationEquality c = new PopulationEquality();
                     Precinct mySeed = new Precinct();
                     for(Precinct p : seeds){
                         if(p.getDistrict().getId() == dists.getId()){
@@ -78,7 +78,9 @@ public class RegionGrowingAlgorithm implements Algorithm {
                             break;
                         }
                     }
-                    List<Precinct> mainList = c.compactness(currentState,currNeighbors,dists,mySeed);
+
+                    List<Precinct> mainList = c.populationEquality(currentState,currNeighbors,dists,mySeed);
+
 //                for(Precinct p : currNeighbors) {
 //                    Precinct precinctToAdd = p;
 //                    dists.addPrecinct(precinctToAdd);
@@ -95,6 +97,23 @@ public class RegionGrowingAlgorithm implements Algorithm {
         }
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson("finished", 0);
+
+        for(District d : currentState.getDistricts()){
+            int dvotes = 0;
+            int rvotes = 0;
+            System.out.print("Distrct: "+ d.getId());
+            for(Precinct p : d.getPrecincts()){
+                dvotes = dvotes +p.getDemVotes();
+                rvotes = rvotes + p.getRepVotes();
+
+            }
+            if(dvotes > rvotes){
+                System.out.println(" is a Democrat!");
+            }
+            else{
+                System.out.println(" is a Republican!");
+            }
+        }
 
         System.out.println("Finished!");
     }

@@ -14,6 +14,8 @@ public class District implements Serializable{
     private Set<Precinct> borders;
     private Set<Precinct> currentNeighbors;
     private boolean finished = false;
+    private int repVotes;
+    private int demVotes;
 
     public void addPrecinct(Precinct precinctToAdd) {
         precincts.add(precinctToAdd);
@@ -38,6 +40,22 @@ public class District implements Serializable{
 
     public int getId() {
         return Id;
+    }
+
+    public void setDemVotes(int demVotes) {
+        this.demVotes = demVotes;
+    }
+
+    public int getDemVotes() {
+        return demVotes;
+    }
+
+    public int getRepVotes() {
+        return repVotes;
+    }
+
+    public void setRepVotes(int repVotes) {
+        this.repVotes = repVotes;
     }
 
     public void setPrecincts(Set<Precinct> precincts) {

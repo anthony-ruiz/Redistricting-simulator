@@ -65,6 +65,7 @@ public class Precinct implements Serializable, Comparable<Precinct> {
         this.district = district;
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson(ID, district.getId());
+
         // create json string for update controller
     }
 
@@ -161,6 +162,20 @@ public class Precinct implements Serializable, Comparable<Precinct> {
         // Overriding the compare method to sort the distance
         public int compare(Precinct d, Precinct d1) {
             return d1.getDistanceToSeed() - d.getDistanceToSeed();
+        }
+    };
+
+    public static final Comparator<Precinct> REPUBLICAN_VOTES = new Comparator<Precinct>() {
+        // Overriding the compare method to sort the distance
+        public int compare(Precinct d, Precinct d1) {
+            return d1.getRepVotes() - d.getRepVotes();
+        }
+    };
+
+    public static final Comparator<Precinct> DEMOCRAT_VOTES = new Comparator<Precinct>() {
+        // Overriding the compare method to sort the distance
+        public int compare(Precinct d, Precinct d1) {
+            return d1.getDemVotes() - d.getDemVotes();
         }
     };
 
