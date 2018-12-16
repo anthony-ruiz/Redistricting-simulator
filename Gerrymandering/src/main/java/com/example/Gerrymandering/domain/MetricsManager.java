@@ -9,9 +9,9 @@ public class MetricsManager {
         double compactness = objectiveValues.get("compactness");
         double populationEquality = objectiveValues.get("populationEquality");
 
-        politicalFairness = (politicalFairness / 100) /2;
-        compactness = (compactness / 100) /2;
-        populationEquality =(populationEquality / 100) /2;
+        politicalFairness = (politicalFairness / 100) /1.2;
+        compactness = (compactness / 100) /1.2;
+        populationEquality =(populationEquality / 100) /1.2;
 
 
 
@@ -49,6 +49,8 @@ public class MetricsManager {
 
             PopulationEquality populationEquality1 = new PopulationEquality();
             List<Precinct> thirdList = populationEquality1.populationEquality(state,pass2,currentDistrict,seedPrecinct);
+            List<Precinct> subItems3 = new ArrayList<Precinct>(thirdList.subList(0, (int)Math.ceil(thirdList.size() * (1- populationEquality) )));
+            Collections.shuffle(thirdList);
             BestPrecinct = thirdList.get(0);
         }
 
@@ -56,19 +58,21 @@ public class MetricsManager {
             Compactness compactness1 = new Compactness();
             List<Precinct> fistList = compactness1.compactness(state,possibleNeighnors,currentDistrict,seedPrecinct);
             double firstListSize = fistList.size();
-            int index = (int)Math.ceil(firstListSize * (1- compactness) );
-            List<Precinct> subItems = new ArrayList<Precinct>(fistList.subList(0, index));
+            List<Precinct> subItems = new ArrayList<Precinct>(fistList.subList(0, (int)Math.ceil(firstListSize * (1-compactness) )));
             Set<Precinct> pass1 = new HashSet<>(subItems);
+
 
             PopulationEquality populationEquality1 = new PopulationEquality();
             List<Precinct> secondList = populationEquality1.populationEquality(state,pass1,currentDistrict,seedPrecinct);
             double secondListSize = secondList.size();
-            int index2 = (int)Math.ceil(secondListSize * (1- populationEquality));
-            List<Precinct> subItems2 = new ArrayList<Precinct>(secondList.subList(0, index2));
+            List<Precinct> subItems2 = new ArrayList<Precinct>(secondList.subList(0, (int)Math.ceil(secondListSize * (1-populationEquality) )));
             Set<Precinct> pass2 = new HashSet<>(subItems2);
 
             PoliticalFairness politicalFairness1 = new PoliticalFairness();
             List<Precinct> thirdList = politicalFairness1.fairness(state,pass2,currentDistrict,seedPrecinct);
+
+            List<Precinct> subItems3 = new ArrayList<Precinct>(thirdList.subList(0, (int)Math.ceil(thirdList.size() * (1- politicalFairness) )));
+            Collections.shuffle(thirdList);
             BestPrecinct = thirdList.get(0);
         }
 
@@ -88,6 +92,8 @@ public class MetricsManager {
 
             PoliticalFairness politicalFairness1 = new PoliticalFairness();
             List<Precinct> thirdList = politicalFairness1.fairness(state,pass2,currentDistrict,seedPrecinct);
+            List<Precinct> subItems3 = new ArrayList<Precinct>(thirdList.subList(0, (int)Math.ceil(thirdList.size() * (1- politicalFairness) )));
+            Collections.shuffle(thirdList);
             BestPrecinct = thirdList.get(0);
         }
         else if((populationEquality >= politicalFairness) && (politicalFairness >= compactness)){ // population > political > compactness
@@ -106,7 +112,10 @@ public class MetricsManager {
 
             Compactness compactness1 = new Compactness();
             List<Precinct> thirdList = compactness1.compactness(state,pass2,currentDistrict,seedPrecinct);
+            List<Precinct> subItems3 = new ArrayList<Precinct>(thirdList.subList(0, (int)Math.ceil(thirdList.size() * (1- compactness) )));
+            Collections.shuffle(thirdList);
             BestPrecinct = thirdList.get(0);
+
         }
         else if((politicalFairness >= compactness)&& (compactness >= populationEquality) ){ //political > compactness > population
 
@@ -124,6 +133,8 @@ public class MetricsManager {
 
             PopulationEquality populationEquality1 = new PopulationEquality();
             List<Precinct> thirdList = populationEquality1.populationEquality(state,pass2,currentDistrict,seedPrecinct);
+            List<Precinct> subItems3 = new ArrayList<Precinct>(thirdList.subList(0, (int)Math.ceil(thirdList.size() * (1- populationEquality) )));
+            Collections.shuffle(thirdList);
             BestPrecinct = thirdList.get(0);
         }
         else if((politicalFairness >= populationEquality)&& (populationEquality >= compactness)){ // political > population > compactness
@@ -141,6 +152,8 @@ public class MetricsManager {
 
             Compactness compactness1 = new Compactness();
             List<Precinct> thirdList = compactness1.compactness(state,pass2,currentDistrict,seedPrecinct);
+            List<Precinct> subItems3 = new ArrayList<Precinct>(thirdList.subList(0, (int)Math.ceil(thirdList.size() * (1- compactness) )));
+            Collections.shuffle(thirdList);
             BestPrecinct = thirdList.get(0);
         }
         return  BestPrecinct;
