@@ -4,47 +4,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class SaveWeightsPOJO {
 
-    @JsonProperty("weightsList")
     private List<HashMap<String, Double>> weights;
+    private ArrayList<String> fileLines;
 
-    @JsonProperty("username")
-    private String username;
-    @JsonProperty("Political Fairness")
-    private Double politicalFairness;
-    @JsonProperty("Compactness")
-    private Double compactness;
-    @JsonProperty("Population Equality")
-    private Double populationEquality;
+    public void setWeights(List<HashMap<String, Double>> weights) {
+        this.weights = weights;
+    }
 
     public SaveWeightsPOJO() {}
 
     public void addWeights() {
         FileReader reader = null;
         BufferedReader br = null;
+        fileLines = new ArrayList<>();
         try {
             reader = new FileReader("users.txt");
             br = new BufferedReader(reader);
             String line;
-            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("users.temp")));
             while ((line = br.readLine()) != null) {
                 JSONObject jo = new JSONObject(line);
-                ObjectiveFunction of = new ObjectiveFunction(politicalFairness, compactness, populationEquality);
-                if(jo.getString("Username").equals(this.username)) {
-                    User user = new User(jo.toString());
-                    user.addToListOfWeights(of.getObjective());
-                    line = line.replace(line, user.toString());
+                if(jo.getString("Username").equals(CurrentUser.currentUser.getUsername())) {
+                    CurrentUser.currentUser.setSavedWeights(weights);
+                    line = line.replace(line, CurrentUser.currentUser.toString());
                 }
-                writer.println(line);
+                fileLines.add(line);
             }
-            File realName = new File("user.txt");
-            realName.delete();
-            new File("users.temp").renameTo(realName);
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }finally{
@@ -57,5 +47,27 @@ public class SaveWeightsPOJO {
             }
 
         }
+
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(new BufferedWriter(new FileWriter("users.txt")));
+            for (String line: fileLines) {
+                pw.write(line + "\n");
+            }
+            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveWeights() {
+        try {
+            BufferedReader file = new BufferedReader(new FileReader("notes.txt"));
+            String line;
+            StringBuffer inputBuffer = new StringBuffer();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }

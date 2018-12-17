@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class User {
     private int ID;
@@ -39,17 +40,23 @@ public class User {
         if (jaSavedW != null && !jaSavedW.isEmpty()) {
             for (int i = 0; i < jaSavedW.length(); i ++){
                 HashMap<String, Double> weight = new HashMap<>();
-                try {
-                    weight = new ObjectMapper().readValue(jaSavedW.getString(i), HashMap.class);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Double w1 = jaSavedW.getJSONObject(i).getDouble("Population Equality");
+                Double w2 = jaSavedW.getJSONObject(i).getDouble("Political Fairness");
+                Double w3 = jaSavedW.getJSONObject(i).getDouble("Compactness");
+                weight.put("Population Equality", w1);
+                weight.put("Political Fairness", w2);
+                weight.put("Compactness", w3);
+                savedWeights.add(weight);
                 if(!weight.isEmpty()) {
                     savedWeights.add(weight);
                 }
             }
         }
 //        this.savedWeights = jo.getJSONArray("Saved Weights");
+    }
+
+    public void setSavedWeights(List<HashMap<String, Double>> savedWeights) {
+        this.savedWeights = (ArrayList<HashMap<String, Double>>) savedWeights;
     }
 
     public int getID() {

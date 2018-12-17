@@ -148,6 +148,8 @@ function showAllStates() {
 
         document.getElementById("submit").style.display = "none";
         document.getElementById("rightbar1").style.display = "none";
+        document.getElementById('resinfo').innerHTML = "";
+        document.getElementById("results").style.display = "none";
     }
 
 
@@ -299,25 +301,4 @@ function getUpdates() {
         $.xhrPool.abortAll();
     }
     // $.xhrPool.abortAll();
-}
-
-
-
-
-function saveWeights() {
-    var pf = document.getElementById("weight1").value;
-    var cmp = document.getElementById("weight2").value;
-    var pe = document.getElementById("weight3").value;
-    var weightsObj = {"Political Fairness": w1, "Compactness": w2, "Population Equality": w3};
-    var weightsJSON = JSON.stringify(weightsObj);
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "/save_weights/",
-        data: weightsJSON,
-        cache: false,
-        success: function () {
-            alert("success");
-        }
-    });
 }

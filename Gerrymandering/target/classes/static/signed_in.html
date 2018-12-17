@@ -38,6 +38,13 @@
 
             document.getElementById('userr').innerHTML = '<a class="noHover"><font color="red">Welcome: ' + res.Username + '</font></a>';
 
+            console.log(res);
+
+            res['Saved Weights'].forEach(function (e) {
+                document.getElementById('sliderr').innerHTML += '<option value=' + e['Political Fairness'] + ',' + e['Compactness'] + ',' + e['Population Equality'] + '>' + e['Political Fairness'] + ',' + e['Compactness'] + ',' + e['Population Equality'] + '</option>';
+                savedSliders.push({ 'w1': e['Political Fairness'], 'w2': e['Compactness'], 'w3': e['Population Equality'] });
+            });
+
         };
         function updateBox() {
             w1 = document.getElementById("weight1").value;
@@ -67,6 +74,7 @@
                 savedSliders.push({ 'w1': w1, 'w2': w2, 'w3': w3 });
 
             updateBox();
+            saveWeights();
         }
 
         function deleteSelected() {
@@ -78,6 +86,7 @@
             });
 
             updateBox();
+            saveWeights();
         }
 
         function loadSelected() {
@@ -113,12 +122,22 @@
                         for (var i = 0; i < rep.length; i++) {
                             document.getElementById('resinfo').innerHTML += '<p><font color=' + colorArray[pop[i].districtID] + '>Distric ' + pop[i].districtID + ':<br>Pop: ' + pop[i].population + '<br>Party: ' + rep[i].political + '</font></p>';
                         }
-
-
                     }
                 });
             }
-
+        }
+        function saveWeights() {
+            var weightsJSON = JSON.stringify(savedSliders);
+            console.log(savedSliders);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/save_weights/",
+                data: weightsJSON,
+                cache: false,
+                success: function () {
+                }
+            });
         }
     </script>
 </head>
@@ -150,14 +169,14 @@
             <p aligh style="color: #ffffff;  font-size: 20px;">Color Display:</p>
             <input checked onclick="selectColor(0)" type="radio" name="color" value="DISTRICT_COLOR" id="color1">
             <label style="color:#ffffff">District Colors</label>
-
+            <br>
             <input onclick="selectColor(1)" type="radio" name="color" value="PARTY_COLOR" id="color2">
             <label style="color:#ffffff">Party Colors</label>
 
             <p aligh style="color: #ffffff;  font-size: 20px;">District Display:</p>
             <input checked onclick="loadPrecinctView()" type="radio" name="display" value="ORIGINAL" id="display1">
             <label style="color:#ffffff">Original Districts</label>
-
+            <br>
             <input onclick="displayLastGenerated()" type="radio" name="display" value="LAST" id="display2">
             <label style="color:#ffffff">Last Generated Districts</label>
 
@@ -216,7 +235,6 @@
             <div id="selection">
 
             </div>
-            <br>
 
             <button id="submit" onclick="startAlgorithm()">Submit</button>
             <br><br>
