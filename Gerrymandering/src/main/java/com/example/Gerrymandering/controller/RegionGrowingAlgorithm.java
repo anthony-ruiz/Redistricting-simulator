@@ -57,6 +57,7 @@ public class RegionGrowingAlgorithm implements Algorithm {
 
     @Override
     public void beginAlgorithm() {
+        MovesBuffer.tempResults.clear();
         if(strategy.equals("SELECT_SEED")) {
             this.seeds = new HashSet<>();
             for(String s : tempSeeds) {

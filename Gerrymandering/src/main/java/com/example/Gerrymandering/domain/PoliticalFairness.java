@@ -48,7 +48,7 @@ public class PoliticalFairness {
         for(District district : allDistrictList){
             int demVotes = 0;
             for(Precinct precinct : district.getPrecincts()){
-                demVotes = demVotes + precinct.getRepVotes();
+                demVotes = demVotes + precinct.getDemVotes();
             }
             district.setDemVotes(demVotes);
             districtDemocratVote.add(demVotes);

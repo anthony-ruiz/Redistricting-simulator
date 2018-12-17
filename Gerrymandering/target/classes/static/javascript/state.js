@@ -70,18 +70,18 @@ function displayLastGenerated() {
         currentAlg = 2;
         if (Object.keys(movesMade).length > 0) {
             geojson.getLayers().forEach(function (e) {
-                movesMade.forEach(function (j) {
-                    if (e.feature.properties.GEOID10 === j['precinctID']) {
+                for (var key in movesMade) {
+                    if (e.feature.properties.GEOID10 === key) {
                         e.setStyle({
                             weight: weights,
                             color: 'white',
                             dashArray: '',
                             fillOpacity: 1,
-                            fillColor: colorArray[j['districtID']]
+                            fillColor: colorArray[movesMade[key]]
                         });
                         e.bringToFront();
                     }
-                });
+                }
             });
         }
     }

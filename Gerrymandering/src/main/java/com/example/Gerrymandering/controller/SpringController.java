@@ -18,7 +18,8 @@ public class SpringController {
     @RequestMapping(value = "/begin", method = RequestMethod.POST) //, method = RequestMethod.POST, produces = "application/json"
     public String getAlgorithm(@RequestBody String myJSON) {
         ObjectMapper mapper = new ObjectMapper();
-        MovesBuffer.tempResults = new LinkedList<>();
+        while(MovesBuffer.tempResults.poll() != null);
+//        MovesBuffer.tempResults.poll();
         AlgorithmJSON ajson;
         try {
             ajson = mapper.readValue(myJSON, AlgorithmJSON.class);

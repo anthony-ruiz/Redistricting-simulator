@@ -28,11 +28,7 @@ function districtDisplay(props) {
     if (currentAlg === 0) {
         return "Unassigned";
     } else if (currentAlg === 2) {
-        // for (var i = 0; i < Object.keys(movesMade).length; i++) {
-        //     if (props.GEOID10 === movesMade[i]['precinctID']) {
-        //         return currentState + ' ' + movesMade[i]['districtID'];
-        //     }
-        // }
+        return movesMade[props.GEOID10]
     } else {
         return props.District;
     }
@@ -101,6 +97,7 @@ function precinctResetHighlight(v) {
 var customSeeds = [];
 
 function variantSelection(variant) {
+    document.getElementById('resinfo').innerHTML = "";
     var x = document.getElementById("submit");
 
     loadRegionGrowingDefault(true);

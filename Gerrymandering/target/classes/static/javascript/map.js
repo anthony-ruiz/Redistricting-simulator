@@ -148,6 +148,8 @@ function showAllStates() {
 
         document.getElementById("submit").style.display = "none";
         document.getElementById("rightbar1").style.display = "none";
+        document.getElementById('resinfo').innerHTML = "";
+        document.getElementById("results").style.display = "none";
     }
 
 
@@ -179,6 +181,9 @@ function startAlgorithm() {
     if (document.getElementById("algorithm").checked && document.getElementById("algorithm").value === 'REGION_GROWING') {
         loadRegionGrowingDefault();
         document.getElementById("display2").checked = true;
+        document.getElementById('resinfo').innerHTML = "";
+        resultData = true;
+        document.getElementById("results").style.display = "initial";
         currentAlg = 2;
 
         s = currentState;
@@ -215,7 +220,7 @@ function startAlgorithm() {
 
 
 var toMove;
-var movesMade = [];
+var movesMade = {};
 var finished = false;
 var request;
 
@@ -258,7 +263,7 @@ function getUpdates() {
                         }
                     } else {
                         toMove = JSON.parse(data);
-                        movesMade.push(toMove);
+                        movesMade[[toMove.precinctID]] = toMove.districtID;
 
                         geojson.getLayers().forEach(function (e) {
                             // toMove.forEach(function (arrayItem) {
