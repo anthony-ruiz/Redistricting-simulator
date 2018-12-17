@@ -177,10 +177,12 @@ var f;
 
 function startAlgorithm() {
     if (document.getElementById("algorithm").checked && document.getElementById("algorithm").value === 'REGION_GROWING') {
-        currentAlg = 2;
-        loadRegionGrowingDefault(false);
+        loadRegionGrowingDefault();
         document.getElementById("display2").checked = true;
-        
+        document.getElementById('resinfo').innerHTML = "";
+        resultData = true;
+        document.getElementById("results").style.display = "initial";
+        currentAlg = 2;
 
         s = currentState;
         w1 = document.getElementById("weight1").value;
@@ -202,10 +204,10 @@ function startAlgorithm() {
             contentType: "application/json",
             url: "/begin/",
             data: myJSON,
-            dataType: 'json',
+            dataType: 'text',
             cache: false,
             success: function (data) {
-                alert(data);
+
             }
         });
         getUpdates();
@@ -216,28 +218,50 @@ function startAlgorithm() {
 
 
 var toMove;
-var movesMade = [];
+var movesMade = {};
 var finished = false;
 var request;
 
 function getUpdates() {
     finished = false;
-    politicalReady = false;
-    if (!finished) {
+    $.xhrPool = []; // array of uncompleted requests
+    $.xhrPool.abortAll = function() { // our abort function
+        $(this).each(function(idx, jqXHR) {
+            jqXHR.abort();
+        });
+        $.xhrPool.length = 0
+    };
+
+
+
+    $.ajaxSetup({
+        beforeSend: function(request) { // before jQuery send the request we will push it to our array
+            $.xhrPool.push(request);
+        },
+        complete: function(request) { // when some of the requests completed it will splice from the array
+            var index = $.xhrPool.indexOf(request);
+            if (index > -1) {
+                $.xhrPool.splice(index, 1);
+            }
+        }
+    });
+    // politicalReady = false;
+    // complete = false;
+    if(!finished) {
         request = $.ajax({
             type: "GET",
             url: "/update/",
             dataType: 'text',
             cache: false,
             success: function (data) {
-                if (!finished) {
+                if(!finished) {
                     if (data === "[]") {
-                        if (!finished) {
+                        if(!finished) {
                             getUpdates();
                         }
                     } else {
                         toMove = JSON.parse(data);
-                        movesMade.push(toMove);
+                        movesMade[[toMove.precinctID]] = toMove.districtID;
 
                         geojson.getLayers().forEach(function (e) {
                             // toMove.forEach(function (arrayItem) {
@@ -256,88 +280,27 @@ function getUpdates() {
                             }
 
                             var x = toMove['precinctID'];
-                            if (x === "population") {
+                            if (x === "finished") {
                                 finished = true;
-                                request.abort();
-                                getPopulation();
+                                $.xhrPool.abortAll();
+                                // getPopulation();
                             }
                         });
-
-
                         if (!finished) {
                             //console.log(toMove);
                             getUpdates();
                         }
-                        // if (toMove['precinctID'] === "finished") {
-                        //
-                        // } else {
-                        //     getUpdates();
-                        //     console.log(toMove);
-                        // }
                     }
                 }
-
-
             }
         });
+    } else {
+
+        $.xhrPool.abortAll();
     }
-
+    // $.xhrPool.abortAll();
 }
 
-var politicalReady = false;
-function getPopulation() {
-    if (!politicalReady) {
-        $.ajax({
-            type: "GET",
-            url: "/updatepop/",
-            dataType: 'text',
-            cache: false,
-            success: function (data) {
-                if (!politicalReady) {
-                    if (data === "[]") {
-                        getPopulation()
-
-                    } else {
-                        var populationResult = JSON.parse(data);
-                        var x = populationResult['precinctID'];
-                        if (x === "political") {
-                            politicalReady = true;
-                            finished = false;
-                        } else {
-                            console.log(populationResult);
-                            getPopulation();
-                        }
-                    }
-                }
-
-            }
-        });
-    }
-
-}
-
-function getPolitical() {
-    $.ajax({
-        type: "GET",
-        url: "/update/",
-        dataType: 'text',
-        cache: false,
-        success: function (data) {
-            if (data === "[]") {
-                getPolitical()
-            } else {
-                var politicalResult = JSON.parse(data);
-                var x = politicalResult['precinctID'];
-                if (x === "finished") {
-
-                } else {
-                    console.log(politicalResult);
-                    getPolitical();
-                }
-            }
-        }
-    });
-}
 
 
 
@@ -345,7 +308,7 @@ function saveWeights() {
     var pf = document.getElementById("weight1").value;
     var cmp = document.getElementById("weight2").value;
     var pe = document.getElementById("weight3").value;
-    var weightsObj = { "Political Fairness": w1, "Compactness": w2, "Population Equality": w3 };
+    var weightsObj = {"Political Fairness": w1, "Compactness": w2, "Population Equality": w3};
     var weightsJSON = JSON.stringify(weightsObj);
     $.ajax({
         type: "POST",
@@ -355,18 +318,6 @@ function saveWeights() {
         cache: false,
         success: function () {
             alert("success");
-        }
-    });
-}
-
-function loadWeights() {
-    $.ajax({
-        type: "GET",
-        url: "/load_weights/",
-        dataType: 'text',
-        cache: false,
-        success: function (data) {
-            console.log(data);
         }
     });
 }

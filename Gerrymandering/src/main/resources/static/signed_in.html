@@ -88,6 +88,38 @@
             document.getElementById("weight2").value = res[1];
             document.getElementById("weight3").value = res[2];
         }
+
+        var resultData = true;
+
+        function getResults() {
+            if (resultData) {
+                resultData = false
+                request = $.ajax({
+                    type: "GET",
+                    url: "/results/",
+                    dataType: 'text',
+                    cache: false,
+                    success: function (data) {
+                        document.getElementById('selection').innerHTML = "";
+                        pop = JSON.parse(data)[0];
+                        rep = JSON.parse(data)[1];
+
+                        var repub = 0;
+                        var democ = 0;
+                        rep.forEach(function (e) {
+                            e.political === 'Republican' ? repub++ : democ++;
+                        });
+                        document.getElementById('resinfo').innerHTML += '<p><font color="red">Rep: ' + repub + '</font><font color="blue">   Dem: ' + democ + '</font></p>';
+                        for (var i = 0; i < rep.length; i++) {
+                            document.getElementById('resinfo').innerHTML += '<p><font color=' + colorArray[pop[i].districtID] + '>Distric ' + pop[i].districtID + ':<br>Pop: ' + pop[i].population + '<br>Party: ' + rep[i].political + '</font></p>';
+                        }
+
+
+                    }
+                });
+            }
+
+        }
     </script>
 </head>
 
@@ -117,15 +149,15 @@
 
             <p aligh style="color: #ffffff;  font-size: 20px;">Color Display:</p>
             <input checked onclick="selectColor(0)" type="radio" name="color" value="DISTRICT_COLOR" id="color1">
-            <label style="color:#ffffff">District Colors</label><br>
-
+            <label style="color:#ffffff">District Colors</label>
+            <br>
             <input onclick="selectColor(1)" type="radio" name="color" value="PARTY_COLOR" id="color2">
-            <label style="color:#ffffff">Party Colors</label><br>
+            <label style="color:#ffffff">Party Colors</label>
 
             <p aligh style="color: #ffffff;  font-size: 20px;">District Display:</p>
             <input checked onclick="loadPrecinctView()" type="radio" name="display" value="ORIGINAL" id="display1">
-            <label style="color:#ffffff">Original Districts</label><br>
-
+            <label style="color:#ffffff">Original Districts</label>
+            <br>
             <input onclick="displayLastGenerated()" type="radio" name="display" value="LAST" id="display2">
             <label style="color:#ffffff">Last Generated Districts</label>
 
@@ -187,6 +219,10 @@
             <br>
 
             <button id="submit" onclick="startAlgorithm()">Submit</button>
+            <br><br>
+            <button id="results" onclick="getResults()">Display Results</button> <br>
+            <div id="resinfo"></div>
+
         </div>
 
         <div id="rightbar2">

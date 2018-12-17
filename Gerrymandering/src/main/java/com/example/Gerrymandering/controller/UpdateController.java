@@ -14,28 +14,13 @@ public class UpdateController {
         if(MovesBuffer.moves.peek() != null) {
 //            System.out.println(MovesBuffer.moves.peek());
             JSONObject jo = MovesBuffer.moves.poll();
-            return jo.toString();
+            if(jo != null) {
+                return jo.toString();
+            }
         } else {
             return "[]";
         }
-
-
-//        return ja.toString();
-    }
-
-
-    @ResponseBody
-    @RequestMapping(value = "/updatepop", method = RequestMethod.GET, produces = "application/json") //, method = RequestMethod.POST, produces = "application/json"
-    public String updatePopulation() {
-        if(MovesBuffer.moves.peek() != null) {
-//            System.out.println(MovesBuffer.moves.peek());
-            JSONObject jo = MovesBuffer.moves.poll();
-            return jo.toString();
-        } else {
-            return "[]";
-        }
-
-
+        return "[]";
 //        return ja.toString();
     }
 }
