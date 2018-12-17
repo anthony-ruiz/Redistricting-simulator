@@ -235,7 +235,6 @@ function getUpdates() {
             dataType: 'text',
             cache: false,
             success: function (data) {
-                console.log("update");
                 if(!finished) {
                     if (data === "[]") {
                         if(!finished) {
@@ -265,7 +264,7 @@ function getUpdates() {
                             if (x === "population") {
                                 finished = true;
                                 request.abort();
-                                setTimeout(getPopulation, 5000);
+                                getPopulation();
                             }
                         });
 

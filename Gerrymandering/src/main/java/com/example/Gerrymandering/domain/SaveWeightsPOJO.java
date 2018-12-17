@@ -4,9 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
 
 public class SaveWeightsPOJO {
-    
+
+    @JsonProperty("weightsList")
+    private List<HashMap<String, Double>> weights;
+
     @JsonProperty("username")
     private String username;
     @JsonProperty("Political Fairness")

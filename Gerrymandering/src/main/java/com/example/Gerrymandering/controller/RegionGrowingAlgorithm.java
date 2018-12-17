@@ -107,8 +107,10 @@ public class RegionGrowingAlgorithm implements Algorithm {
 //                    dists.addPrecinct(precinctToAdd);
 //                    break;
 //                }
-                    Iterator<Precinct> iter2 = mainList.iterator();
-                    Precinct precinctToAdd = iter2.next();
+//                    Iterator<Precinct> iter2 = mainList.iterator();
+//                    Precinct precinctToAdd = iter2.next();
+                    MetricsManager metricsManager = new MetricsManager();
+                    Precinct precinctToAdd = metricsManager.getBestPrecinct(currentState,currNeighbors,dists,mySeed,objectiveValues);
                     dists.addPrecinct(precinctToAdd);
                 } else {
                     dists.setFinished(true);
@@ -119,17 +121,15 @@ public class RegionGrowingAlgorithm implements Algorithm {
         MovesBuffer movesBuffer = new MovesBuffer();
         movesBuffer.constructJson("population", 0);
         for(District d: currentState.getDistricts()) {
-            movesBuffer.constructJson(Integer.toString(d.getPopulation()), d.getId());
+            movesBuffer.constructJson(Integer.toString(d.getPopulationT()), d.getId());
         }
         movesBuffer.constructJson("political", 0);
         for(District d: currentState.getDistricts()) {
             movesBuffer.constructJson(d.getPoliticalAlignment(), d.getId());
         }
+        movesBuffer.constructJson("finished", 0);
 
         System.out.println("Finished!");
     }
 
-    private Precinct getBestPrecinct(ObjectiveFunction objectiveFunction, Set<Precinct> currentNeighbors) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
