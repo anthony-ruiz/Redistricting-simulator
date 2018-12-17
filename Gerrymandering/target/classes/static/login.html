@@ -25,6 +25,7 @@
         if (field.value == '') {
             field.value = email;
         }
+
     }
 
     //Fade in dashboard box
@@ -73,21 +74,21 @@
         <a class="active" href="#">Login</a>
         <a href="./index.html">Home</a>
     </div>
-    
+
     <form method="post" action="index.html" id="login">
         <div class="box">
             <h1>Titan-mandering Login</h1>
 
             <input type="text" name="username" value="username" id="username" onFocus="field_focus(this, 'username');"
-                onblur="field_blur(this, 'email');" class="email" />
+                onblur="field_blur(this, 'username');" class="email" />
 
             <input type="password" name="password" value="password" id="password" onFocus="field_focus(this, 'password');"
-                onblur="field_blur(this, 'email');" class="email" />
+                onblur="field_blur(this, 'password');" class="email" />
 
 
             <div class="btn" onclick="login()">Sign In</div>
-            
-        </div> 
+
+        </div>
         <br>
         <div id=failed></div>
 

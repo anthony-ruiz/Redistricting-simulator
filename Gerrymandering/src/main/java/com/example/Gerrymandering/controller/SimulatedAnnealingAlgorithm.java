@@ -1,5 +1,7 @@
 package com.example.Gerrymandering.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import com.example.Gerrymandering.domain.State;
 //import com.example.Gerrymandering.persistence.PersistenceUnit;
@@ -37,6 +39,16 @@ public class SimulatedAnnealingAlgorithm implements Algorithm{
     @Override
     public State getState() {
         return null;
+    }
+
+    @Override
+    public void setStrategy(String strategy) {
+
+    }
+
+    @Override
+    public void setTempSeeds(List<String> seeds) {
+
     }
 
 }

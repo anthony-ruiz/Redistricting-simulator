@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.example.Gerrymandering.controller.RegionGrowingAlgorithm;
 import com.example.Gerrymandering.controller.SimulatedAnnealingAlgorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AlgorithmJSON {
     @JsonProperty("state")
     private String state;
@@ -16,11 +19,37 @@ public class AlgorithmJSON {
     private String populationEquality;
     @JsonProperty("algorithm")
     private String algorithm;
+    @JsonProperty("strategy")
+    private String strategy;
+    @JsonProperty("seeds")
+    private List<String> seeds;
+
     
     public Algorithm create() {
         Algorithm newAlgorithm;
         if(algorithm.equals("REGION_GROWING")) {
             newAlgorithm = new RegionGrowingAlgorithm(state);
+            switch (strategy) {
+                case "RANDOM_SEED":
+                    newAlgorithm.setStrategy(strategy);
+                    break;
+                case "REP_SEED":
+                    newAlgorithm.setStrategy(strategy);
+                    break;
+                case "SELECT_SEED":
+                    newAlgorithm.setStrategy(strategy);
+//                    ArrayList<String> listdata = new ArrayList<>();
+//                    if (seeds != null) {
+//                        for (int i = 0;i < seeds.length(); i ++){
+//                            listdata.add(seeds.getString(i));
+//                        }
+//                    }
+                    newAlgorithm.setTempSeeds((ArrayList<String>) seeds);
+                    break;
+                default:
+                    newAlgorithm.setStrategy("RANDOM_SEED");
+                    break;
+            }
         } else {
             newAlgorithm = new SimulatedAnnealingAlgorithm(state);
         }

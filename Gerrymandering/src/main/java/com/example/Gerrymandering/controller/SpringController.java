@@ -21,9 +21,6 @@ public class SpringController {
         try {
             ajson = mapper.readValue(myJSON, AlgorithmJSON.class);
             Algorithm algorithm = ajson.create();
-//            MovesBuffer movesBuffer = new MovesBuffer();
-//            movesBuffer.constructJson("111", 222);
-
             Data data = new Data();
             data.populateAll(ajson.getAlgorithm());
             algorithm.setState(data.getStateList().get(0));

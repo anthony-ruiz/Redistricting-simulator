@@ -145,7 +145,7 @@ function loadPrecinctView() {
     }
     else {
         geojson.clearLayers();
-        
+
         geojson = L.geoJSON(window[currentState], {
             style: precinctStyle,
             onEachFeature: onEachPrecinctFeature
@@ -158,9 +158,10 @@ function loadPrecinctView() {
     }
 }
 
-function loadRegionGrowingDefault() {
+function loadRegionGrowingDefault(do_me) {
     currentAlg = 0;
-    toggleRGvariant();
+    if (do_me)
+        toggleRGvariant();
 
     geojson.clearLayers();
 

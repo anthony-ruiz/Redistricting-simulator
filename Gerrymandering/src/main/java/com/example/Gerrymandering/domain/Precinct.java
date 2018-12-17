@@ -164,4 +164,18 @@ public class Precinct implements Serializable, Comparable<Precinct> {
         }
     };
 
+    public static final Comparator<Precinct> REPUBLICAN_VOTES = new Comparator<Precinct>() {
+        // Overriding the compare method to sort the distance
+        public int compare(Precinct d, Precinct d1) {
+            return d1.getRepVotes() - d.getRepVotes();
+        }
+    };
+
+    public static final Comparator<Precinct> DEMOCRAT_VOTES = new Comparator<Precinct>() {
+        // Overriding the compare method to sort the distance
+        public int compare(Precinct d, Precinct d1) {
+            return d1.getDemVotes() - d.getDemVotes();
+        }
+    };
+
 }

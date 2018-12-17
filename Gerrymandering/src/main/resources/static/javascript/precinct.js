@@ -103,7 +103,7 @@ var customSeeds = [];
 function variantSelection(variant) {
     var x = document.getElementById("submit");
 
-    loadRegionGrowingDefault();
+    loadRegionGrowingDefault(true);
 
     if (variant === "SELECT_SEED") {
         customSeeds = [];

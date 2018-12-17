@@ -25,8 +25,9 @@ public class LoginCredentials {
             String line = reader.readLine();
             while (line != null) {
                 JSONObject jo = new JSONObject(line);
-                if(jo.get("Username").equals(this.username) && jo.get("Password").equals(this.password)) {
+                if(jo.getString("Username").equals(this.username) && jo.getString("Password").equals(this.password)) {
                     reader.close();
+                    CurrentUser.currentUser = new User(line);
                     return jo.toString();
                 }
                 line = reader.readLine();

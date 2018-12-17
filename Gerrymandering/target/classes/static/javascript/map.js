@@ -177,9 +177,10 @@ var f;
 
 function startAlgorithm() {
     if (document.getElementById("algorithm").checked && document.getElementById("algorithm").value === 'REGION_GROWING') {
-        loadRegionGrowingDefault();
-        document.getElementById("display2").checked = true;
         currentAlg = 2;
+        loadRegionGrowingDefault(false);
+        document.getElementById("display2").checked = true;
+        
 
         s = currentState;
         w1 = document.getElementById("weight1").value;
@@ -193,7 +194,7 @@ function startAlgorithm() {
             seeds.push(e.target.feature.properties.GEOID10);
         });
 
-        var algorithmObj = { "state": s, "politicalFairness": w1, "compactness": w2, "populationEquality": w3, "algorithm": a};
+        var algorithmObj = { "state": s, "politicalFairness": w1, "compactness": w2, "populationEquality": w3, "algorithm": a, "strategy": str, "seeds": seeds };
         var myJSON = JSON.stringify(algorithmObj);
 
         $.ajax({
@@ -216,8 +217,106 @@ function startAlgorithm() {
 
 var toMove;
 var movesMade = [];
+var finished = false;
+var request;
 
 function getUpdates() {
+    finished = false;
+    politicalReady = false;
+    if (!finished) {
+        request = $.ajax({
+            type: "GET",
+            url: "/update/",
+            dataType: 'text',
+            cache: false,
+            success: function (data) {
+                if (!finished) {
+                    if (data === "[]") {
+                        if (!finished) {
+                            getUpdates();
+                        }
+                    } else {
+                        toMove = JSON.parse(data);
+                        movesMade.push(toMove);
+
+                        geojson.getLayers().forEach(function (e) {
+                            // toMove.forEach(function (arrayItem) {
+
+                            if (e.feature.properties.GEOID10 === toMove['precinctID']) {
+                                e.setStyle({
+                                    weight: weights,
+                                    color: 'white',
+                                    dashArray: '',
+                                    fillOpacity: 1,
+                                    fillColor: colorArray[toMove['districtID']]
+                                });
+
+
+                                e.bringToFront();
+                            }
+
+                            var x = toMove['precinctID'];
+                            if (x === "population") {
+                                finished = true;
+                                request.abort();
+                                getPopulation();
+                            }
+                        });
+
+
+                        if (!finished) {
+                            //console.log(toMove);
+                            getUpdates();
+                        }
+                        // if (toMove['precinctID'] === "finished") {
+                        //
+                        // } else {
+                        //     getUpdates();
+                        //     console.log(toMove);
+                        // }
+                    }
+                }
+
+
+            }
+        });
+    }
+
+}
+
+var politicalReady = false;
+function getPopulation() {
+    if (!politicalReady) {
+        $.ajax({
+            type: "GET",
+            url: "/updatepop/",
+            dataType: 'text',
+            cache: false,
+            success: function (data) {
+                if (!politicalReady) {
+                    if (data === "[]") {
+                        getPopulation()
+
+                    } else {
+                        var populationResult = JSON.parse(data);
+                        var x = populationResult['precinctID'];
+                        if (x === "political") {
+                            politicalReady = true;
+                            finished = false;
+                        } else {
+                            console.log(populationResult);
+                            getPopulation();
+                        }
+                    }
+                }
+
+            }
+        });
+    }
+
+}
+
+function getPolitical() {
     $.ajax({
         type: "GET",
         url: "/update/",
@@ -225,49 +324,49 @@ function getUpdates() {
         cache: false,
         success: function (data) {
             if (data === "[]") {
-                // setTimeout(getUpdates, 500);
-                getUpdates();
+                getPolitical()
             } else {
-                toMove = JSON.parse(data);
-                movesMade.push(toMove);
-                var finished = false;
+                var politicalResult = JSON.parse(data);
+                var x = politicalResult['precinctID'];
+                if (x === "finished") {
 
-                geojson.getLayers().forEach(function (e) {
-                    // toMove.forEach(function (arrayItem) {
-
-                    if (e.feature.properties.GEOID10 === toMove['precinctID']) {
-                        e.setStyle({
-                            weight: weights,
-                            color: 'white',
-                            dashArray: '',
-                            fillOpacity: 1,
-                            fillColor: colorArray[toMove['districtID']]
-                        });
-
-
-                        e.bringToFront();
-                    }
-
-                    var x = toMove['precinctID'];
-                    if (x === "finished") {
-                        finished = true;
-                    }
-                });
-
-
-                if (!finished) {
-                    //console.log(toMove);
-                    getUpdates();
-                    console.log(hello);
+                } else {
+                    console.log(politicalResult);
+                    getPolitical();
                 }
-                // if (toMove['precinctID'] === "finished") {
-                //
-                // } else {
-                //     getUpdates();
-                //     console.log(toMove);
-                // }
             }
         }
     });
+}
 
+
+
+function saveWeights() {
+    var pf = document.getElementById("weight1").value;
+    var cmp = document.getElementById("weight2").value;
+    var pe = document.getElementById("weight3").value;
+    var weightsObj = { "Political Fairness": w1, "Compactness": w2, "Population Equality": w3 };
+    var weightsJSON = JSON.stringify(weightsObj);
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/save_weights/",
+        data: weightsJSON,
+        cache: false,
+        success: function () {
+            alert("success");
+        }
+    });
+}
+
+function loadWeights() {
+    $.ajax({
+        type: "GET",
+        url: "/load_weights/",
+        dataType: 'text',
+        cache: false,
+        success: function (data) {
+            console.log(data);
+        }
+    });
 }
