@@ -67,6 +67,7 @@
                 savedSliders.push({ 'w1': w1, 'w2': w2, 'w3': w3 });
 
             updateBox();
+            saveWeights();
         }
 
         function deleteSelected() {
@@ -87,6 +88,20 @@
             document.getElementById("weight1").value = res[0];
             document.getElementById("weight2").value = res[1];
             document.getElementById("weight3").value = res[2];
+            loadWeights()
+        }
+
+        function loadWeights() {
+            $.ajax({
+                type: "GET",
+                url: "/load_weights/",
+                dataType: 'text',
+                cache: false,
+                success: function (data) {
+                    alert(JSON.parse(data));
+                }
+
+            });
         }
 
         function getResults() {
@@ -97,6 +112,21 @@
                 cache: false,
                 success: function (data) {
                     console.log(JSON.parse(data));
+                }
+            });
+        }
+
+        function saveWeights() {
+            var weightsJSON = JSON.stringify(savedSliders);
+            console.log(savedSliders);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/save_weights/",
+                data: weightsJSON,
+                cache: false,
+                success: function () {
+                    alert("success");
                 }
             });
         }
