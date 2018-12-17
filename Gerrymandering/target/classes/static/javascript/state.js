@@ -158,9 +158,10 @@ function loadPrecinctView() {
     }
 }
 
-function loadRegionGrowingDefault() {
+function loadRegionGrowingDefault(do_me) {
     currentAlg = 0;
-    toggleRGvariant();
+    if (do_me)
+        toggleRGvariant();
 
     geojson.clearLayers();
 
@@ -176,12 +177,16 @@ function loadRegionGrowingDefault() {
 }
 
 function toggleRGvariant() {
-    var x = document.getElementById("rightbar1").style.display = "initial";
+    document.getElementById("rightbar1").style.display = "initial";
+    if ($("input[name=variant]:checked").val() == "SELECT_SEED") {
+        document.getElementById('selection').innerHTML = '<a><font color="red">Select ' + districtAmount + ' More</font></a>';
+    }
     // var y = document.getElementById("rightbar2");
 }
 
 function loadSimulatedAnnealingDefault() {
     currentAlg = 1;
+    toggleSAvariant();
 
     geojson.clearLayers();
 
@@ -194,6 +199,11 @@ function loadSimulatedAnnealingDefault() {
 
     map.removeControl(info);
     precinctInfo.addTo(map);
+}
+
+function toggleSAvariant() {
+    document.getElementById("rightbar1").style.display = "none";
+    document.getElementById("rightbar2").style.display = "initial";
 }
 
 function onEachStateFeature(feature, layer) {

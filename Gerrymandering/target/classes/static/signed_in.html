@@ -29,12 +29,83 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
     <link rel="stylesheet" href="./css/style.css">
-    <script>var loggedIn = true;</script>
+    <script>
+        var loggedIn = true;
+
+        window.onload = function () {
+            var account = localStorage.getItem("person");
+            var res = JSON.parse(account);
+
+            document.getElementById('userr').innerHTML = '<a class="noHover"><font color="red">Welcome: ' + res.Username + '</font></a>';
+
+        };
+        function updateBox() {
+            w1 = document.getElementById("weight1").value;
+            w2 = document.getElementById("weight2").value;
+            w3 = document.getElementById("weight3").value;
+
+            document.getElementById('sliderr').innerHTML = '<option value=' + w1 + ',' + w2 + ',' + w3 + '>' + w1 + ',' + w2 + ',' + w3 + '</option>';
+
+
+            savedSliders.forEach(function (e) {
+                document.getElementById('sliderr').innerHTML += '<option value=' + e.w1 + ',' + e.w2 + ',' + e.w3 + '>' + e.w1 + ',' + e.w2 + ',' + e.w3 + '</option>';
+            });
+        }
+
+        function saveSlider() {
+            w1 = document.getElementById("weight1").value;
+            w2 = document.getElementById("weight2").value;
+            w3 = document.getElementById("weight3").value;
+            skip = false;
+
+            savedSliders.forEach(function (e) {
+                if (e.w1 === w1 && e.w2 === w2 && e.w3 === w3)
+                    skip = true;
+            });
+
+            if (!skip)
+                savedSliders.push({ 'w1': w1, 'w2': w2, 'w3': w3 });
+
+            updateBox();
+        }
+
+        function deleteSelected() {
+            var e = document.getElementById("sliderr");
+            var res = e.options[e.selectedIndex].value.split(",");
+            savedSliders.forEach(function (e, i) {
+                if (e.w1 === res[0] && e.w2 === res[1] && e.w3 === res[2])
+                    savedSliders.splice(i, 1);
+            });
+
+            updateBox();
+        }
+
+        function loadSelected() {
+            var e = document.getElementById("sliderr");
+            var res = e.options[e.selectedIndex].value.split(",");
+
+            document.getElementById("weight1").value = res[0];
+            document.getElementById("weight2").value = res[1];
+            document.getElementById("weight3").value = res[2];
+        }
+
+        function getResults() {
+            request = $.ajax({
+                type: "GET",
+                url: "/results/",
+                dataType: 'text',
+                cache: false,
+                success: function (data) {
+                    console.log(JSON.parse(data));
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
     <div class="topnav">
-        <a class="noHover">Welcome: Username</a>
+        <div id="userr"></div>
         <a href="./index.html">Logout</a>
         <a class="active" href="#">Home</a>
     </div>
@@ -66,29 +137,37 @@
             <p aligh style="color: #ffffff;  font-size: 20px;">District Display:</p>
             <input checked onclick="loadPrecinctView()" type="radio" name="display" value="ORIGINAL" id="display1">
             <label style="color:#ffffff">Original Districts</label><br>
-            
+
             <input onclick="displayLastGenerated()" type="radio" name="display" value="LAST" id="display2">
             <label style="color:#ffffff">Last Generated Districts</label>
 
             <br>
             <p aligh style="color: #ffffff;  font-size: 20px;">Political Fairness:</p>
             <div class="slidecontainer">
-                <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight1">
+                <input onchange="updateBox()" type="range" min="0" max="99" value="50" default="50" class="slider" id="weight1">
             </div>
             <br>
             <p aligh style="color: #ffffff;  font-size: 20px;">Compactness:</p>
             <div class="slidecontainer">
-                <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight2">
+                <input onchange="updateBox()" type="range" min="0" max="99" value="50" default="50" class="slider" id="weight2">
             </div>
             <br>
             <p aligh style="color: #ffffff;  font-size: 20px;">Population Equality:</p>
             <div class="slidecontainer">
-                <input type="range" min="0" max="100" value="50" default="50" class="slider" id="weight3">
+                <input onchange="updateBox()" type="range" min="0" max="99" value="50" default="50" class="slider" id="weight3">
             </div>
             <br>
+            <p aligh style="color: #ffffff;  font-size: 20px;">Save Slider Info:</p>
+            <select id="sliderr" name="slidesel" id="slidsel" onchange="">
+                <option value="Arizona">50,50,50</option>
+            </select>
+            <br><br>
+            <button onclick="saveSlider()">Save</button>
+            <button onclick="loadSelected()">Load</button>
+            <button onclick="deleteSelected()">Delete</button>
 
             <p aligh style="color: #ffffff;  font-size: 20px;">Algorithm:</p>
-            <input onclick="loadRegionGrowingDefault();" type="radio" name="algorithm" value="REGION_GROWING" id="algorithm">
+            <input onclick="loadRegionGrowingDefault(true);" type="radio" name="algorithm" value="REGION_GROWING" id="algorithm">
             <label style="color:#ffffff">Region Growing</label><br>
 
             <input onclick="loadSimulatedAnnealingDefault();" type="radio" name="algorithm" value="SIMULATED_ANNEALING"
@@ -117,12 +196,13 @@
             <div id="selection">
 
             </div>
-
-
-
             <br>
 
             <button id="submit" onclick="startAlgorithm()">Submit</button>
+            <br>
+            <button id="results" onclick="getResults()">Display Results</button> <br>
+            <div id=resinfo"></div>
+
         </div>
 
         <div id="rightbar2">

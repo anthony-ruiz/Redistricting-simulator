@@ -119,14 +119,15 @@ public class RegionGrowingAlgorithm implements Algorithm {
             }
         }
         MovesBuffer movesBuffer = new MovesBuffer();
-        movesBuffer.constructJson("population", 0);
         for(District d: currentState.getDistricts()) {
-            movesBuffer.constructJson(Integer.toString(d.getPopulationT()), d.getId());
+            movesBuffer.addPopulationResult(d.getId(), d.getPopulationT());
         }
-        movesBuffer.constructJson("political", 0);
         for(District d: currentState.getDistricts()) {
-            movesBuffer.constructJson(d.getPoliticalAlignment(), d.getId());
+            movesBuffer.addPoliticalResult(d.getId(), d.getPoliticalAlignment());
+            System.out.println("District ID: " + d.getId() + " Dem Votes: " + d.getDemVotes() + " Rep  Votes: " + d.getRepVotes());
+            System.out.println("District ID: " + d.getId() + " Dem Precs: " + d.getDemocratic() + " Rep  Precs: " + d.getRepublican());
         }
+        movesBuffer.combineResults();
         movesBuffer.constructJson("finished", 0);
 
         System.out.println("Finished!");

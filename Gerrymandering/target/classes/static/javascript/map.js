@@ -1,5 +1,5 @@
 // color array to color each district
-var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#00B3E6',
     '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
     '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
     '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
@@ -18,6 +18,8 @@ var currentAlg;
 
 // list of states loaded
 states = [];
+
+savedSliders = [];
 
 // boolean for if a state is selected and current state
 var stateSelected = false;
@@ -38,13 +40,6 @@ L.control.scale().addTo(map);
 
 var prevZoom = map.getZoom();
 
-// assigning the tilelayer
-// L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-//     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-//     maxZoom: 16,
-//     minZoom: 5
-// }).addTo(map);
-
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -59,13 +54,6 @@ var searchControl = L.esri.Geocoding.geosearch({
 }).addTo(map);
 
 var results = L.layerGroup().addTo(map);
-
-// searchControl.on('results', function (data) {
-//     results.clearLayers();
-//     for (var i = data.results.length - 1; i >= 0; i--) {
-//         results.addLayer(L.marker(data.results[i].latlng));
-//     }
-// });
 
 map.on('zoomend', function () {
     if (map.getZoom() < 8 && (prevZoom >= 8) && stateSelected && !loggedIn) {
@@ -153,8 +141,14 @@ function include(file) {
 function showAllStates() {
     currentAlg = null;
     stateSelected = false;
-    document.getElementById("algorithm").checked = false;
-    document.getElementById("rightbar1").style.display = "none";
+    if (loggedIn) {
+        customSeeds = [];
+        document.getElementById('selection').innerHTML = '';
+        document.getElementById("algorithm").checked = false;
+
+        document.getElementById("submit").style.display = "none";
+        document.getElementById("rightbar1").style.display = "none";
+    }
 
 
     map.setView([40, -100], 5);
@@ -207,10 +201,10 @@ function startAlgorithm() {
             contentType: "application/json",
             url: "/begin/",
             data: myJSON,
-            dataType: 'json',
+            dataType: 'text',
             cache: false,
             success: function (data) {
-                alert(data);
+
             }
         });
         getUpdates();
@@ -227,7 +221,29 @@ var request;
 
 function getUpdates() {
     finished = false;
-    politicalReady = false;
+    $.xhrPool = []; // array of uncompleted requests
+    $.xhrPool.abortAll = function() { // our abort function
+        $(this).each(function(idx, jqXHR) {
+            jqXHR.abort();
+        });
+        $.xhrPool.length = 0
+    };
+
+
+
+    $.ajaxSetup({
+        beforeSend: function(request) { // before jQuery send the request we will push it to our array
+            $.xhrPool.push(request);
+        },
+        complete: function(request) { // when some of the requests completed it will splice from the array
+            var index = $.xhrPool.indexOf(request);
+            if (index > -1) {
+                $.xhrPool.splice(index, 1);
+            }
+        }
+    });
+    // politicalReady = false;
+    // complete = false;
     if(!finished) {
         request = $.ajax({
             type: "GET",
@@ -261,88 +277,27 @@ function getUpdates() {
                             }
 
                             var x = toMove['precinctID'];
-                            if (x === "population") {
+                            if (x === "finished") {
                                 finished = true;
-                                request.abort();
-                                getPopulation();
+                                $.xhrPool.abortAll();
+                                // getPopulation();
                             }
                         });
-
-
                         if (!finished) {
                             //console.log(toMove);
                             getUpdates();
                         }
-                        // if (toMove['precinctID'] === "finished") {
-                        //
-                        // } else {
-                        //     getUpdates();
-                        //     console.log(toMove);
-                        // }
                     }
                 }
-
-
             }
         });
+    } else {
+
+        $.xhrPool.abortAll();
     }
-
+    // $.xhrPool.abortAll();
 }
 
-var politicalReady = false;
-function getPopulation() {
-    if(!politicalReady) {
-        $.ajax({
-            type: "GET",
-            url: "/updatepop/",
-            dataType: 'text',
-            cache: false,
-            success: function (data) {
-                if (!politicalReady) {
-                    if (data === "[]") {
-                        getPopulation()
-
-                    } else {
-                        var populationResult = JSON.parse(data);
-                        var x = populationResult['precinctID'];
-                        if(x === "political") {
-                            politicalReady = true;
-                            finished = false;
-                        } else {
-                            console.log(populationResult);
-                            getPopulation();
-                        }
-                    }
-                }
-
-            }
-        });
-    }
-
-}
-
-function getPolitical() {
-    $.ajax({
-        type: "GET",
-        url: "/update/",
-        dataType: 'text',
-        cache: false,
-        success: function (data) {
-            if (data === "[]") {
-                getPolitical()
-            } else {
-                var politicalResult = JSON.parse(data);
-                var x = politicalResult['precinctID'];
-                if(x === "finished") {
-
-                } else {
-                    console.log(politicalResult);
-                    getPolitical();
-                }
-            }
-        }
-    });
-}
 
 
 
@@ -360,18 +315,6 @@ function saveWeights() {
         cache: false,
         success: function () {
             alert("success");
-        }
-    });
-}
-
-function loadWeights() {
-    $.ajax({
-        type: "GET",
-        url: "/load_weights/",
-        dataType: 'text',
-        cache: false,
-        success: function (data) {
-            console.log(data);
         }
     });
 }
