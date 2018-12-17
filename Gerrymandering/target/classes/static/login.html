@@ -41,7 +41,7 @@
         // var loginJSON = $("#login").serialize();
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
-        var loginObj = {"username": username, "password": password};
+        var loginObj = { "username": username, "password": password };
         var loginJSON = JSON.stringify(loginObj);
 
         $.ajax({
@@ -52,9 +52,13 @@
             dataType: 'text',
             cache: false,
             success: function (data) {
-                console.log(data);
-                alert(data);
-                window.location = "./signed_in.html";
+                //alert(data);
+                if (data === "login failed") {
+                    document.getElementById('failed').innerHTML = '<h2><font color="red">Invalid login!</font></h2>';
+                } else {
+                    localStorage.setItem("person", data);
+                    window.location = "./signed_in.html";
+                }
             }
         });
 
@@ -64,31 +68,30 @@
 </script>
 
 <body>
-<div class="topnav">
-    <a href="./signup.html">Sign up</a>
-    <a class="active" href="#">Login</a>
-    <a href="./index.html">Home</a>
-</div>
+    <div class="topnav">
+        <a href="./signup.html">Sign up</a>
+        <a class="active" href="#">Login</a>
+        <a href="./index.html">Home</a>
+    </div>
+    
+    <form method="post" action="index.html" id="login">
+        <div class="box">
+            <h1>Titan-mandering Login</h1>
 
-<form method="post" action="index.html" id="login">
-    <div class="box">
-        <h1>Titan-mandering Login</h1>
+            <input type="text" name="username" value="username" id="username" onFocus="field_focus(this, 'username');"
+                onblur="field_blur(this, 'email');" class="email" />
 
-        <input type="text" name="username" value="username" id="username" onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'email');"
-               class="email" />
-
-        <input type="password" name="password" value="password" id="password" onFocus="field_focus(this, 'password');" onblur="field_blur(this, 'email');"
-               class="email" />
-
-        <!--<a href="./signed_in.html">-->
-        <div class="btn" onclick="return login()">Sign In
-            <!--<button onclick="login()">Sign In</button>-->
-        </div>
-        <!--</a> &lt;!&ndash; End Btn &ndash;&gt;-->
-    </div> <!-- End Box -->
+            <input type="password" name="password" value="password" id="password" onFocus="field_focus(this, 'password');"
+                onblur="field_blur(this, 'email');" class="email" />
 
 
-</form>
+            <div class="btn" onclick="login()">Sign In</div>
+            
+        </div> 
+        <br>
+        <div id=failed></div>
+
+    </form>
 </body>
 
 </html>

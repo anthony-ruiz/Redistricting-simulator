@@ -145,7 +145,7 @@ function loadPrecinctView() {
     }
     else {
         geojson.clearLayers();
-
+        
         geojson = L.geoJSON(window[currentState], {
             style: precinctStyle,
             onEachFeature: onEachPrecinctFeature
@@ -176,12 +176,16 @@ function loadRegionGrowingDefault() {
 }
 
 function toggleRGvariant() {
-    var x = document.getElementById("rightbar1").style.display = "initial";
+    document.getElementById("rightbar1").style.display = "initial";
+    if ($("input[name=variant]:checked").val() == "SELECT_SEED") {
+        document.getElementById('selection').innerHTML = '<a><font color="red">Select ' + districtAmount + ' More</font></a>';
+    }
     // var y = document.getElementById("rightbar2");
 }
 
 function loadSimulatedAnnealingDefault() {
     currentAlg = 1;
+    toggleSAvariant();
 
     geojson.clearLayers();
 
@@ -194,6 +198,11 @@ function loadSimulatedAnnealingDefault() {
 
     map.removeControl(info);
     precinctInfo.addTo(map);
+}
+
+function toggleSAvariant() {
+    document.getElementById("rightbar1").style.display = "none";
+    document.getElementById("rightbar2").style.display = "initial";
 }
 
 function onEachStateFeature(feature, layer) {

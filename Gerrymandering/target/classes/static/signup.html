@@ -42,7 +42,7 @@
         var e = document.getElementById("emailSU").value;
         var u = document.getElementById("userSU").value;
         var p = document.getElementById("passSU").value;
-        var signUpObj = {"email" : e, "username" : u, "password" : p}
+        var signUpObj = { "email": e, "username": u, "password": p }
         var signUpJSON = JSON.stringify(signUpObj);
         $.ajax({
             type: "POST",
@@ -51,40 +51,46 @@
             data: signUpJSON,
             dataType: 'text',
             success: function (data) {
-                alert(data);
-                console.log(data)
+                // alert(data);
+                if (data === "failure") {
+                    document.getElementById('failed').innerHTML = '<h2><font color="red">Username Invalid!</font></h2>';
+                } else {
+                    window.location = "./login.html";
+                }
             }
         });
     }
 </script>
 
 <body>
-<div class="topnav">
-    <a class="active" href="#">Sign up</a>
-    <a href="./login.html">Login</a>
-    <a href="./index.html">Home</a>
-</div>
+    <div class="topnav">
+        <a class="active" href="#">Sign up</a>
+        <a href="./login.html">Login</a>
+        <a href="./index.html">Home</a>
+    </div>
 
-<!--<form method="post" action="index.html">-->
-<div class="box">
-    <h1>Sign up to Titan-mandering</h1>
+    <!--<form method="post" action="index.html">-->
+    <div class="box">
+        <h1>Sign up to Titan-mandering</h1>
 
-    <input type="email" name="email" value="email" id="emailSU" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');"
-           class="email" />
+        <input type="email" name="email" value="email" id="emailSU" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');"
+            class="email" />
 
-    <input type="text" name="username" value="username" id="userSU" onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'username');"
-           class="email" />
+        <input type="text" name="username" value="username" id="userSU" onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'username');"
+            class="email" />
 
-    <input type="password" name="password" value="password" id="passSU" onFocus="field_focus(this, 'password');" onblur="field_blur(this, 'password');"
-           class="email" />
+        <input type="password" name="password" value="password" id="passSU" onFocus="field_focus(this, 'password');"
+            onblur="field_blur(this, 'password');" class="email" />
 
-    <a href="#">
-        <div id="btn2" onclick="signUpRequest()">Create</div>
-    </a>
+        <a href="#">
+            <div id="btn2" onclick="signUpRequest()">Create</div>
+        </a>
 
-</div>
+    </div>
+    <br>
+    <div id=failed></div>
 
-</form>
+    </form>
 </body>
 
 </html>

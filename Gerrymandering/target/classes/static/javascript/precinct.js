@@ -1,7 +1,10 @@
+// To save the style when the user hovers over a precinct to save it
+var currentStyle;
+
 // control that shows precinct info on hover
 var precinctInfo = L.control();
 
-precinctInfo.onAdd = function (map) {
+precinctInfo.onAdd = function () {
     this._div = L.DomUtil.create('div', 'info');
     this.update();
     return this._div;
@@ -19,7 +22,21 @@ precinctInfo.update = function (props) {
         : 'Hover over a precinct');
 };
 // end of precinct control
-var currentStyle;
+
+// Determin what district each precinct is apart of
+function districtDisplay(props) {
+    if (currentAlg === 0) {
+        return "Unassigned";
+    } else if (currentAlg === 2) {
+        for (var i = 0; i < Object.keys(movesMade).length; i++) {
+            if (props.GEOID10 === movesMade[i]['precinctID']) {
+                return currentState + ' ' + movesMade[i]['districtID'];
+            }
+        }
+    } else {
+        return props.District;
+    }
+}
 
 function precinctHighlightFeature(e) {
     var layer = e.target;
@@ -39,19 +56,8 @@ function precinctHighlightFeature(e) {
     precinctInfo.update(layer.feature.properties);
 }
 
-function districtDisplay(props) {
-    if (currentAlg === 0) {
-        return "Unassigned";
-    } else if (currentAlg === 2) {
-        for (var i = 0; i < Object.keys(movesMade).length; i++) {
-            if (props.GEOID10 === movesMade[i]['precinctID']) {
-                return currentState + ' ' + movesMade[i]['districtID'];
-            }
-        }
-    } else {
-        return props.District;
-    }
-}
+
+
 
 // colors each precinct based on the party they are in
 function getPrecinctColor(d) {
@@ -92,7 +98,7 @@ function precinctResetHighlight(v) {
     precinctInfo.update();
 }
 
-var customSeeds;
+var customSeeds = [];
 
 function variantSelection(variant) {
     var x = document.getElementById("submit");
@@ -120,7 +126,7 @@ function precinctClicked(e) {
     var y = document.getElementById("submit");
 
     if (x === "SELECT_SEED") {
-        document.getElementById("variant").checked = false;
+        // document.getElementById("variant").checked = false;
         var cid = e.target.feature.properties.GEOID10;
         var print = "";
         var skip = false;

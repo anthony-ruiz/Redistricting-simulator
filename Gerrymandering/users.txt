@@ -1,2 +1,2 @@
 {"Email":"aaaa","Username":"aaaa","Saved Weights":[],"Password":"aaaa"}
-{"Email":"mailemerson.biro@gmail.com","Username":"fuck","Saved Weights":[],"Password":"you"}
+{"Email":"email","Username":"username","Saved Weights":[],"Password":"password"}

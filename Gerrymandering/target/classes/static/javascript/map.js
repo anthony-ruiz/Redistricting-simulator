@@ -1,5 +1,5 @@
 // color array to color each district
-var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#00B3E6',
     '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
     '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
     '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
@@ -18,6 +18,8 @@ var currentAlg;
 
 // list of states loaded
 states = [];
+
+savedSliders = [];
 
 // boolean for if a state is selected and current state
 var stateSelected = false;
@@ -38,13 +40,6 @@ L.control.scale().addTo(map);
 
 var prevZoom = map.getZoom();
 
-// assigning the tilelayer
-// L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-//     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-//     maxZoom: 16,
-//     minZoom: 5
-// }).addTo(map);
-
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -59,13 +54,6 @@ var searchControl = L.esri.Geocoding.geosearch({
 }).addTo(map);
 
 var results = L.layerGroup().addTo(map);
-
-// searchControl.on('results', function (data) {
-//     results.clearLayers();
-//     for (var i = data.results.length - 1; i >= 0; i--) {
-//         results.addLayer(L.marker(data.results[i].latlng));
-//     }
-// });
 
 map.on('zoomend', function () {
     if (map.getZoom() < 8 && (prevZoom >= 8) && stateSelected && !loggedIn) {
@@ -153,8 +141,14 @@ function include(file) {
 function showAllStates() {
     currentAlg = null;
     stateSelected = false;
-    document.getElementById("algorithm").checked = false;
-    document.getElementById("rightbar1").style.display = "none";
+    if (loggedIn) {
+        customSeeds = [];
+        document.getElementById('selection').innerHTML = '';
+        document.getElementById("algorithm").checked = false;
+
+        document.getElementById("submit").style.display = "none";
+        document.getElementById("rightbar1").style.display = "none";
+    }
 
 
     map.setView([40, -100], 5);
@@ -192,7 +186,14 @@ function startAlgorithm() {
         w2 = document.getElementById("weight2").value;
         w3 = document.getElementById("weight3").value;
         a = document.getElementById("algorithm").value;
-        var algorithmObj = { "state": s, "politicalFairness": w1, "compactness": w2, "populationEquality": w3, "algorithm": a };
+        var str = $("input[name=variant]:checked").val();
+        var seeds = [];
+
+        customSeeds.forEach(function (e) {
+            seeds.push(e.target.feature.properties.GEOID10);
+        });
+
+        var algorithmObj = { "state": s, "politicalFairness": w1, "compactness": w2, "populationEquality": w3, "algorithm": a};
         var myJSON = JSON.stringify(algorithmObj);
 
         $.ajax({
@@ -207,10 +208,9 @@ function startAlgorithm() {
             }
         });
         getUpdates();
-    } else {
+    } else if (document.getElementById("algorithm").checked && document.getElementById("algorithm").value === 'SIMULATED_ANNEALING') {
 
     }
-
 }
 
 
@@ -258,6 +258,7 @@ function getUpdates() {
                 if (!finished) {
                     //console.log(toMove);
                     getUpdates();
+                    console.log(hello);
                 }
                 // if (toMove['precinctID'] === "finished") {
                 //
