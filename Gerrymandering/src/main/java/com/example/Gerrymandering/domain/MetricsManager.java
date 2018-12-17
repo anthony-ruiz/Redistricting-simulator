@@ -17,19 +17,29 @@ public class MetricsManager {
 
         if((politicalFairness == 0) && (populationEquality == 0) && (compactness != 0)){
             Compactness compactness1 = new Compactness();
-            List<Precinct> list1 = compactness1.compactness(state,possibleNeighnors,currentDistrict,seedPrecinct);
-            BestPrecinct = list1.get(0);
+            List<Precinct> fistList = compactness1.compactness(state,possibleNeighnors,currentDistrict,seedPrecinct);
+            double firstListSize = fistList.size();
+            List<Precinct> subItems = new ArrayList<Precinct>(fistList.subList(0, (int)Math.ceil(firstListSize * (1-compactness) )));
+            Collections.shuffle(subItems);
+            BestPrecinct = subItems.get(0);
         }
         else if ((politicalFairness == 0) && (populationEquality != 0) && (compactness == 0)){
             PopulationEquality populationEquality1 = new PopulationEquality();
-            List<Precinct> list1 = populationEquality1.populationEquality(state,possibleNeighnors,currentDistrict,seedPrecinct);
-            BestPrecinct = list1.get(0);
+            List<Precinct> fistList = populationEquality1.populationEquality(state,possibleNeighnors,currentDistrict,seedPrecinct);
+            double firstListSize = fistList.size();
+            List<Precinct> subItems = new ArrayList<Precinct>(fistList.subList(0, (int)Math.ceil(firstListSize * (1-populationEquality) )));
+            Collections.shuffle(subItems);
+            BestPrecinct = subItems.get(0);
 
         }
         else if((politicalFairness != 0) && (populationEquality == 0) && (compactness == 0)){
             PoliticalFairness politicalFairness1 = new PoliticalFairness();
-            List<Precinct> list1 = politicalFairness1.fairness(state,possibleNeighnors,currentDistrict,seedPrecinct);
-            BestPrecinct = list1.get(0);
+            List<Precinct> fistList = politicalFairness1.fairness(state,possibleNeighnors,currentDistrict,seedPrecinct);
+            double firstListSize = fistList.size();
+            List<Precinct> subItems = new ArrayList<Precinct>(fistList.subList(0, (int)Math.ceil(firstListSize * (1-politicalFairness) )));
+            Collections.shuffle(subItems);
+            BestPrecinct = subItems.get(0);
+
         }
 
 
