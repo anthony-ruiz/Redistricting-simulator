@@ -17,18 +17,21 @@ A high-level view of the algorithm is as follows:
 *Add the new precinct into its district
 *Updates the precincts that are new neighboring possibilities to its list of neighboring precincts (neighbors of the newly added precinct) 
 
+
 When a state is selected the following screen appears: 
 
 ![picture alt](https://i.imgur.com/x7TClDv.png)
+
+
+
 
 Political fairness goal is to attempt to give proportional representation to each constituent. (i.e) if 40% historically voted for one party and 60%voted for the other, attempt to give 40% of the power to the party that was voted for by 40% of the population
 Compactness attempts to give precedence to precincts with a geographical midpoint closer to the seed precinct than to other ones that might be further away.
 Population equality aims to distribute the population numbers equally amongst districts.
 
-Here is our program in action 
+## Here is our program in action 
 ![picture alt](https://i.imgur.com/ZWwWfiX.gif)
 
-https://i.imgur.com/ZWwWfiX.gif
 
 
 Hovering over a given precinct shows more in-depth information. 
