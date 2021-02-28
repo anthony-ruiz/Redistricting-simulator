@@ -1,44 +1,44 @@
-# CSE308 Titans
+# Redistricting Simulator
+
 
 http://redistricting.lls.edu
 
+This application helps in the creation of new districts for a given State depending on user constraints.
+The constraints that are supported include: 
+Political Fairness
+Compactness
+Population Equality
+
+The districts are created via a Region a Growing algorithm. The number of seed presents is determined by State law. The user has the option to select which precincts will be the seeds, Select the presents from where the corresponding representative lives or they can be randomly selected. 
+A high-level view of the algorithm is as follows:
+*Presents are selected in a Round-robin approach; Each of the Districts is allowed to get a precinct at a time.
+*each precinct determines what neighboring precincts are available (they were previously computed and are stored in a hashmap for faster computing where key= precinct value= list of(neighboring precincts) ) 
+*Determines adding which of the neighboring precincts would result in a more favorable outcome determined by the user given constraints
+*Add the new precinct into its district
+*Updates the precincts that are new neighboring possibilities to its list of neighboring precincts (neighbors of the newly added precinct) 
+
+When a state is selected the following screen appears: 
+
+![picture alt](https://i.imgur.com/x7TClDv.png)
+
+Political fairness goal is to attempt to give proportional representation to each constituent. (i.e) if 40% historically voted for one party and 60%voted for the other, attempt to give 40% of the power to the party that was voted for by 40% of the population
+Compactness attempts to give precedence to precincts with a geographical midpoint closer to the seed precinct than to other ones that might be further away.
+Population equality aims to distribute the population numbers equally amongst districts.
+
+Here is our program in action 
+![picture alt](https://i.imgur.com/ZWwWfiX.gif)
+
+https://i.imgur.com/ZWwWfiX.gif
 
 
-WISCONSIN LEGISLATURE.
+Hovering over a given precinct shows more in-depth information. 
+After the simulation is run information for each of hte new districts is displayed.
 
-Apportionment. Section 3. [As amended Nov. 1910, Nov. 1962 and Nov. 1982] At its first session after each enumeration made by the authority of the United States, the legislature shall apportion and district anew the members of the senate and assembly, ACORDDING TO THE NUMBER OF HABITANTS.
+## Tools Used:
 
-	-jurisdictions are permitted to deviate somewhat from perfect population equality to accommodate traditional districting objectives, among them: preserving the integrity of political subdivisions, maintaining communities of interest, and creating geographic compactness.
-
-	- When the maximum population deviation between the largest and smallest district is less than 10 percent, a state or local legislative map presumptively complies with the one-person, one-vote rule.
-
-
-
-
-
-ARIZONA 
-
-
-The independent redistricting commission shall establish congressional and legislative districts. The commencement of the mapping process for both the congressional and legislative districts shall be the creation of districts of equal population in a grid-like pattern across the state. Adjustments to the grid shall then be made as necessary to accommodate the goals as set forth below:
-
-	A. Districts shall comply with the United States Constitution and the United States voting rights act;
-
-	B. Congressional districts shall have equal population to the extent practicable, and state legislative districts shall have equal population to the extent practicable;
-	
-	C. Districts shall be geographically compact and contiguous to the extent practicable;	
-
-	D. District boundaries shall respect communities of interest to the extent practicable;
-
-	E. To the extent practicable, district lines shall use visible geographic features, city, town and county boundaries, and undivided census tracts;
-
-	F. To the extent practicable, competitive districts should be favored where to do so would create no significant detriment to the other goals.
-
-Party registration and voting history data shall be excluded from the initial phase of the mapping process but may be used to test maps for compliance with the above goals. The places of residence of incumbents or candidates shall not be identified or considered.
-
-
-
-MINNESOTA 
-
-At its first session after each enumeration of the inhabitants of this state made by the authority of the United States, the legislature shall have the power to prescribe the bounds of congressional and legislative districts. Senators shall be chosen by single districts of convenient contiguous territory. No representative district shall be divided in the formation of a senate district. The senate districts shall be numbered in a regular series.
-
-
+* Spring Boot
+* Leaflet
+* Java
+* JavaScript
+* HTML
+* CSS
