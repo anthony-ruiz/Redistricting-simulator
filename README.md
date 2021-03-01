@@ -11,11 +11,11 @@ Population Equality
 
 The districts are created via a Region a Growing algorithm. The number of seed presents is determined by State law. The user has the option to select which precincts will be the seeds, Select the presents from where the corresponding representative lives or they can be randomly selected. 
 A high-level view of the algorithm is as follows:
-*Presents are selected in a Round-robin approach; Each of the Districts is allowed to get a precinct at a time.
-*each precinct determines what neighboring precincts are available (they were previously computed and are stored in a hashmap for faster computing where key= precinct value= list of(neighboring precincts) ) 
-*Determines adding which of the neighboring precincts would result in a more favorable outcome determined by the user given constraints
-*Add the new precinct into its district
-*Updates the precincts that are new neighboring possibilities to its list of neighboring precincts (neighbors of the newly added precinct) 
+* Presents are selected in a Round-robin approach; Each of the Districts is allowed to get a precinct at a time.
+* Each precinct determines what neighboring precincts are available (they were previously computed and are stored in a hashmap for faster computing where key= precinct value= list of(neighboring precincts) ) 
+* Determines adding which of the neighboring precincts would result in a more favorable outcome determined by the user given constraints
+* Add the new precinct into its district
+* Updates the precincts that are new neighboring possibilities to its list of neighboring precincts (neighbors of the newly added precinct) 
 
 
 When a state is selected the following screen appears: 
